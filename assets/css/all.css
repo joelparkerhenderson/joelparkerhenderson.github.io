@@ -14,6 +14,7 @@ nav ul li, footer ul li {
 }
 a {
     text-decoration: none;
+    color: #ddd;
 }
 a:hover {
     text-decoration: underline;
@@ -40,5 +41,5 @@ ul.posts li {
     list-style: none;
 }
 li{
-    margin: 0.3em 0;
+    margin: 0.5em 0;
 }
