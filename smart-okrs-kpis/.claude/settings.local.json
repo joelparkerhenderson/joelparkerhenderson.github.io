@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/jph/.claude/plugins/cache/playwright-skill/playwright-skill/4.0.2/skills/playwright-skill/**)",
+      "Bash(node run.js /tmp/playwright-test-dropdown.js)"
+    ]
+  }
+}

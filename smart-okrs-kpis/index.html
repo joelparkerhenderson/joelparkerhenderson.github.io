@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>SMART + OKRs + KPIs</title>
+		<meta charset="utf-8" />
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/3.0.0/pure-min.css" integrity="sha512-X2yGIVwg8zeG8N4xfsidr9MqIfIE8Yz1It+w2rhUJMqxUwvbVqC5OPcyRlPKYOw/bsdJut91//NO9rSbQZIPRQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/3.0.0/grids-responsive.min.css" integrity="sha512-5hr5fSxiYwkxK0EZX2B/DILA1QoyXwIf9ynWVbyMvqcMIDZ0XZKWw+xk9mysLSOLV4iMrBB1t/YAxt/006W4HA==" crossorigin="anonymous" referrerpolicy="no-referrer" />        <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.14.0/cdn.min.js" integrity="sha512-4e/5PZ1eoLJMDjaJXTHkWRA0yec8bm07/iINYSd5rdJ38jGm5OZkEi3J+7LqSDWNATNJ4/aneNlrk2AYnnckIg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+            @media screen and (min-width: 640px) {
+                main {
+                    max-width: 840px;
+                    margin: 0 auto;/*Centering this container*/
+                }
+            }
+
+            body {
+                font-family:Arial,helvetica,sans-serif;
+                font-size:100%;
+                font-size:1em;
+            }
+            .center {
+                 justify-content: center;
+                 text-align:center;
+            }
+            header {
+                background-color: #ddd;
+                border-bottom: 1px solid #888;
+                color: #111;
+                font-weight: bold;
+                margin-bottom: 2em;
+                width: 100%;
+            }
+            footer {
+                background-color: #ddd;
+                border-top: 1px solid #888;
+                bottom: 0;
+                color: #111;
+                left: 0;
+                margin-top: 1em;
+                position: fixed;
+                text-align: center;
+                width: 100%;
+            }
+            main {
+                /* noop */
+            }
+            .pure-menu-link {
+                color: #111;
+            }
+            .pure-menu-link i {
+                margin-right: 0.25em;
+            }
+            a.pure-menu-link:hover {
+                background: #eee;
+                color: #222;
+            }
+
+        /* Hide elements marked x-cloak until Alpine.js initializes and strips
+        the attribute — prevents a flash of un-evaluated x-show / x-if content. */
+        [x-cloak] {
+            display: none !important; 
+        }
+
+        /* The suggestable div, which contains a button and input text field. */
+        div.suggestable { 
+            /* Establish the containing block for the absolutely-positioned dropdown. */
+            position: relative; 
+            /* Lay out the button and input side-by-side, and size the wrapper to its contents. */
+            display: inline-flex; 
+            /* Some vertical spacing between suggestables and other content. */
+            margin: 0 0.5em 0 0.5em;
+        }
+
+        div.suggestable input[type=text] {
+            font-size: 1em;
+            width: 50em;
+        }
+
+        div.suggestable button { 
+            /* Stable font size */
+            font-size: 1em;
+            /* Turn the cursor into a pointer when hovering over the button to signal interactivity. */
+            cursor: pointer; 
+        }
+
+        /* The suggestable dropdown; when the user taps the button, then this dropdown appears/disappears. */
+        .suggestable_dropdown { 
+            /* Stable font size */
+            font-size: 1em;
+
+            /* position: absolute + top:100% drops it directly below the wrapper's content. */
+            position: absolute;
+            top: 100%; 
+
+            /* Stretch to the wrapper's full width. */
+            left: 0; 
+            right: 0; 
+
+            /* Cap the list and scroll if longer. */
+            max-height: 10em; 
+            overflow: auto; 
+
+            /* Keep this above sibling content. */
+            z-index: 10; 
+
+            /* Make it look like a dropdown. Opaque background so it covers
+               underlying fields instead of letting them show through. */
+            background: #fff;
+            border: 1px solid #ccc;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .suggestable_dropdown li { 
+            /* Make each row a comfortable click target. */
+            padding: 6px 8px; 
+            /* Signal interactivity because <li> isn't clickable by default semantics. */
+            cursor: pointer; 
+        }
+
+        /* Hover highlight so users see which row they're about to pick. */
+        .suggestable_dropdown li:hover { 
+            background: #eef; 
+        }
+
+    </style>
+    </head>
+    <body>
+        <header>
+            <nav class="pure-g center">
+                <div class="pure-u-1-3">
+                    <a class="pure-menu-link" href="https://joelparkerhenderson.github.io/smart-okrs-kpis/"><i class="fa-solid fa-house"></i>Home</a>
+                </div>
+                <div class="pure-u-1-3">
+                    <a class="pure-menu-link" href="https://github.com/joelparkerhenderson/smart-okrs-kpis/"><i class="fa-solid fa-folder"></i>Code</a>
+                </div>
+                <div class="pure-u-1-3">
+                    <a class="pure-menu-link" href="mailto:joel@joelparkerhenderson.com" class="pure-menu-link"><i class="fa-solid fa-envelope"></i>Email</a>
+                </div>
+            </nav>
+        </header>
+        <main>
+
+        <form>
+
+            <div x-data="suggester(suggest_verbs)" class="suggestable" @click.outside="open = false">
+                <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
+                <input type="text" name="verb" x-model="value" placeholder="Verb">
+                <ul class="suggestable_dropdown" x-show="open" x-cloak>
+                <template x-for="opt in suggestions" :key="opt">
+                    <li @click="value = opt; open = false" x-text="opt"></li>
+                </template>
+                </ul>
+            </div>
+
+            <br>
+
+            <div x-data="suggester(suggest_topics)" class="suggestable" @click.outside="open = false">
+                <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
+                <input type="text" name="topic" x-model="value" placeholder="Topic">
+                <ul class="suggestable_dropdown" x-show="open" x-cloak>
+                <template x-for="opt in suggestions" :key="opt">
+                    <li @click="value = opt; open = false" x-text="opt"></li>
+                </template>
+                </ul>
+            </div>
+
+            <br>
+
+            <div x-data="suggester(suggest_deltas)" class="suggestable" @click.outside="open = false">
+                <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
+                <input type="text" name="delta" x-model="value" placeholder="Delta">
+                <ul class="suggestable_dropdown" x-show="open" x-cloak>
+                <template x-for="opt in suggestions" :key="opt">
+                    <li @click="value = opt; open = false" x-text="opt"></li>
+                </template>
+                </ul>
+            </div>
+
+            <br>
+
+            <div x-data="suggester(suggest_timings)" class="suggestable" @click.outside="open = false">
+                <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
+                <input type="text" name="timing" x-model="value" placeholder="Timing">
+                <ul class="suggestable_dropdown" x-show="open" x-cloak>
+                <template x-for="opt in suggestions" :key="opt">
+                    <li @click="value = opt; open = false" x-text="opt"></li>
+                </template>
+                </ul>
+            </div>
+
+            <br><br>
+
+            <div x-data="suggester(suggest_metrics)" class="suggestable" @click.outside="open = false">
+                <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
+                <input type="text" name="metric" x-model="value" placeholder="Metric">
+                <ul class="suggestable_dropdown" x-show="open" x-cloak>
+                <template x-for="opt in suggestions" :key="opt">
+                    <li @click="value = opt; open = false" x-text="opt"></li>
+                </template>
+                </ul>
+            </div>
+
+            <br>
+
+            <div x-data="suggester(suggest_updates)" class="suggestable" @click.outside="open = false">
+                <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
+                <input type="text" name="update" x-model="value" placeholder="Update">
+                <ul class="suggestable_dropdown" x-show="open" x-cloak>
+                <template x-for="opt in suggestions" :key="opt">
+                    <li @click="value = opt; open = false" x-text="opt"></li>
+                </template>
+                </ul>
+            </div>
+
+            <br>
+
+            <div x-data="suggester(suggest_sources)" class="suggestable" @click.outside="open = false">
+                <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
+                <input type="text" name="source" x-model="value" placeholder="Source">
+                <ul class="suggestable_dropdown" x-show="open" x-cloak>
+                <template x-for="opt in suggestions" :key="opt">
+                    <li @click="value = opt; open = false" x-text="opt"></li>
+                </template>
+                </ul>
+            </div>
+
+            <p><button type="submit">Submit</button></p>
+        </form>
+
+        <script>
+        let suggest_verbs = [
+            "Increase",
+            "Decrease",
+            "Speed up",
+            "Slow down",
+            "Create",
+            "Delete",
+            "Add",
+            "Remove",
+            "Start",
+            "Finish",
+            "Phase in",
+            "Phase out",
+            "Upsize",
+            "Downsize",
+            "Manage",
+            "Direct",
+            "Organize",
+            "Orchestrate"
+        ];
+        let suggest_topics = [
+            "customer satisfaction",
+            "employee happiness",
+            "stakeholder engagement",
+            "product price",
+            "production quality",
+            "product availability",
+            "financial revenue",
+            "financial earnings",
+            "financial profits",
+            "return on investment (ROI)",
+            "total cost of ownership (TCO)",
+            "daily active users (DAU)",
+            "weekly active users (WAU)",
+            "monthly active users (MAU)",
+            "yearly active users (YAU)",
+            "advertising views",
+            "advertising clicks",
+            "advertising actions",
+            "delivery pick-ups",
+            "delivery drop-offs",
+            "on-time arrivals",
+            "on-time departures",
+            "service success rate",
+            "service success throughput",
+            "service success uptime",
+            "DORA lead time for changes", 
+            "DORA deployment frequency",
+            "DORA failure rate",
+            "DORA recovery time",
+            "Halstead complexity volume",
+            "Halstead complexity difficulty",
+            "Halstead complexity effort"
+        ];
+        let suggest_deltas = [
+            "by x percent",
+            "by x probability",
+            "by x multiplier",
+            "from x to y",
+            "from star rating x to y (1-5)",
+            "from maturity model level x to y (1-5)",
+            "from RAG status x to y (red-green)",
+            "achieving 4 sigma",
+            "achieving 5 sigma / 6 sigma"
+        ];
+        let suggest_timings = [
+            "by date x",
+            "during date x to y",
+            "by start/end of commercial/fiscal week/quarter/year x",
+            "during the commercial/fiscal week/quarter/year x",
+            "from start/end of commercial/fiscal week/quarter/year x to y",
+        ];
+        let suggest_metrics = [
+            "Measure by Customer Satisfaction Score (1 to 5)",
+            "Measure by Net Promoter Score (-100 to 100)",
+            "Measure by Likert Scale 5-step agreement (1 to 5)",
+            "Measure by Gross Profit Margin",
+            "Measure by Net Profit Margin",
+            "Measure by EBITDA",
+            "Measure by Working Capital",
+            "Measure by Debt-to-Equity Ratio",
+            "Measure by Cash Conversion Cycle (CCC)",
+            "Measure by Net Profit Margin",
+        ];
+        let suggest_updates = [
+            "with updates continuously in real-time",
+            "with updates daily/weekly/quarterly/yearly at day/time x",
+            "with updates at the end of commercial/fiscal week/quarter/year x",
+            "with updates on demand when we check in with stakeholders",
+            "with updates when work is delivered into production",
+        ];
+        let suggest_sources = [
+            "via our Customer Relationship Manager (CRM) system",
+            "via our Enterprise Resource Planning (ERP) system",
+            "via our Enterprise Project Portfolio Management (EPPM) system", 
+            "via our Learning Management System (LMS)", 
+            "via our Information Technology Infrastructure Library (ITIL) tracking",
+            "via our Project Management Body Of Knowledge (PMBOK) practice",
+            "via our Software Engineering Body Of Knowledge (SWEBOK) practice",
+            "via our Service Level Agreements (SLA) monitoring",
+            "via our System Quality Attributes (SQA) telemetry",
+            "via our Risk Register System (RRS) auditing",
+            "via our staff's self-reports as needed",
+        ];
+
+        function suggester(suggestions) {
+            return {
+                open: false,
+                value: suggestions[0],
+                suggestions: suggestions
+            };
+        }
+    </script>
+
+</main>
+
+</body>
+</html>
