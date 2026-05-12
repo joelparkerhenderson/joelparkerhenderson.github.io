@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+	<head>
+        <title>Agile Checklist</title>
+		<meta charset="utf-8" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/3.0.0/pure-min.css" integrity="sha512-X2yGIVwg8zeG8N4xfsidr9MqIfIE8Yz1It+w2rhUJMqxUwvbVqC5OPcyRlPKYOw/bsdJut91//NO9rSbQZIPRQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/3.0.0/grids-responsive.min.css" integrity="sha512-5hr5fSxiYwkxK0EZX2B/DILA1QoyXwIf9ynWVbyMvqcMIDZ0XZKWw+xk9mysLSOLV4iMrBB1t/YAxt/006W4HA==" crossorigin="anonymous" referrerpolicy="no-referrer" />        <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.14.0/cdn.min.js" integrity="sha512-4e/5PZ1eoLJMDjaJXTHkWRA0yec8bm07/iINYSd5rdJ38jGm5OZkEi3J+7LqSDWNATNJ4/aneNlrk2AYnnckIg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+            @media screen and (min-width: 640px) {
+                main {
+                    max-width: 840px;
+                    margin: 0 auto;/*Centering this container*/
+                }
+            }
+            body {
+                font-family:Arial,helvetica,sans-serif;
+                font-size:100%;
+                font-size:1em;
+            }
+            .center {
+                 justify-content: center;
+                 text-align:center;
+            }
+            header {
+                background-color: #ddd;
+                border-bottom: 1px solid #888;
+                color: #111;
+                font-weight: bold;
+                margin-bottom: 2em;
+                width: 100%;
+            }
+            footer {
+                background-color: #ddd;
+                border-top: 1px solid #888;
+                bottom: 0;
+                color: #111;
+                left: 0;
+                margin-top: 1em;
+                position: fixed;
+                text-align: center;
+                width: 100%;
+            }
+            main {
+                /* noop */
+            }
+            .pure-menu-link {
+                color: #111;
+            }
+            .pure-menu-link i {
+                margin-right: 0.25em;
+            }
+            a.pure-menu-link:hover {
+                background: #eee;
+                color: #222;
+            }
+            /*
+            .survey ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+            .survey li {
+                display: flex;
+                flex-direction: row;
+                align-items: stretch;
+                margin-top: 1em;
+                margin-bottom: 1em;
+            }
+            */
+            .survey td {
+                vertical-align: top;
+                white-space: nowrap;
+            }
+            .survey input {
+                margin-right: 0.5em;
+            }
+            .survey output {
+                display: inline-block;
+                font-weight: bold;
+                margin-right: 1em;
+                text-align: end;
+                width: 3em;
+            }
+        </style>
+    </head>
+	<body>
+
+        <header>
+            <nav class="pure-g center">
+                <div class="pure-u-1-3">
+                    <a class="pure-menu-link" href="https://joelparkerhenderson.github.io/agile-checklist/"><i class="fa-solid fa-house"></i>Home</a>
+                </div>
+                <div class="pure-u-1-3">
+                    <a class="pure-menu-link" href="https://github.com/joelparkerhenderson/agile-checklist/"><i class="fa-solid fa-folder"></i>Code</a>
+                </div>
+                <div class="pure-u-1-3">
+                    <a class="pure-menu-link" href="mailto:joel@joelparkerhenderson.com" class="pure-menu-link"><i class="fa-solid fa-envelope"></i>Email</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+
+            <h1>Agile Checklist</h1>
+
+            <p>This is a simple survey for agile ways of working.</p>
+
+            <p>For each idea below, how much does it happen?</p>
+                
+            <p>The range is from 0% (never) to 100% (always).</p>
+                
+            <script>
+
+                function percent(x, max, decimals = 0) {
+                   return ((100 * x) / max).toFixed(decimals);
+                }
+
+                document.addEventListener('alpine:init', () => {
+                    Alpine.data('survey', () => {
+
+                        let inputs = [
+                            { id: "c84023013aad4660372fe29d7847e5e2", value: 0, category: "Agile Values", text: "Individuals and interactions over processes and tools." },
+                            { id: "b6628a362bb3263868c6411df1559191", value: 0, category: "Agile Values", text: "Working software over comprehensive documentation." },
+                            { id: "4a84c2fe0d20c1b171787654cddd2f9c", value: 0, category: "Agile Values", text: "Customer collaboration over contract negotiation." },
+                            { id: "e713e48fd53602f03cf4920888876bb1", value: 0, category: "Agile Values", text: "Responding to change over following a plan." },
+                            { id: "afef2476f7b37ab7dfe8fc1c4e4af8d0", value: 0, category: "Agile Principles", text: "Our highest priority is to satisfy the customer through early and continuous delivery of valuable software." },
+                            { id: "890943807e402533722c2e3643379bc9", value: 0, category: "Agile Principles", text: "Welcome changing requirements, even late in development. Agile processes harness change for the customer's competitive advantage." },
+                            { id: "56e908f535ae187da6d61d305f398de6", value: 0, category: "Agile Principles", text: "Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the shorter timescale." },
+                            { id: "59c640f3fede5e6677c3ab598ec845cb", value: 0, category: "Agile Principles", text: "Business people and developers must work together daily throughout the project." },
+                            { id: "4472aed328241bd1abf7180ab3a37128", value: 0, category: "Agile Principles", text: "Build projects around motivated individuals. Give them the environment and support they need, and trust them to get the job done." },
+                            { id: "3041ac2618c5c89eb4f51bd8da51a046", value: 0, category: "Agile Principles", text: "The most efficient and effective method of conveying information to and within a development team is face-to-face conversation." },
+                            { id: "6d16ca9e0fd98775f6a0b21007d9e634", value: 0, category: "Agile Principles", text: "Working software is the primary measure of progress." },
+                            { id: "ba73e1522d47e770090fa14e5d7a43e3", value: 0, category: "Agile Principles", text: "Agile processes promote sustainable development. The sponsors, developers, and users should be able to maintain a constant pace indefinitely." },
+                            { id: "4a8c8e8d4cbb237a0f2815bd58f50919", value: 0, category: "Agile Principles", text: "Continuous attention to technical excellence and good design enhances agility." },
+                            { id: "ebe3e19bbe7b7ac2fd1441b2e21b34fd", value: 0, category: "Agile Principles", text: "Simplicity--the art of maximizing the amount of work not done--is essential." },
+                            { id: "dbd56ec7eb45ca7d26172bd0376c01c0", value: 0, category: "Agile Principles", text: "The best architectures, requirements, and designs emerge from self-organizing teams." },
+                            { id: "dc505c160afb89e1a32db2fe9b75b08b", value: 0, category: "Agile Principles", text: "At regular intervals, the team reflects on how to become more effective, then tunes and adjusts its behavior accordingly." },
+                            { id: "fae7eb5aa75290c2ba283259606e91f5", value: 0, category: "Agile Teams", text: "Teams have problems to solve rather than lists of tasks to perform." },
+                            { id: "8939f3cc5c1a6c505834903098d1ddcf", value: 0, category: "Agile Teams", text: "Teams generally make decisions without a manager's approval." },
+                            { id: "41864836c7b4b6f8d22cb0777f556008", value: 0, category: "Agile Teams", text: "Teams adopt appropriate practices and improve them over time." },
+                            { id: "a99514b1cf6a89a077f74c692faa5123", value: 0, category: "Agile Teams", text: "Teams working on a common product actively coordinate." },
+                            { id: "23c0128c0cc0275320be8a7cccc3f8d3", value: 0, category: "Agile Teams", text: "Teams openly share new ideas and experiences with others." },
+                            { id: "43aa9393543818dd87e462b838a68572", value: 0, category: "Agile Teams", text: "Teams decide how to execute work." },
+                            { id: "869477e686329551db5d28e24c7a3a5d", value: 0, category: "Agile Teams", text: "Teams quickly act on stakeholder feedback to improve the product." },
+                            { id: "dddbba8d02e86d2b43bb1747173e62d0", value: 0, category: "Agile Teams", text: "Teams rarely wait for work to be completed by others." },
+                            { id: "e7a7aa46444318e1e61d8c15bea758ac", value: 0, category: "Agile Teams", text: "Teams monitor and managing their own performance." },
+                            { id: "463011ac238519ae43165c9ecd4c8456", value: 0, category: "Agile Teams", text: "Teams understand the benefits and challenges of agile." },
+                            { id: "dcb5a89d320701bcdf1d4d8b31c62e8f", value: 0, category: "Agile Teams", text: "Teams responsibly deliver high quality work." },
+                            { id: "b126a04ca5242989a5307c78377e6557", value: 0, category: "Agile Teams", text: "Teams welcome rather than resist changing requirements." },
+                            { id: "0c5f5b138932eb21b9e56048d1ffd0ec", value: 0, category: "Agile Teams", text: "Teams collaborate to finish items." },
+                            { id: "eba1460770c75b0067831e4a88b313e1", value: 0, category: "Agile Teams", text: "Teams admit challenges and mistakes." },
+                            { id: "22e95e0f8b8b5a125fb1a1022254ac28", value: 0, category: "Agile Teams", text: "Teams can work outside their specialties to achieve goals." },
+                            { id: "b16375edbf476364901bb191131c1788", value: 0, category: "Agile Teams", text: "Teams seek to learn relevant, new skills." },
+                            { id: "55cab6fdd938629189df63b69f2ea236", value: 0, category: "Agile Teams", text: "Teams continue to learn and improve skills." },
+                            { id: "2d93702345ae1bd2c58662fc4633a185", value: 0, category: "Agile Teams", text: "Teams actively seek ways to improve ways of working." },
+                            { id: "f8e053754f9e66570ed5907748ebe2f0", value: 0, category: "Agile Teams", text: "Teams choose and use various ways of communicating." },
+                            { id: "3f00ba63596562445c69eef5971ad747", value: 0, category: "Agile Teams", text: "Teams have all received basic training on agile concepts." },
+                            { id: "09d125d6210f29481f546d42594e251a", value: 0, category: "Agile Teams", text: "Teams feel safe to express dissenting views." },
+                            { id: "ecb8bcb7db417b18b9ac9119ffb4fb4b", value: 0, category: "Agile Teams", text: "Teams start work even when some open issues remain." },
+                            { id: "85f0879bdf23168ddcfde680cfe27a14", value: 0, category: "Agile Teams", text: "Teams are motivated by performing their work." },
+                            { id: "4e84736ad4d6a51c52217a7f1cd6441b", value: 0, category: "Agile Teams", text: "Teams take pride in their craft." },
+                            { id: "58cc57bc7612ad6f5c2ab1ca27c45615", value: 0, category: "Agile Stakeholders", text: "Stakeholders know which factors determine priorities and deadlines." },
+                            { id: "1cd7a85ad3805d2e363cb27ab05d4a66", value: 0, category: "Agile Stakeholders", text: "Stakeholders accept plans that are expressed with ranges." },
+                            { id: "5de214601819fc26edcf8d9313ea35bb", value: 0, category: "Agile Stakeholders", text: "Stakeholders and the team accept that plans may need to change." },
+                            { id: "873f45224fec4c6ddec43b5f520c4e1f", value: 0, category: "Agile Stakeholders", text: "Stakeholders have frequent opportunities to evaluate the product." },
+                            { id: "a0d8ae24598e9d6910c01881628f2aae", value: 0, category: "Agile Stakeholders", text: "Stakeholders champion agile values and agile principles." },
+                            { id: "7a3b362f71a4624e63bfeef27bd2cb6b", value: 0, category: "Agile Stakeholders", text: "Stakeholders see quality as a right that the team has and they respect it." },
+                            { id: "07eda3e0a954e6ba01db1aba12a58070", value: 0, category: "Agile Stakeholders", text: "Stakeholders delegate authority to teams." },
+                            { id: "ea9b4a4de4104d3b362813a5d6645bec", value: 0, category: "Agile Stakeholders", text: "Stakeholders don’t take authority back at the first sign of trouble." },
+                            { id: "29d63e4b66eb0b68667a1d864c092928", value: 0, category: "Agile Stakeholders", text: "Stakeholders support teams in experimenting." },
+                            { id: "d9a25eeab35a0bb071ced893980a81fe", value: 0, category: "Agile Stakeholders", text: "Stakeholders don't punish an unsuccessful experiment." },
+                            { id: "5ea9205a0e95b5d09aa534e3246eff58", value: 0, category: "Agile Stakeholders", text: "Stakeholders communicate what they hope to achieve by becoming more agile." },
+                            { id: "052af55ddada39a7a33b687e55f905f3", value: 0, category: "Agile Stakeholders", text: "Stakeholders actively encourage teams to learn new skills." },
+                            { id: "baca84de12f281b861773d7bbe666299", value: 0, category: "Agile Stakeholders", text: "Stakeholders actively encourage teams to learn new ways of working." },
+                            { id: "0a0f0d12938dd0c880c1e45ba8602f64", value: 0, category: "Agile Stakeholders", text: "Stakeholders develop people rather than manage their performance." },
+                            { id: "ad2a7eb30b002643f96bff551117cc75", value: 0, category: "Agile Practices", text: "The early release of a good product is generally favored over the later release of a perfect product." },
+                            { id: "47d6d11ab68f58ca361790c4a5f0b4e6", value: 0, category: "Agile Practices", text: "An educated executive sponsor ensures the change agent is empowered to make decisions." },
+                            { id: "8b02104bf8430b6a07645589e378c1be", value: 0, category: "Agile Practices", text: "Decisions are made quickly, sometimes with incomplete knowledge." },
+                            { id: "6f997b8a4af539e52c8f81e45f62ff88", value: 0, category: "Agile Practices", text: "Plans are based on data and experience." },
+                            { id: "2bc81f3027d542efa75d46c1e42a4a76", value: 0, category: "Agile Practices", text: "Dependencies between teams are proactively identified and addressed." },
+                            { id: "7cd80f149027907b85b65f9b0e672e16", value: 0, category: "Agile Practices", text: "People are assumed to have acted with good intentions even when something goes wrong." },
+                            { id: "fe45d4eeceafcb3216663466f0c95722", value: 0, category: "Agile Practices", text: "Trust is reciprocal within the team and with stakeholders." },
+                            { id: "75c989b2160441e50b3cb2bd031d4b57", value: 0, category: "Agile Practices", text: "Although formal documentation may exist, it is supplemented by conversations to the extent possible." },
+                            { id: "634e21b7c3ed79e6b3a23046701985ed", value: 0, category: "Agile Practices", text: "As more is learned, plans are updated rather than remaining based on outdated information." },
+                            { id: "e53f943feb42b3e4cd068b6a0f8bd217", value: 0, category: "Agile Practices", text: "A non-punitive attitude leads to the team’s willingness to experiment with new tools, technologies, and ways of working." },
+                            { id: "7b02395b6ce6d11ec3c84d8a11525de4", value: 0, category: "Agile Practices", text: "Outside groups that partner with the team are aware of how this new way of working may affect their interactions." },
+                            { id: "09975c53a3869d7a125afaf14a307e43", value: 0, category: "Agile Practices", text: "The organization places a higher value on finished work than it does on the number of work items in process." },
+                            { id: "1cffcae20c734770df5877a5d11642aa", value: 0, category: "Agile Practices", text: "Quality is rarely, if ever, sacrificed to meet a deadline." },
+                            { id: "65ce500d2ec30c1a23964a3c4d932263", value: 0, category: "Agile Practices", text: "When problems arise between teams, everyone focuses on a solution rather than blame." },
+                            { id: "f4ed62171f08451503ae6bbb0e7e4980", value: 0, category: "Agile Practices", text: "Change agents are in place to help support and guide the transition." },
+                            { id: "e412dda4a69fa97e689f6df17a72df9b", value: 0, category: "Agile Practices", text: "Agile practices are being implemented beyond the group in which agile began." },
+                            { id: "2d181c1921e91b8e3c85adc933f9c6da", value: 0, category: "Agile Practices", text: "Most people are assigned to only one team." },
+                            { id: "1271188b405c6d22df56b83f0da26239", value: 0, category: "Agile Practices", text: "People honor commitments and keep promises." },
+                            { id: "f7cc6aed5483ddf3108a8ad8e6d8b0d4", value: 0, category: "Agile Self", text: "I know our current customers and their satisfactions, such as their Net Promoter Scores." },
+                            { id: "2efd53455572c106d0b7ce7457833af8", value: 0, category: "Agile Self", text: "I can re-prioritize my work, even mid-sprint, when my customer wants to prioritize a change." },
+                            { id: "605fd1028599bf8902d258efbdbfc3c9", value: 0, category: "Agile Self", text: "I can make a change now, then deliver it to production the same day." },
+                            { id: "0910e81b9aa8a25476679aceaaa051d7", value: 0, category: "Agile Self", text: "I work face-to-face with my customer." },
+                            { id: "55b6c50bc7d51f38a424f869716323e6", value: 0, category: "Agile Self", text: "I work face-to-face with my team." },
+                            { id: "10477abc8bbeae5567dcd483dc04018d", value: 0, category: "Agile Self", text: "I pay attention to technical excellence and good design." },
+                            { id: "e71e6f790da3346c44c9f7804e0e811f", value: 0, category: "Agile Self", text: "I can maximize my work not done, such as by saying no to lower-value tasks." },
+                            { id: "96bfd893ef2ba7006cd4daee11c1bc7a", value: 0, category: "Agile Self", text: "I can self-organize, such as having autonomy to determine how best to accomplish the work." },
+                            { id: "085e12d75ddc1e441f1ed1faa53531f9", value: 0, category: "Agile Self", text: "I can create the environments and support to best accomplish the work." },
+                            { id: "cace0e66e6c38516e42d574ddc2d0027", value: 0, category: "Agile Self", text: "I promote sustainable development over short bursts, such as sprints." },
+                            { id: "2d3b3cb95f41bf7db340338676d39e46", value: 0, category: "Agile Self", text: "I measure when my work is delivered successfully to full production rollout." },
+                            { id: "2d53f5bc634cde10a8eadaf723b73475", value: 0, category: "Agile Self", text: "I regularly reflect on how to become better, and I'm able to do it." }
+                        ];
+
+                        return {
+                            inputs: inputs, 
+                            categories: Array.from(new Set(inputs.map(x => x.category))),
+                            score: 0,
+                            scoreMax: inputs.length * 100,
+                            saveToLocalStorage: function() {
+                                localStorage.setItem('username', 'example');
+                                //alert($event.target.getAttribute('message')
+                                alert($event.target);
+                            },
+                            scorer: function () {
+                                let score = inputs.reduce((a, x) => a + parseInt(document.getElementById(x.id).value), 0);
+                                this.score = score;
+                                return score;
+                            }
+                        };
+                    });
+                });
+
+            </script>
+
+            <div x-data="survey" class="survey">                
+
+                <section id="inputs" style="margin-bottom: 10em;">
+                    <template x-for="category in categories" :key="category">
+                        <div style="margin-top: 2em; margin-bottom: 2em;">
+                            <h2 x-text="category"></h2>
+
+                            <table>
+                                <template x-for="x in inputs.filter(x => x.category === category)" :key="x.id">
+                                    <tr>
+                                        <td style="white-space: nowrap;">
+                                            <input :id="x.id" type="range" :value="x.value" min="0" max="100" @input="scorer" @change="saveToLocalStorage" oninput="this.nextElementSibling.value = this.value + '%'; "/>
+                                            <output><span x-text="x.value + '%'"></span></output>
+                                        </td>
+                                        <td>
+                                            <label :for="x.id" x-text="x.text"></label>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </table>
+                        </div>
+                    </template>
+                </section>
+
+                <footer>
+                    <p style="font-size:1.5em; font-weight: bold;">
+                        Score <span x-text="score"></span>/<span x-text="scoreMax"></span> = <span x-text="percent(score, scoreMax)"></span>%
+                    </p>
+                </footer>
+
+            </div>
+
+        </main>
+
+    </body>
+
+</html>
