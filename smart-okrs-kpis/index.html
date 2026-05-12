@@ -71,12 +71,13 @@
             /* Lay out the button and input side-by-side, and size the wrapper to its contents. */
             display: inline-flex; 
             /* Some vertical spacing between suggestables and other content. */
-            margin: 0 0.5em 0 0.5em;
+            margin: 0.3em 0;
         }
 
         div.suggestable input[type=text] {
             font-size: 1em;
             width: 50em;
+            padding-left: 0.5em;
         }
 
         div.suggestable button { 
@@ -144,6 +145,8 @@
             </nav>
         </header>
         <main>
+
+        <h1>SMART + OKRs + KPIs</h1>
 
         <form>
 
@@ -229,7 +232,74 @@
                 </ul>
             </div>
 
-            <p><button type="submit">Submit</button></p>
+            <br>
+
+            <p>
+                <h3>Specific</h3>
+                <textarea id="specific" cols="80" rows="5">
+Target one area clearly, precisely, and explicitly.
+Scope: What is in scope versus out of scope?
+Functionality: What are the inputs, people, processes, and outputs?
+Results: What are any objectives, outcomes, impacts?
+                </textarea>
+            </p>
+
+            <p>
+                <h3>Measurable</h3>
+                <textarea id="measurable" cols="80" rows="5">
+Quantify progress toward success by using metrics.
+What metrics are being used, and how do they help?
+What are any leading indicators and lagging indicators?
+How do various stakeholders access the metrics?                    
+                </textarea>
+            </p>
+            
+             <p>
+                <h3>Actionable</h3>
+                <textarea id="actionable" cols="80" rows="5">
+Achievable and able to start, sustain, and complete.
+Who is working on this? List any roles, responsibilities, participants, etc.
+What resources are needed? List any inputs, materials, budgets, approvals, etc.
+How are the challenges? List any risks, assumptions, issues, dependencies, etc.                    
+                </textarea>
+            </p>
+
+            <p>
+                <h3>Relatable</h3>
+                <textarea id="relatable" cols="80" rows="5">
+Causally and logically connected; relevant.
+Can you summarize the purpose, rationale, etc.?
+Can you summarize the context, connections, etc.?
+How does this interconnect with other work, outcomes, impacts?
+                </textarea>
+            </p>    
+
+            <p>
+                <h3>Timely</h3>
+                <textarea id="timely" cols="80" rows="5">
+Occurring at a time that is favorable, reservable, and bounded.
+When does this start and finish, and why?
+Where can participants see a timeline, or calendar, or schedule, etc.?
+Is there anything important that happens before this or after this?                    
+                </textarea>
+            </p>
+
+        <p>
+            <h3>Key Performance Indicator (KPI)</h3>
+            <textarea id="kpi" cols="80" rows="12">
+Title: use an exact name to avoid ambiguity
+Objective: clear relation of the indicator with the organizational objectives
+Scope: state areas of business and/or parts of the organization that are in/out.
+Target: Benchmarks must be determined in order to monitor progress
+Formula: the exact calculation of the indicator
+Units: what is/are the unit(s) of measurement in use
+Frequency: when is the indicator recorded and reported
+Data source: the exact data sources involved in calculating a indicator value
+Owner: the accountable person for the indicator
+Comments: any outstanding issues regarding the indicator
+            </textarea>
+        </p>
+
         </form>
 
         <script>
