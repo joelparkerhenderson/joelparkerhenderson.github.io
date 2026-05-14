@@ -1,0 +1,247 @@
+<html>
+<head>
+  <title>Skills</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        table {
+            border-spacing: 0px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        td:first-child{
+            padding-left: 10px;
+        }
+        button, select {
+            font-size: 1em;
+        }
+    </style>
+    <script>
+        function tsv() {
+            return document.getElementById('email').value + '\t' +            
+            Array.from(document.querySelectorAll('select'))
+            .map(select => select.value)
+            .join('\t')
+        }
+        function download() {
+            const blob = new Blob([tsv()], { type: 'text/tab-separated-values' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'skills.tsv';
+            a.click();
+            URL.revokeObjectURL(a.href);
+        }
+    </script>
+</head>
+<body>
+    <h1>UK GDAD Skills: How to rank your own skills</h1>
+
+<p>
+Read about the UK GDAD skills and levels here:<br>
+<a href="https://ddat-capability-framework.service.gov.uk/skills">https://ddat-capability-framework.service.gov.uk/skills</a>
+</p>
+
+<form>
+
+    <p>Your email address:<br><input id="email"type="email" name="email" size="60"></p>
+
+<table>
+<tr><td>Accessibility</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Adapting to delivery methodologies</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Agile and Lean practices</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Agile research practices</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Agile working</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Agile working (content design)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Analysis</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Analysis and insight</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Analysis and synthesis</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Analysis and synthesis (data ethics)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Applied maths, statistics and scientific practices</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Applied social sciences</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Applying statistical and analytical tools and techniques</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Applying user-centred insights</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Architect for the whole context</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Architecture communication</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Asset and configuration management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Availability and capacity management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Business analysis (IT operations)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Business architecture</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Business modelling</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Business process improvement</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Capability building for digital, data and technology</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Change management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Changing security culture</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Coding and scripting</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Commercial management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Commercial perspective</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Communicating analysis and insight</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Communicating between the technical and non-technical</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Communicating data</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Communicating information</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Communication (data ethics)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Communication (security architect)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Community collaboration</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Consultancy</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Content concepts and prototyping</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Context, problem and option analysis</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Continual service improvement</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Continuity management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Creating value for money</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Customer service management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Cyber incident management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Cyber risk management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Cyber security governance</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data analysis and synthesis</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data architecture</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data compliance and security</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data development process</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data engineering</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data ethics and privacy</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data governance</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data governance (data architect)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data governance leadership</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data innovation</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data integration design</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data life cycle</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data literacy improvement</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data maturity</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data modelling</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data modelling, cleansing and enrichment</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data preparation and linkage</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data risk management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data science innovation</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data standards</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Data visualisation</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Defining and managing business needs, user needs and requirements</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Delivering business impact</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Delivering business impact through data</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Design communication</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Designing and executing tests</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Designing for everyone</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Designing secure systems</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Designing strategically</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Designing together</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Developing code for analysis</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Developing data science capability</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Development process optimisation</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Digital and data systems analysis</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Empathy and inclusivity</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Enabling and informing risk-based decisions</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Ensuring resilience of digital, data and technology</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Enterprise and business architecture (business analyst)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Enterprise architecture</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Evaluation delivery</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Evaluation planning and strategy</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Evidence-based design</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Financial decision making for technology</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Financial management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Financial management for digital, data and technology</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Financial ownership</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Governance and assurance</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Governance and assurance (accessibility)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Incident management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Inclusive research</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Information security</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Innovation in digital, data and technology</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Iterative design</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>IT infrastructure</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>IT service reporting</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Leadership and guidance</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Leadership and guidance (frontend developer)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Leading design</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Leading digital products and services</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Leading performance and benefits</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Life cycle management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Maintaining delivery momentum</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Making and guiding decisions</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Making a process work</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Making architectural decisions</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Making strategic performance-led change</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Managing a data project</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Managing decisions and risks</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Managing product outcomes</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Managing, reporting and resolving defects</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Metadata management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Methods and tools</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Modern development standards</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Monitoring and evaluation across the product life cycle</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Operational management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Optimising technology and data architecture</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Ownership and initiative</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Performance measurement</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Planning</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Problem definition and shaping</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Problem management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Product and service monitoring</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Product leadership</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Product management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Product ownership (data ethics)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Programming and build (data and analytics engineering)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Programming and build (data science)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Programming and build (frontend developer)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Programming and build (software engineering)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Prototyping</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Quality assurance of data and analysis</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Research and innovation</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Research management, leadership and assurance</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Security architecture</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Security technology</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Service focus</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Service management framework knowledge</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Service support</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Shaping the direction of organisational strategy through digital, data and technology</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Stakeholder relationship management</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Stakeholder relationship management (content design)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Stakeholder relationship management (IT operations)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Strategic cyber security planning</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Strategic data planning</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Strategic design and business change</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Strategic ownership</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Strategic technology planning</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Strategic thinking</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Strategic thinking (content design)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Strategy design</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Systems design</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Systems design (frontend developer)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Systems integration</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Systems integration (frontend developer)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Team dynamics and collaboration</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Technical design throughout the life cycle</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Technical specialism</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Technical understanding</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Technical understanding (accessibility)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Technical understanding (performance analyst)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Technical understanding (user-centred design)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Technology architecture</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Technology evaluation</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Test analysis</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Test and quality planning</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Test engineering</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Testing</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Testing (business analysis)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Troubleshooting and problem resolution</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Turning business problems into data design</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Understanding analysis across the product life cycle</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Understanding product delivery</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Understanding security implications of transformation</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>User-centred analysis</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>User-centred content design</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>User-centred practice and advocacy</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>User experience analysis</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>User focus</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>User focus (content design)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>User focus (frontend developer)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>User research methods</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Web performance optimisation</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+<tr><td>Working within constraints (performance analyst)</td><td><select><option value="0"></option><option value="1">Awareness</option><option value="2">Working</option><option value="3">Practitioner</option><option value="4">Expert</option></select></td></tr>
+</table>
+
+<p><button onclick="download()">Download file skills.tsv</button></p>
+<br><br>
+</form>
+
+</body>
+</html>
