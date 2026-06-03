@@ -152,9 +152,9 @@
 
             <div x-data="suggester(suggest_verbs)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" id="verb" name="verb" x-model="value" placeholder="Verb">
-                <ul class="suggestable_dropdown" x-show="open" x-cloak>
-                <template x-for="opt in suggestions" :key="opt">
+                <input type="text" id="verb" name="verb" x-model="value" @input="open = true" placeholder="Verb">
+                <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
+                <template x-for="opt in filtered" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
                 </template>
                 </ul>
@@ -164,9 +164,9 @@
 
             <div x-data="suggester(suggest_topics)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" id="topic" name="topic" x-model="value" placeholder="Topic">
-                <ul class="suggestable_dropdown" x-show="open" x-cloak>
-                <template x-for="opt in suggestions" :key="opt">
+                <input type="text" id="topic" name="topic" x-model="value" @input="open = true" placeholder="Topic">
+                <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
+                <template x-for="opt in filtered" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
                 </template>
                 </ul>
@@ -176,9 +176,9 @@
 
             <div x-data="suggester(suggest_deltas)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" id="delta" name="delta" x-model="value" placeholder="Delta">
-                <ul class="suggestable_dropdown" x-show="open" x-cloak>
-                <template x-for="opt in suggestions" :key="opt">
+                <input type="text" id="delta" name="delta" x-model="value" @input="open = true" placeholder="Amount">
+                <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
+                <template x-for="opt in filtered" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
                 </template>
                 </ul>
@@ -188,9 +188,9 @@
 
             <div x-data="suggester(suggest_timings)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" id="timing" name="timing" x-model="value" placeholder="Timing">
-                <ul class="suggestable_dropdown" x-show="open" x-cloak>
-                <template x-for="opt in suggestions" :key="opt">
+                <input type="text" id="timing" name="timing" x-model="value" @input="open = true" placeholder="Time">
+                <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
+                <template x-for="opt in filtered" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
                 </template>
                 </ul>
@@ -200,9 +200,9 @@
 
             <div x-data="suggester(suggest_metrics)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" id="metric" name="metric" x-model="value" placeholder="Metric">
-                <ul class="suggestable_dropdown" x-show="open" x-cloak>
-                <template x-for="opt in suggestions" :key="opt">
+                <input type="text" id="metric" name="metric" x-model="value" @input="open = true" placeholder="Metric">
+                <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
+                <template x-for="opt in filtered" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
                 </template>
                 </ul>
@@ -210,11 +210,11 @@
 
             <br>
 
-            <div x-data="suggester(suggest_updates)" class="suggestable" @click.outside="open = false">
+            <div x-data="suggester(suggest_update_when)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" id="update" name="update" x-model="value" placeholder="Update">
-                <ul class="suggestable_dropdown" x-show="open" x-cloak>
-                <template x-for="opt in suggestions" :key="opt">
+                <input type="text" id="update" name="update" x-model="value" @input="open = true" placeholder="Update">
+                <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
+                <template x-for="opt in filtered" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
                 </template>
                 </ul>
@@ -222,11 +222,11 @@
 
             <br>
 
-            <div x-data="suggester(suggest_sources)" class="suggestable" @click.outside="open = false">
+            <div x-data="suggester(suggest_update_how)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" id="source" name="source" x-model="value" placeholder="Source">
-                <ul class="suggestable_dropdown" x-show="open" x-cloak>
-                <template x-for="opt in suggestions" :key="opt">
+                <input type="text" id="source" name="source" x-model="value" @input="open = true" placeholder="Update via">
+                <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
+                <template x-for="opt in filtered" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
                 </template>
                 </ul>
@@ -441,25 +441,25 @@ Comments: any outstanding issues regarding the indicator
             "Measure by time to change",
             "Measure by time to resolve",
         ];
-        let suggest_updates = [
-            "with updates continuously in real-time",
-            "with updates daily/weekly/quarterly/yearly at day/time x",
-            "with updates at the end of commercial/fiscal week/quarter/year x",
-            "with updates on demand when we check in with stakeholders",
-            "with updates when work is delivered into production",
+        let suggest_update_when = [
+            "Update continuously in real-time",
+            "Update daily/weekly/quarterly/yearly at day/time x",
+            "Update at the end of commercial/fiscal week/quarter/year x",
+            "Update on demand when we check in with stakeholders",
+            "Update as work is delivered into production",
         ];
-        let suggest_sources = [
-            "via our Customer Relationship Manager (CRM) system",
-            "via our Enterprise Resource Planning (ERP) system",
-            "via our Enterprise Project Portfolio Management (EPPM) system", 
-            "via our Learning Management System (LMS)", 
-            "via our Information Technology Infrastructure Library (ITIL) tracking",
-            "via our Project Management Body Of Knowledge (PMBOK) practice",
-            "via our Software Engineering Body Of Knowledge (SWEBOK) practice",
-            "via our Service Level Agreements (SLA) monitoring",
-            "via our System Quality Attributes (SQA) telemetry",
-            "via our Risk Register System (RRS) auditing",
-            "via our staff's self-reports as needed",
+        let suggest_update_how = [
+            "Update via Customer Relationship Manager (CRM) system",
+            "Update via Enterprise Resource Planning (ERP) system",
+            "Update via Enterprise Project Portfolio Management (EPPM) system", 
+            "Update via Learning Management System (LMS)", 
+            "Update via Information Technology Infrastructure Library (ITIL) tracking",
+            "Update via Project Management Body Of Knowledge (PMBOK) practice",
+            "Update via Software Engineering Body Of Knowledge (SWEBOK) practice",
+            "Update via Service Level Agreements (SLA) monitoring",
+            "Update via System Quality Attributes (SQA) telemetry",
+            "Update via Risk Register System (RRS) auditing",
+            "Update via staff self-report as needed",
         ];
 
         /**
@@ -475,18 +475,30 @@ Comments: any outstanding issues regarding the indicator
          *                         so the HTML `placeholder` attribute shows;
          *                         updated by typing (x-model) or by clicking
          *                         a suggestion in the dropdown.
-         *   suggestions string[] — the list rendered in the dropdown. Kept on
-         *                         the instance so the x-for template can read
-         *                         it via the Alpine scope.
+         *   suggestions string[] — the full curated list passed in at
+         *                         construction; not iterated directly by the
+         *                         template, only used as the source for
+         *                         `filtered`.
+         *   filtered    string[] — getter that returns the autosuggest view:
+         *                         case-insensitive substring matches against
+         *                         the current `value`. When `value` is empty
+         *                         or whitespace, returns the full list. This
+         *                         is what the dropdown's x-for iterates, so
+         *                         typing narrows the visible options live.
          *
          * @param {string[]} suggestions Curated list of suggestion strings.
-         * @returns {{open: boolean, value: string, suggestions: string[]}}
+         * @returns {{open: boolean, value: string, suggestions: string[], filtered: string[]}}
          */
         function suggester(suggestions) {
             return {
                 open: false,
                 value: "",
-                suggestions: suggestions
+                suggestions: suggestions,
+                get filtered() {
+                    const q = this.value.trim().toLowerCase();
+                    if (!q) return this.suggestions;
+                    return this.suggestions.filter(s => s.toLowerCase().includes(q));
+                }
             };
         }
 
@@ -538,9 +550,9 @@ Comments: any outstanding issues regarding the indicator
                 field('topic') + " " +
                 field('delta') + " " +
                 field('timing') + ".\n\n" +
-                field('metric') + " " +
-                field('update') + " " +
-                field('source') + ".\n\n";
+                "- " + field('metric') + ".\n" +
+                "- " + field('update') + ".\n" +
+                "- " + field('source') + ".\n\n";
         }
 
         /**
