@@ -284,18 +284,39 @@ Is there anything important that happens before this or after this?
                 </textarea>
             </p>
 
+        <h2>Key Performance Indicator (KPI)</h2>
+
+        <div class="kpi-title-div">
+            <label for="kpi-title">KPI Title: use an exact name to avoid ambiguity</label>
+            <br>
+            <input type="text" id="kpi-title" size="80" placeholder="Title">
+        </div>
+
+        <div class="kpi-url-div">
+            <label for="kpi-url">KPI Web URL: use an exact URL if it's available</label>
+            <br>
+            <input type="url" id="kpi-url" size="80" placeholder="https://example.com/hello">
+        </div>
+
+        <div class="kpi-contact-name-div">
+            <label for="kpi-contact-name">Contact name: the accountable person's full name</label>
+            <br>
+            <input type="text" id="kpi-contact-name" size="80" placeholder="Alice Adams">
+        </div>
+
+        <div class="kpi-contact-email-div">
+            <label for="kpi-contact-email">Contact email: the accountable person's email address</label>
+            <br>
+            <input type="email" id="kpi-contact-email" size="80" placeholder="alice.adams@example.com">
+        </div>
+
         <p>
-            <h3>Key Performance Indicator (KPI)</h3>
-            <textarea id="kpi" cols="80" rows="12">
-Title: use an exact name to avoid ambiguity
-Objective: clear relation of the indicator with the organizational objectives
+            <textarea id="kpi-content" cols="80" rows="8">
 Scope: state areas of business and/or parts of the organization that are in/out.
-Target: Benchmarks must be determined in order to monitor progress
 Formula: the exact calculation of the indicator
 Units: what is/are the unit(s) of measurement in use
 Frequency: when is the indicator recorded and reported
 Data source: the exact data sources involved in calculating a indicator value
-Owner: the accountable person for the indicator
 Comments: any outstanding issues regarding the indicator
             </textarea>
         </p>
@@ -317,6 +338,7 @@ Comments: any outstanding issues regarding the indicator
             "Decrease",
             "Speed up",
             "Slow down",
+            "Continue",
             "Create",
             "Delete",
             "Add",
@@ -325,12 +347,20 @@ Comments: any outstanding issues regarding the indicator
             "Finish",
             "Phase in",
             "Phase out",
+            "Buy",
+            "Sell",
+            "Import",
+            "Export",
             "Upsize",
             "Downsize",
             "Manage",
+            "Select",
+            "Reject",
+            "Assess",
+            "Plan",
             "Direct",
             "Organize",
-            "Orchestrate"
+            "Orchestrate",
         ];
         let suggest_topics = [
             "customer satisfaction",
@@ -364,7 +394,7 @@ Comments: any outstanding issues regarding the indicator
             "DORA recovery time",
             "Halstead complexity volume",
             "Halstead complexity difficulty",
-            "Halstead complexity effort"
+            "Halstead complexity effort",
         ];
         let suggest_deltas = [
             "by x percent",
@@ -373,16 +403,23 @@ Comments: any outstanding issues regarding the indicator
             "from x to y",
             "from star rating x to y (1-5)",
             "from maturity model level x to y (1-5)",
-            "from RAG status x to y (red-green)",
+            "from red-amber-green status x to y",
+            "at ratio x per y",
             "achieving 4 sigma",
-            "achieving 5 sigma / 6 sigma"
+            "achieving 5 sigma",
+            "achieving 6 sigma",
         ];
         let suggest_timings = [
             "by date x",
-            "during date x to y",
-            "by start/end of commercial/fiscal week/quarter/year x",
-            "during the commercial/fiscal week/quarter/year x",
-            "from start/end of commercial/fiscal week/quarter/year x to y",
+            "during date range x to y",
+            "by start of event x",
+            "by end of event x",
+            "during event x",
+            "between event x and y",
+            "by start of commercial/fiscal week/quarter/year x",
+            "by end of commercial/fiscal week/quarter/year x",
+            "during commercial/fiscal week/quarter/year x",
+            "between commercial/fiscal week/quarter/year x and y",
         ];
         let suggest_metrics = [
             "Measure by Customer Satisfaction Score (1 to 5)",
@@ -395,6 +432,14 @@ Comments: any outstanding issues regarding the indicator
             "Measure by Debt-to-Equity Ratio",
             "Measure by Cash Conversion Cycle (CCC)",
             "Measure by Return on Investment (ROI)",
+            "Measure by probability 0-1",
+            "Measure by progress 0-1",
+            "Measure by queue count",
+            "Measure by queue throughput ratio x items per y time",
+            "Measure by queue success ratio x / y total",
+            "Measure by queue failure ratio x / y total",
+            "Measure by time to change",
+            "Measure by time to resolve",
         ];
         let suggest_updates = [
             "with updates continuously in real-time",
@@ -521,18 +566,27 @@ Comments: any outstanding issues regarding the indicator
         /**
          * Build the "Key Performance Indicator (KPI)" section.
          *
-         * Emits an H2 heading followed by the KPI textarea's contents
-         * verbatim (after trimming). The KPI textarea is seeded with a
-         * key:value template (Title, Objective, Scope, Target, Formula,
-         * Units, Frequency, Data source, Owner, Comments) which the user
-         * fills in.
+         * Emits an H2 heading, a key:value metadata block (Title, URL,
+         * Contact name, Contact email — one per line so Markdown renders
+         * them as a paragraph with hard line breaks), then a blank line,
+         * then the KPI content textarea verbatim (after trimming). The
+         * content textarea is seeded with guiding questions (Scope, Formula,
+         * Units, Frequency, Data source, Comments) which the user fills in.
+         *
+         * Note: the URL value is emitted as-is so the user controls whether
+         * to inline-link it ("<url>") or leave it as plain text — the spec
+         * does not constrain that choice.
          *
          * @returns {string} The "## Key Performance Indicator (KPI)" section,
          *                   ending with a trailing blank line.
          */
         function generate_markdown_kpi() {
             return "## Key Performance Indicator (KPI)\n\n" +
-                field('kpi') + "\n\n";
+                "Title: " + field('kpi-title') + "  \n" +
+                "URL: " + field('kpi-url') + "  \n" +
+                "Contact name: " + field('kpi-contact-name') + "  \n" +
+                "Contact email: " + field('kpi-contact-email') + "\n\n" +
+                field('kpi-content') + "\n\n";
         }
 
         /**

@@ -19,10 +19,17 @@ test.describe('SMART + OKRs + KPIs', () => {
             await expect(page.locator(`#${id}`)).toBeVisible();
         }
 
-        const textareaIds = ['specific', 'measurable', 'actionable', 'relatable', 'timely', 'kpi', 'markdown'];
+        const textareaIds = ['specific', 'measurable', 'actionable', 'relatable', 'timely', 'kpi-content', 'markdown'];
         for (const id of textareaIds) {
             await expect(page.locator(`#${id}`)).toBeVisible();
         }
+
+        const kpiInputIds = ['kpi-title', 'kpi-url', 'kpi-contact-name', 'kpi-contact-email'];
+        for (const id of kpiInputIds) {
+            await expect(page.locator(`#${id}`)).toBeVisible();
+        }
+        await expect(page.locator('#kpi-url')).toHaveAttribute('type', 'url');
+        await expect(page.locator('#kpi-contact-email')).toHaveAttribute('type', 'email');
 
         await expect(page.locator('#generate-button')).toBeVisible();
         await expect(page.locator('#download-button')).toBeVisible();
@@ -68,6 +75,11 @@ test.describe('SMART + OKRs + KPIs', () => {
         await page.locator('#update').fill('with updates monthly');
         await page.locator('#source').fill('via our CRM system');
 
+        await page.locator('#kpi-title').fill('NPS Score');
+        await page.locator('#kpi-url').fill('https://example.com/nps');
+        await page.locator('#kpi-contact-name').fill('Alice Adams');
+        await page.locator('#kpi-contact-email').fill('alice@example.com');
+
         await page.locator('#generate-button').click();
 
         const md = await page.locator('#markdown').inputValue();
@@ -81,6 +93,10 @@ test.describe('SMART + OKRs + KPIs', () => {
         expect(md).toContain('### Relatable');
         expect(md).toContain('### Timely');
         expect(md).toContain('## Key Performance Indicator (KPI)');
+        expect(md).toContain('Title: NPS Score');
+        expect(md).toContain('URL: https://example.com/nps');
+        expect(md).toContain('Contact name: Alice Adams');
+        expect(md).toContain('Contact email: alice@example.com');
     });
 
     test('Generate Markdown does not trigger a file download', async ({ page }) => {
