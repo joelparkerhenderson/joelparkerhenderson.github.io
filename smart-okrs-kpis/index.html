@@ -1,11 +1,47 @@
 <!doctype html>
+<!--
+SMART OKRs KPIs Generator
+
+Specification-Driven Development
+
+Purpose: Help a user create their own Objectives & Key Results (OKRs) with
+simple web form prompts for the goal, the measure, SMART criteria, and KPI.
+
+User interface:
+
+1. Select suggestions via select inputs and fills freeform text.
+2. Click "Generate" button which concatenates the inputs into markdown.
+3. Automatically download the markdown text as a file to the user's laptop.
+
+- SMART textarea input fields: Specific, Measurable, Actionable, Relatable, Timely
+
+Technical stack:
+
+- HTML
+- Alpine.js v3.14.0 for JavaScript via cdnjs.cloudflare.com
+- Pure CSS 3.0.0 for styles via cdnjs.cloudflare.com
+- FontAwesome 6.5.2 for fonts via cdnjs.cloudflare.com
+
+Code:
+
+- Prompt text fields use a UI component named "suggestable"
+- The component combines a select-option input and text input.
+- The user can select a suggestion string, or enter freeform text.
+
+Contraints:
+
+- One web page minimum viable product (MVP)
+- No dependencies excapt via cdnjs.cloudflare.com
+- No database, no persistance, no confidental information
+
+-->
 <html lang="en">
     <head>
         <title>SMART + OKRs + KPIs</title>
 		<meta charset="utf-8" />
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.14.0/cdn.min.js" integrity="sha512-4e/5PZ1eoLJMDjaJXTHkWRA0yec8bm07/iINYSd5rdJ38jGm5OZkEi3J+7LqSDWNATNJ4/aneNlrk2AYnnckIg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/3.0.0/pure-min.css" integrity="sha512-X2yGIVwg8zeG8N4xfsidr9MqIfIE8Yz1It+w2rhUJMqxUwvbVqC5OPcyRlPKYOw/bsdJut91//NO9rSbQZIPRQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/3.0.0/grids-responsive.min.css" integrity="sha512-5hr5fSxiYwkxK0EZX2B/DILA1QoyXwIf9ynWVbyMvqcMIDZ0XZKWw+xk9mysLSOLV4iMrBB1t/YAxt/006W4HA==" crossorigin="anonymous" referrerpolicy="no-referrer" />        <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.14.0/cdn.min.js" integrity="sha512-4e/5PZ1eoLJMDjaJXTHkWRA0yec8bm07/iINYSd5rdJ38jGm5OZkEi3J+7LqSDWNATNJ4/aneNlrk2AYnnckIg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/3.0.0/grids-responsive.min.css" integrity="sha512-5hr5fSxiYwkxK0EZX2B/DILA1QoyXwIf9ynWVbyMvqcMIDZ0XZKWw+xk9mysLSOLV4iMrBB1t/YAxt/006W4HA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>
@@ -300,6 +336,13 @@ Comments: any outstanding issues regarding the indicator
             </textarea>
         </p>
 
+        <p>
+            <button @click="generate()">Generate Markdown</button>
+        </p>
+
+        <p>
+            <textarea id="markdown" cols="80" rows="50">
+            </textarea>
         </form>
 
         <script>
@@ -415,6 +458,41 @@ Comments: any outstanding issues regarding the indicator
                 suggestions: suggestions
             };
         }
+
+        function generate_markdown() {
+          return generate_markdown_okr() + generate_markdown_smart() + generate_markdown_kpi();
+        }
+
+        function generate_markdown_okr() {
+          return "## Objective & Key Result\n\n" +
+          document.getElementById('verb').value + " " +
+          document.getElementById('topic').value + " " +
+          document.getElementById('delta').value + " " +
+          document.getElementById('timing').value + ".\n\n"
+          document.getElementById('metric').value + " " +
+          document.getElementById('update').value + " " +
+          document.getElementById('source').value + ".\n\n" +
+        }
+
+        function generate_markdown_smart() {
+          return "## SMART criteria\n\n" +
+          "### Specific\n\n" +
+          document.getElementById('specific').value + "\n\n" +
+          "### Measurable\n\n" +
+          document.getElementById('measurable').value + "\n\n" +
+          "### Actionable\n\n" +
+          document.getElementById('actionable').value + "\n\n" +
+          "### Relatable\n\n" +
+          document.getElementById('relatable').value + "\n\n" +
+          "### Timely\n\n" +
+          document.getElementById('timely').value + "\n\n";          
+        }
+        
+        function generate_markdown_kpi() {
+          return "## Key Performance Indicator (KPI)\n\n" +
+          document.getElementById('kpi').value + "\n\n";
+        }
+
     </script>
 
 </main>
