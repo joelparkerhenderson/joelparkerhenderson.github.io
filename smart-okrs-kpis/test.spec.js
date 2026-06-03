@@ -1,8 +1,6 @@
 // Playwright test for SMART + OKRs + KPIs generator.
 // Run from this directory with:
-//   npx playwright test test.spec.js
-// Or, to use a fresh browser without local config:
-//   npx playwright test test.spec.js --reporter=list --project=chromium
+//   npx playwright test test.spec.js --browser=chromium --workers=1
 
 const { test, expect } = require('@playwright/test');
 const path = require('path');
@@ -11,7 +9,7 @@ const fs = require('fs');
 const PAGE_URL = 'file://' + path.resolve(__dirname, 'index.html');
 
 test.describe('SMART + OKRs + KPIs', () => {
-    test('loads the page with all expected fields', async ({ page }) => {
+    test('loads the page with all expected fields and both buttons', async ({ page }) => {
         await page.goto(PAGE_URL);
         await expect(page).toHaveTitle('SMART + OKRs + KPIs');
         await expect(page.locator('h1')).toHaveText('SMART + OKRs + KPIs');
@@ -27,11 +25,16 @@ test.describe('SMART + OKRs + KPIs', () => {
         }
 
         await expect(page.locator('#generate-button')).toBeVisible();
+        await expect(page.locator('#download-button')).toBeVisible();
+    });
+
+    test('markdown output textarea is read-only', async ({ page }) => {
+        await page.goto(PAGE_URL);
+        await expect(page.locator('#markdown')).toHaveAttribute('readonly', '');
     });
 
     test('suggester inputs start empty so placeholder is visible', async ({ page }) => {
         await page.goto(PAGE_URL);
-        // Wait for Alpine to initialize.
         await page.waitForFunction(() => window.Alpine !== undefined);
         await expect(page.locator('#verb')).toHaveValue('');
         await expect(page.locator('#topic')).toHaveValue('');
@@ -53,7 +56,7 @@ test.describe('SMART + OKRs + KPIs', () => {
         await expect(dropdown).toBeHidden();
     });
 
-    test('generate produces markdown with OKR, SMART, and KPI sections', async ({ page }) => {
+    test('Generate Markdown populates the output textarea with all sections', async ({ page }) => {
         await page.goto(PAGE_URL);
         await page.waitForFunction(() => window.Alpine !== undefined);
 
@@ -64,9 +67,6 @@ test.describe('SMART + OKRs + KPIs', () => {
         await page.locator('#metric').fill('Measure by NPS');
         await page.locator('#update').fill('with updates monthly');
         await page.locator('#source').fill('via our CRM system');
-
-        // Stub the download trigger so the test doesn't actually save a file.
-        await page.evaluate(() => { window.download_markdown = () => {}; });
 
         await page.locator('#generate-button').click();
 
@@ -83,7 +83,20 @@ test.describe('SMART + OKRs + KPIs', () => {
         expect(md).toContain('## Key Performance Indicator (KPI)');
     });
 
-    test('generate triggers a markdown file download', async ({ page }) => {
+    test('Generate Markdown does not trigger a file download', async ({ page }) => {
+        await page.goto(PAGE_URL);
+        await page.waitForFunction(() => window.Alpine !== undefined);
+
+        let downloaded = false;
+        page.on('download', () => { downloaded = true; });
+
+        await page.locator('#generate-button').click();
+        await page.waitForTimeout(300);
+
+        expect(downloaded).toBe(false);
+    });
+
+    test('Download Markdown triggers a download with current form values', async ({ page }) => {
         await page.goto(PAGE_URL);
         await page.waitForFunction(() => window.Alpine !== undefined);
 
@@ -91,7 +104,7 @@ test.describe('SMART + OKRs + KPIs', () => {
         await page.locator('#topic').fill('latency');
 
         const downloadPromise = page.waitForEvent('download');
-        await page.locator('#generate-button').click();
+        await page.locator('#download-button').click();
         const download = await downloadPromise;
 
         expect(download.suggestedFilename()).toBe('smart-okrs-kpis.md');
@@ -101,18 +114,43 @@ test.describe('SMART + OKRs + KPIs', () => {
         const contents = fs.readFileSync(tmpPath, 'utf8');
         expect(contents).toContain('Decrease latency');
         expect(contents).toContain('## SMART criteria');
+        expect(contents).toContain('## Key Performance Indicator (KPI)');
         fs.unlinkSync(tmpPath);
     });
 
-    test('clicking generate does not submit the form (page stays put)', async ({ page }) => {
+    test('Download Markdown reflects latest edits even without re-generating', async ({ page }) => {
         await page.goto(PAGE_URL);
         await page.waitForFunction(() => window.Alpine !== undefined);
 
-        await page.evaluate(() => { window.download_markdown = () => {}; });
+        await page.locator('#verb').fill('Increase');
+        await page.locator('#generate-button').click();
+        // Edit AFTER generate; download should still see the new value.
+        await page.locator('#verb').fill('Decrease');
+
+        const downloadPromise = page.waitForEvent('download');
+        await page.locator('#download-button').click();
+        const download = await downloadPromise;
+
+        const tmpPath = path.join(require('os').tmpdir(), 'smart-okrs-kpis-test2.md');
+        await download.saveAs(tmpPath);
+        const contents = fs.readFileSync(tmpPath, 'utf8');
+        expect(contents).toContain('Decrease');
+        expect(contents).not.toMatch(/^Increase\s/m);
+        fs.unlinkSync(tmpPath);
+    });
+
+    test('clicking either button does not submit the form', async ({ page }) => {
+        await page.goto(PAGE_URL);
+        await page.waitForFunction(() => window.Alpine !== undefined);
 
         const urlBefore = page.url();
         await page.locator('#generate-button').click();
         await page.waitForTimeout(100);
+        expect(page.url()).toBe(urlBefore);
+
+        const downloadPromise = page.waitForEvent('download');
+        await page.locator('#download-button').click();
+        await downloadPromise;
         expect(page.url()).toBe(urlBefore);
     });
 });

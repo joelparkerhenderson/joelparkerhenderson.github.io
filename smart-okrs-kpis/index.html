@@ -302,10 +302,11 @@ Comments: any outstanding issues regarding the indicator
 
         <p>
             <button type="button" id="generate-button" onclick="window.generate()">Generate Markdown</button>
+            <button type="button" id="download-button" onclick="window.download()">Download Markdown</button>
         </p>
 
         <p>
-            <textarea id="markdown" cols="80" rows="50"></textarea>
+            <textarea id="markdown" cols="80" rows="50" readonly></textarea>
         </p>
 
         </form>
@@ -565,22 +566,36 @@ Comments: any outstanding issues regarding the indicator
         /**
          * Click handler for the "Generate Markdown" button.
          *
-         * Performs the two user-visible effects in order:
-         *   1. Populate the on-page "markdown" output textarea so the user
-         *      can review and copy the result without leaving the page.
-         *   2. Trigger a file download so the user gets a saved copy.
+         * Builds the Markdown document from the current form values and writes
+         * it into the read-only "markdown" output textarea so the user can
+         * see (and copy) the result without leaving the page. No download is
+         * triggered — that is the "Download Markdown" button's job. Splitting
+         * the two actions lets the user preview the output, edit upstream
+         * fields, regenerate, and only download once they are satisfied.
          *
          * Wired up via the inline `onclick="window.generate()"` attribute on
          * the button (rather than an Alpine handler) so it works even if
          * Alpine fails to initialize. We must spell out `window.` because the
          * button lives inside a <form>, and inline event-handler scope walks
          * the form's named-elements collection first — any element whose id
-         * is "generate" would otherwise shadow this global function.
+         * is "generate" would otherwise shadow this global function. The same
+         * rule applies to `download` below.
          */
         function generate() {
-            const md = generate_markdown();
-            document.getElementById('markdown').value = md;
-            download_markdown(md);
+            document.getElementById('markdown').value = generate_markdown();
+        }
+
+        /**
+         * Click handler for the "Download Markdown" button.
+         *
+         * Builds the Markdown document fresh from the current form values
+         * (rather than reading the on-page textarea) so the downloaded file
+         * always reflects the user's latest input, even if they edited the
+         * form after the last "Generate" click. The textarea is read-only
+         * for display, not a source of truth.
+         */
+        function download() {
+            download_markdown(generate_markdown());
         }
 
     </script>

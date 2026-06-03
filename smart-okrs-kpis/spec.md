@@ -17,19 +17,19 @@ in the browser. No data leaves the user's machine.
 ## User flow
 
 1. The user is shown a form with seven "suggestable" single-line inputs, six
-   multi-line textareas, and a "Generate Markdown" button.
+   multi-line textareas, and two buttons: "Generate Markdown" & "Download Markdown".
 2. For each suggestable, the user may either:
    a. Click the arrow button to reveal a dropdown of curated suggestions and
    click one to populate the input, OR
    b. Type freeform text directly into the input.
 3. For each textarea, the user may edit the seeded scaffolding prompts (which
    act as guiding questions) into their real answers.
-4. The user clicks "Generate Markdown". The page then:
-   a. Concatenates all field values into a single Markdown document.
-   b. Writes that Markdown into the read-only "markdown" output textarea so
-   the user can copy it.
-   c. Triggers a browser download of the same Markdown as
-   "smart-okrs-kpis.md".
+4. If the user clicks "Generate Markdown", then the page:
+   a. Concatenates all field values into a single Markdown string.
+   b. Sets the Markdown textarea value so the user can see it not edit it.
+5. If the user clicks "Download Markdown", then the page:
+   a. Concatenates all field values into a single Markdown string.
+   b. Triggers a browser download of the Markdown.
 
 ## Field inventory
 
