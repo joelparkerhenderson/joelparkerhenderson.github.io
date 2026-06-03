@@ -1,40 +1,4 @@
 <!doctype html>
-<!--
-SMART OKRs KPIs Generator
-
-Specification-Driven Development
-
-Purpose: Help a user create their own Objectives & Key Results (OKRs) with
-simple web form prompts for the goal, the measure, SMART criteria, and KPI.
-
-User interface:
-
-1. Select suggestions via select inputs and fills freeform text.
-2. Click "Generate" button which concatenates the inputs into markdown.
-3. Automatically download the markdown text as a file to the user's laptop.
-
-- SMART textarea input fields: Specific, Measurable, Actionable, Relatable, Timely
-
-Technical stack:
-
-- HTML
-- Alpine.js v3.14.0 for JavaScript via cdnjs.cloudflare.com
-- Pure CSS 3.0.0 for styles via cdnjs.cloudflare.com
-- FontAwesome 6.5.2 for fonts via cdnjs.cloudflare.com
-
-Code:
-
-- Prompt text fields use a UI component named "suggestable"
-- The component combines a select-option input and text input.
-- The user can select a suggestion string, or enter freeform text.
-
-Contraints:
-
-- One web page minimum viable product (MVP)
-- No dependencies excapt via cdnjs.cloudflare.com
-- No database, no persistance, no confidental information
-
--->
 <html lang="en">
     <head>
         <title>SMART + OKRs + KPIs</title>
@@ -188,7 +152,7 @@ Contraints:
 
             <div x-data="suggester(suggest_verbs)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" name="verb" x-model="value" placeholder="Verb">
+                <input type="text" id="verb" name="verb" x-model="value" placeholder="Verb">
                 <ul class="suggestable_dropdown" x-show="open" x-cloak>
                 <template x-for="opt in suggestions" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
@@ -200,7 +164,7 @@ Contraints:
 
             <div x-data="suggester(suggest_topics)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" name="topic" x-model="value" placeholder="Topic">
+                <input type="text" id="topic" name="topic" x-model="value" placeholder="Topic">
                 <ul class="suggestable_dropdown" x-show="open" x-cloak>
                 <template x-for="opt in suggestions" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
@@ -212,7 +176,7 @@ Contraints:
 
             <div x-data="suggester(suggest_deltas)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" name="delta" x-model="value" placeholder="Delta">
+                <input type="text" id="delta" name="delta" x-model="value" placeholder="Delta">
                 <ul class="suggestable_dropdown" x-show="open" x-cloak>
                 <template x-for="opt in suggestions" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
@@ -224,7 +188,7 @@ Contraints:
 
             <div x-data="suggester(suggest_timings)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" name="timing" x-model="value" placeholder="Timing">
+                <input type="text" id="timing" name="timing" x-model="value" placeholder="Timing">
                 <ul class="suggestable_dropdown" x-show="open" x-cloak>
                 <template x-for="opt in suggestions" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
@@ -236,7 +200,7 @@ Contraints:
 
             <div x-data="suggester(suggest_metrics)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" name="metric" x-model="value" placeholder="Metric">
+                <input type="text" id="metric" name="metric" x-model="value" placeholder="Metric">
                 <ul class="suggestable_dropdown" x-show="open" x-cloak>
                 <template x-for="opt in suggestions" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
@@ -248,7 +212,7 @@ Contraints:
 
             <div x-data="suggester(suggest_updates)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" name="update" x-model="value" placeholder="Update">
+                <input type="text" id="update" name="update" x-model="value" placeholder="Update">
                 <ul class="suggestable_dropdown" x-show="open" x-cloak>
                 <template x-for="opt in suggestions" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
@@ -260,7 +224,7 @@ Contraints:
 
             <div x-data="suggester(suggest_sources)" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
-                <input type="text" name="source" x-model="value" placeholder="Source">
+                <input type="text" id="source" name="source" x-model="value" placeholder="Source">
                 <ul class="suggestable_dropdown" x-show="open" x-cloak>
                 <template x-for="opt in suggestions" :key="opt">
                     <li @click="value = opt; open = false" x-text="opt"></li>
@@ -337,12 +301,13 @@ Comments: any outstanding issues regarding the indicator
         </p>
 
         <p>
-            <button @click="generate()">Generate Markdown</button>
+            <button type="button" id="generate-button" onclick="window.generate()">Generate Markdown</button>
         </p>
 
         <p>
-            <textarea id="markdown" cols="80" rows="50">
-            </textarea>
+            <textarea id="markdown" cols="80" rows="50"></textarea>
+        </p>
+
         </form>
 
         <script>
@@ -428,7 +393,7 @@ Comments: any outstanding issues regarding the indicator
             "Measure by Working Capital",
             "Measure by Debt-to-Equity Ratio",
             "Measure by Cash Conversion Cycle (CCC)",
-            "Measure by Net Profit Margin",
+            "Measure by Return on Investment (ROI)",
         ];
         let suggest_updates = [
             "with updates continuously in real-time",
@@ -451,46 +416,171 @@ Comments: any outstanding issues regarding the indicator
             "via our staff's self-reports as needed",
         ];
 
+        /**
+         * Factory for the "suggestable" Alpine.js component.
+         *
+         * Returns the reactive state object Alpine binds via `x-data`. Each
+         * suggestable on the page gets its own independent instance — they
+         * share suggestion lists but never share open/closed state or values.
+         *
+         * State shape:
+         *   open        boolean — whether the dropdown is currently visible.
+         *   value       string  — the current text in the input. Starts empty
+         *                         so the HTML `placeholder` attribute shows;
+         *                         updated by typing (x-model) or by clicking
+         *                         a suggestion in the dropdown.
+         *   suggestions string[] — the list rendered in the dropdown. Kept on
+         *                         the instance so the x-for template can read
+         *                         it via the Alpine scope.
+         *
+         * @param {string[]} suggestions Curated list of suggestion strings.
+         * @returns {{open: boolean, value: string, suggestions: string[]}}
+         */
         function suggester(suggestions) {
             return {
                 open: false,
-                value: suggestions[0],
+                value: "",
                 suggestions: suggestions
             };
         }
 
+        /**
+         * Read a form field's current value by DOM id.
+         *
+         * Centralizes two concerns the markdown generators would otherwise
+         * repeat: (1) tolerating a missing element (returns "" instead of
+         * throwing on a typo or future refactor), and (2) trimming surrounding
+         * whitespace so that the textareas' indented HTML scaffolding does
+         * not leak leading/trailing blank lines into the generated Markdown.
+         *
+         * @param {string} id The element's `id` attribute.
+         * @returns {string} The trimmed value, or "" if the element is absent.
+         */
+        function field(id) {
+            const el = document.getElementById(id);
+            return el ? el.value.trim() : "";
+        }
+
+        /**
+         * Build the full Markdown document by concatenating the three
+         * top-level sections in their canonical order: OKR, then SMART,
+         * then KPI. This order matches the on-page form and is part of the
+         * specification at the top of the file.
+         *
+         * @returns {string} The complete Markdown document.
+         */
         function generate_markdown() {
-          return generate_markdown_okr() + generate_markdown_smart() + generate_markdown_kpi();
+            return generate_markdown_okr() + generate_markdown_smart() + generate_markdown_kpi();
         }
 
+        /**
+         * Build the "Objective & Key Result" section.
+         *
+         * Composes two sentences from seven single-line inputs:
+         *   1. Objective:  "<verb> <topic> <delta> <timing>."
+         *   2. Key Result: "<metric> <update> <source>."
+         *
+         * Each sentence ends with a period and is separated by a blank line
+         * so it renders as its own paragraph in Markdown.
+         *
+         * @returns {string} The "## Objective & Key Result" section, ending
+         *                   with a trailing blank line.
+         */
         function generate_markdown_okr() {
-          return "## Objective & Key Result\n\n" +
-          document.getElementById('verb').value + " " +
-          document.getElementById('topic').value + " " +
-          document.getElementById('delta').value + " " +
-          document.getElementById('timing').value + ".\n\n"
-          document.getElementById('metric').value + " " +
-          document.getElementById('update').value + " " +
-          document.getElementById('source').value + ".\n\n" +
+            return "## Objective & Key Result\n\n" +
+                field('verb') + " " +
+                field('topic') + " " +
+                field('delta') + " " +
+                field('timing') + ".\n\n" +
+                field('metric') + " " +
+                field('update') + " " +
+                field('source') + ".\n\n";
         }
 
+        /**
+         * Build the "SMART criteria" section.
+         *
+         * Emits an H2 heading and five H3 subsections (one per SMART letter)
+         * in fixed order: Specific, Measurable, Actionable, Relatable, Timely.
+         * Each subsection contains the user's textarea contents verbatim
+         * (after trimming via `field`).
+         *
+         * @returns {string} The "## SMART criteria" section, ending with a
+         *                   trailing blank line.
+         */
         function generate_markdown_smart() {
-          return "## SMART criteria\n\n" +
-          "### Specific\n\n" +
-          document.getElementById('specific').value + "\n\n" +
-          "### Measurable\n\n" +
-          document.getElementById('measurable').value + "\n\n" +
-          "### Actionable\n\n" +
-          document.getElementById('actionable').value + "\n\n" +
-          "### Relatable\n\n" +
-          document.getElementById('relatable').value + "\n\n" +
-          "### Timely\n\n" +
-          document.getElementById('timely').value + "\n\n";          
+            return "## SMART criteria\n\n" +
+                "### Specific\n\n" + field('specific') + "\n\n" +
+                "### Measurable\n\n" + field('measurable') + "\n\n" +
+                "### Actionable\n\n" + field('actionable') + "\n\n" +
+                "### Relatable\n\n" + field('relatable') + "\n\n" +
+                "### Timely\n\n" + field('timely') + "\n\n";
         }
-        
+
+        /**
+         * Build the "Key Performance Indicator (KPI)" section.
+         *
+         * Emits an H2 heading followed by the KPI textarea's contents
+         * verbatim (after trimming). The KPI textarea is seeded with a
+         * key:value template (Title, Objective, Scope, Target, Formula,
+         * Units, Frequency, Data source, Owner, Comments) which the user
+         * fills in.
+         *
+         * @returns {string} The "## Key Performance Indicator (KPI)" section,
+         *                   ending with a trailing blank line.
+         */
         function generate_markdown_kpi() {
-          return "## Key Performance Indicator (KPI)\n\n" +
-          document.getElementById('kpi').value + "\n\n";
+            return "## Key Performance Indicator (KPI)\n\n" +
+                field('kpi') + "\n\n";
+        }
+
+        /**
+         * Trigger a browser download of `text` as a Markdown file.
+         *
+         * Uses the standard "blob + object URL + anchor click" technique so
+         * no server round-trip is needed (this page has no backend). Steps:
+         *   1. Wrap `text` in a Blob with the markdown MIME type and UTF-8
+         *      charset so the OS picks the right default app on open.
+         *   2. Create an object URL pointing at the Blob.
+         *   3. Build a hidden <a download="..."> anchor, attach it to the
+         *      DOM (some browsers require this for the click to dispatch),
+         *      click it, then remove it.
+         *   4. Revoke the object URL to free memory; the download was already
+         *      handed to the browser by this point.
+         *
+         * @param {string} text The Markdown content to download.
+         */
+        function download_markdown(text) {
+            const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'smart-okrs-kpis.md';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        /**
+         * Click handler for the "Generate Markdown" button.
+         *
+         * Performs the two user-visible effects in order:
+         *   1. Populate the on-page "markdown" output textarea so the user
+         *      can review and copy the result without leaving the page.
+         *   2. Trigger a file download so the user gets a saved copy.
+         *
+         * Wired up via the inline `onclick="window.generate()"` attribute on
+         * the button (rather than an Alpine handler) so it works even if
+         * Alpine fails to initialize. We must spell out `window.` because the
+         * button lives inside a <form>, and inline event-handler scope walks
+         * the form's named-elements collection first — any element whose id
+         * is "generate" would otherwise shadow this global function.
+         */
+        function generate() {
+            const md = generate_markdown();
+            document.getElementById('markdown').value = md;
+            download_markdown(md);
         }
 
     </script>
