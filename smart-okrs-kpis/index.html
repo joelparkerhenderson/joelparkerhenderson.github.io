@@ -150,7 +150,7 @@
 
         <form>
 
-            <div x-data="suggester(suggest_verbs)" class="suggestable" @click.outside="open = false">
+            <div x-data="suggester(suggest_verbs, 'verb')" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
                 <input type="text" id="verb" name="verb" x-model="value" @input="open = true" placeholder="Verb">
                 <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
@@ -162,7 +162,7 @@
 
             <br>
 
-            <div x-data="suggester(suggest_topics)" class="suggestable" @click.outside="open = false">
+            <div x-data="suggester(suggest_topics, 'topic')" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
                 <input type="text" id="topic" name="topic" x-model="value" @input="open = true" placeholder="Topic">
                 <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
@@ -174,7 +174,7 @@
 
             <br>
 
-            <div x-data="suggester(suggest_deltas)" class="suggestable" @click.outside="open = false">
+            <div x-data="suggester(suggest_deltas, 'delta')" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
                 <input type="text" id="delta" name="delta" x-model="value" @input="open = true" placeholder="Amount">
                 <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
@@ -186,7 +186,7 @@
 
             <br>
 
-            <div x-data="suggester(suggest_timings)" class="suggestable" @click.outside="open = false">
+            <div x-data="suggester(suggest_timings, 'timing')" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
                 <input type="text" id="timing" name="timing" x-model="value" @input="open = true" placeholder="Time">
                 <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
@@ -198,7 +198,7 @@
 
             <br><br>
 
-            <div x-data="suggester(suggest_metrics)" class="suggestable" @click.outside="open = false">
+            <div x-data="suggester(suggest_metrics, 'metric')" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
                 <input type="text" id="metric" name="metric" x-model="value" @input="open = true" placeholder="Metric">
                 <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
@@ -210,7 +210,7 @@
 
             <br>
 
-            <div x-data="suggester(suggest_update_when)" class="suggestable" @click.outside="open = false">
+            <div x-data="suggester(suggest_update_when, 'update')" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
                 <input type="text" id="update" name="update" x-model="value" @input="open = true" placeholder="Update">
                 <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
@@ -222,7 +222,7 @@
 
             <br>
 
-            <div x-data="suggester(suggest_update_how)" class="suggestable" @click.outside="open = false">
+            <div x-data="suggester(suggest_update_how, 'source')" class="suggestable" @click.outside="open = false">
                 <button type="button" @click="open = !open" aria-label="Show suggestions">&#10132;</button>
                 <input type="text" id="source" name="source" x-model="value" @input="open = true" placeholder="Update via">
                 <ul class="suggestable_dropdown" x-show="open && filtered.length" x-cloak>
@@ -463,6 +463,124 @@ Comments: any outstanding issues regarding the indicator
         ];
 
         /**
+         * IndexedDB database and object-store names.
+         *
+         * The DB name is the page's namespace — IndexedDB is already scoped to
+         * the page's origin, so we do not need a per-key prefix the way we
+         * would for localStorage. The store name is intentionally short and
+         * generic ("fields") because everything we persist is a single
+         * key/value: <field id> → <current string value>.
+         */
+        const DB_NAME = 'smart-okrs-kpis';
+        const STORE_NAME = 'fields';
+        const DB_VERSION = 1;
+
+        /**
+         * Open (or create) the IndexedDB database used for persistence.
+         *
+         * Wraps the callback-style `IDBOpenDBRequest` in a Promise so the rest
+         * of the code can `await` it. On first open (or any version bump) the
+         * object store is created in `onupgradeneeded`. Resolves to the open
+         * `IDBDatabase`, or rejects if the user agent refuses to open IDB
+         * (e.g. private-mode quirks on some browsers).
+         *
+         * @returns {Promise<IDBDatabase>}
+         */
+        function openDb() {
+            return new Promise((resolve, reject) => {
+                const req = indexedDB.open(DB_NAME, DB_VERSION);
+                req.onupgradeneeded = () => {
+                    req.result.createObjectStore(STORE_NAME);
+                };
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        /**
+         * Long-lived Promise for the open database connection.
+         *
+         * Kicked off at script-evaluation time (not on DOMContentLoaded) so the
+         * IDB read can run in parallel with HTML parsing — by the time
+         * `init()` / the DOMContentLoaded handler awaits it, the DB is usually
+         * already open. On failure we log once and fall back to `null`; every
+         * persistence helper below treats `null` as "persistence unavailable"
+         * and degrades to a no-op so the page itself stays functional.
+         *
+         * @type {Promise<IDBDatabase|null>}
+         */
+        const dbPromise = openDb().catch(err => {
+            console.warn('IndexedDB unavailable; persistence disabled.', err);
+            return null;
+        });
+
+        /**
+         * Read every persisted field in one cursor pass and return a Map.
+         *
+         * Returning a Map (rather than calling `getField` per id at startup)
+         * lets us load all saved values from a single read transaction, which
+         * is both faster and avoids any chance of seeing a partial snapshot
+         * if a write lands between two reads. Resolves to an empty Map when
+         * the DB is unavailable so callers never need to null-check.
+         *
+         * @returns {Promise<Map<string,string>>}
+         */
+        async function loadAllFields() {
+            const db = await dbPromise;
+            if (!db) return new Map();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(STORE_NAME, 'readonly');
+                const store = tx.objectStore(STORE_NAME);
+                const map = new Map();
+                const cursorReq = store.openCursor();
+                cursorReq.onsuccess = (e) => {
+                    const cursor = e.target.result;
+                    if (cursor) {
+                        map.set(cursor.key, cursor.value);
+                        cursor.continue();
+                    } else {
+                        resolve(map);
+                    }
+                };
+                cursorReq.onerror = () => reject(cursorReq.error);
+            });
+        }
+
+        /**
+         * Long-lived Promise for the initial bulk read.
+         *
+         * Started at script-evaluation time alongside `dbPromise` so it races
+         * with HTML parsing. Both the Alpine suggestables' `init()` and the
+         * static-field `initPersistence()` await this Promise, so they share
+         * a single snapshot of the saved state — no per-component read.
+         *
+         * @type {Promise<Map<string,string>>}
+         */
+        const allFieldsPromise = loadAllFields();
+
+        /**
+         * Write a field value to IndexedDB.
+         *
+         * Resolves on transaction commit (`oncomplete`), not on `put` success,
+         * so callers that `await` this are guaranteed the value is durable
+         * before they continue. If IDB is unavailable this becomes a no-op.
+         *
+         * @param {string} key   Field id (used as the object-store key).
+         * @param {string} value The current field value to persist.
+         * @returns {Promise<void>}
+         */
+        async function saveField(key, value) {
+            const db = await dbPromise;
+            if (!db) return;
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(STORE_NAME, 'readwrite');
+                tx.objectStore(STORE_NAME).put(value, key);
+                tx.oncomplete = () => resolve();
+                tx.onerror = () => reject(tx.error);
+            });
+        }
+
+        /**
          * Factory for the "suggestable" Alpine.js component.
          *
          * Returns the reactive state object Alpine binds via `x-data`. Each
@@ -471,10 +589,14 @@ Comments: any outstanding issues regarding the indicator
          *
          * State shape:
          *   open        boolean — whether the dropdown is currently visible.
-         *   value       string  — the current text in the input. Starts empty
-         *                         so the HTML `placeholder` attribute shows;
-         *                         updated by typing (x-model) or by clicking
-         *                         a suggestion in the dropdown.
+         *   value       string  — the current text in the input. Always starts
+         *                         as "" so the HTML `placeholder` attribute is
+         *                         visible during the (typically sub-frame) gap
+         *                         between component init and the IDB load
+         *                         resolving. `init()` then restores the saved
+         *                         value asynchronously, and from that point on
+         *                         this field reflects user typing or dropdown
+         *                         selections.
          *   suggestions string[] — the full curated list passed in at
          *                         construction; not iterated directly by the
          *                         template, only used as the source for
@@ -485,11 +607,22 @@ Comments: any outstanding issues regarding the indicator
          *                         or whitespace, returns the full list. This
          *                         is what the dropdown's x-for iterates, so
          *                         typing narrows the visible options live.
+         *   init()      function — Alpine lifecycle hook. When `storageKey`
+         *                         is provided: (1) awaits the shared IDB
+         *                         snapshot, (2) restores the saved value only
+         *                         if the user has not already started typing
+         *                         in the rare window between init and the
+         *                         IDB read resolving (we never clobber live
+         *                         input), and (3) wires a `$watch` so every
+         *                         subsequent change persists asynchronously.
          *
          * @param {string[]} suggestions Curated list of suggestion strings.
-         * @returns {{open: boolean, value: string, suggestions: string[], filtered: string[]}}
+         * @param {string} [storageKey] IDB object-store key used to persist
+         *                              `value` across reloads. Omit to opt
+         *                              out of persistence entirely.
+         * @returns {{open: boolean, value: string, suggestions: string[], filtered: string[], init: () => Promise<void>}}
          */
-        function suggester(suggestions) {
+        function suggester(suggestions, storageKey) {
             return {
                 open: false,
                 value: "",
@@ -498,9 +631,69 @@ Comments: any outstanding issues regarding the indicator
                     const q = this.value.trim().toLowerCase();
                     if (!q) return this.suggestions;
                     return this.suggestions.filter(s => s.toLowerCase().includes(q));
+                },
+                async init() {
+                    if (!storageKey) return;
+                    const all = await allFieldsPromise;
+                    if (all.has(storageKey) && this.value === "") {
+                        this.value = all.get(storageKey);
+                    }
+                    this.$watch('value', v => saveField(storageKey, v));
                 }
             };
         }
+
+        /**
+         * DOM ids of every plain (non-Alpine) field whose value we persist.
+         *
+         * Alpine-managed suggestables persist themselves via `suggester(...)`'s
+         * `$watch`; this list covers everything else: the five SMART textareas,
+         * the KPI metadata inputs, and the KPI content textarea. The read-only
+         * `#markdown` output is deliberately excluded — it is generated on
+         * demand from the persisted source fields, so persisting it would just
+         * duplicate data and risk drift after the user edits inputs without
+         * re-clicking Generate.
+         */
+        const PERSIST_IDS = [
+            'specific', 'measurable', 'actionable', 'relatable', 'timely',
+            'kpi-title', 'kpi-url', 'kpi-contact-name', 'kpi-contact-email',
+            'kpi-content'
+        ];
+
+        /**
+         * Wire up IndexedDB persistence for the plain (non-Alpine) fields.
+         *
+         * For each id in PERSIST_IDS:
+         *   1. Await the shared bulk-read snapshot, then if a saved value
+         *      exists for this id, restore it. We only overwrite the
+         *      element's value when the map has the key, so untouched fields
+         *      keep their seeded HTML scaffolding (e.g. the SMART textareas'
+         *      guiding questions).
+         *   2. Attach an `input` listener that writes the current value back
+         *      to IndexedDB on every keystroke. `input` fires on user edits
+         *      but not on programmatic value changes, which is what we want
+         *      — we never accidentally persist our own restore step. Writes
+         *      are fire-and-forget; we do not await them in the listener so
+         *      keystrokes never feel sluggish.
+         *
+         * Invoked on DOMContentLoaded so every targeted element exists in
+         * the DOM by the time we try to read or attach listeners. The
+         * function is async because it awaits the IDB read; any uncaught
+         * rejection would be a programming error, since `loadAllFields`
+         * already swallows the "IDB unavailable" case by returning an empty
+         * Map.
+         */
+        async function initPersistence() {
+            const all = await allFieldsPromise;
+            for (const id of PERSIST_IDS) {
+                const el = document.getElementById(id);
+                if (!el) continue;
+                if (all.has(id)) el.value = all.get(id);
+                el.addEventListener('input', () => saveField(id, el.value));
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initPersistence);
 
         /**
          * Read a form field's current value by DOM id.

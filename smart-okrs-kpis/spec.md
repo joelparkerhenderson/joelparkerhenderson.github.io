@@ -161,10 +161,44 @@ served from this directory. Run with:
 npx playwright test test.spec.js --browser=chromium --workers=1
 ```
 
+## Persistence
+
+Form field values are persisted to IndexedDB on every edit and restored on
+page load, so the user does not lose work across reloads or browser
+restarts. Persistence is strictly client-side: nothing leaves the user's
+machine.
+
+- Storage backend: IndexedDB on the page's own origin.
+- Database name: `smart-okrs-kpis`; single object store `fields` whose key
+  is the field's DOM id and whose value is the field's current string
+  value. IndexedDB is already origin-scoped, so no extra namespacing is
+  needed.
+- Persisted fields: all seven suggestable inputs (`verb`, `topic`, `delta`,
+  `timing`, `metric`, `update`, `source`), the five SMART textareas
+  (`specific`, `measurable`, `actionable`, `relatable`, `timely`), and the
+  five KPI fields (`kpi-title`, `kpi-url`, `kpi-contact-name`,
+  `kpi-contact-email`, `kpi-content`).
+- Not persisted: the read-only `#markdown` output (regenerated on demand
+  from the source fields) and the suggestable dropdowns' open/closed state.
+- Restore semantics: when a saved value exists, it replaces the seeded
+  default; when no saved value exists, the seeded default (placeholder
+  text or guiding questions) is left intact.
+- Async-restore behavior: the IDB open + bulk-read is kicked off at
+  script-evaluation time and shared by every restore site. Suggestables
+  and static fields await the same snapshot, so all fields restore from a
+  single consistent view of saved state. Suggestables never overwrite a
+  value the user has already typed during the brief window before the
+  read resolves.
+- Graceful degradation: if IndexedDB is unavailable (e.g. some
+  private-browsing configurations), the page logs a console warning and
+  runs without persistence; nothing else breaks.
+
 ## Constraints
 
 - Single HTML file MVP (index.html). No build step.
 - No external dependencies except via cdnjs.cloudflare.com.
-- No backend, no database, no persistence, no telemetry.
+- No backend, no server-side database, no server-side persistence, no
+  telemetry. Client-side IndexedDB is used to retain the user's
+  in-progress form values between sessions (see "Persistence" above).
 - No confidential information is collected, stored, or transmitted.
 - Works offline once the page and CDN assets are cached.

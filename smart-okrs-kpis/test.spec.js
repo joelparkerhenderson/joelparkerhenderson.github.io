@@ -205,6 +205,33 @@ test.describe("SMART + OKRs + KPIs", () => {
     fs.unlinkSync(tmpPath);
   });
 
+  test("persists form values across reload via IndexedDB", async ({
+    page,
+  }) => {
+    await page.goto(PAGE_URL);
+    await page.waitForFunction(() => window.Alpine !== undefined);
+
+    await page.locator("#verb").fill("Increase");
+    await page.locator("#topic").fill("customer satisfaction");
+    await page.locator("#specific").fill("Persisted specific text");
+    await page.locator("#kpi-title").fill("Persisted KPI title");
+    await page.locator("#kpi-contact-email").fill("alice@example.com");
+
+    await page.waitForTimeout(300);
+    await page.reload();
+    await page.waitForFunction(() => window.Alpine !== undefined);
+
+    await expect(page.locator("#verb")).toHaveValue("Increase");
+    await expect(page.locator("#topic")).toHaveValue("customer satisfaction");
+    await expect(page.locator("#specific")).toHaveValue(
+      "Persisted specific text",
+    );
+    await expect(page.locator("#kpi-title")).toHaveValue("Persisted KPI title");
+    await expect(page.locator("#kpi-contact-email")).toHaveValue(
+      "alice@example.com",
+    );
+  });
+
   test("clicking either button does not submit the form", async ({ page }) => {
     await page.goto(PAGE_URL);
     await page.waitForFunction(() => window.Alpine !== undefined);
