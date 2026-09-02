@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { Avatar, AvatarText, ContainerWithFixedWidth, Header } from 'lily-design-system-svelte-headless';
+	import {
+		Avatar,
+		AvatarImage,
+		ContainerWithFixedWidth,
+		Header
+	} from 'lily-design-system-svelte-headless';
+	import avatarPhoto from '$lib/assets/avatar.jpg';
 	import ThemePicker from './ThemePicker.svelte';
 	import TextSizePicker from './TextSizePicker.svelte';
 	import SharePicker from './SharePicker.svelte';
@@ -10,7 +16,7 @@
 		<div class="site-header-bar">
 			<span class="brand">
 				<Avatar alt="Joel Parker Henderson">
-					<AvatarText>JPH</AvatarText>
+					<AvatarImage src={avatarPhoto} alt="" />
 				</Avatar>
 				<strong>Joel Parker Henderson</strong>
 			</span>

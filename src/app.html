@@ -1,8 +1,16 @@
 <!doctype html>
-<html lang="en">
+<!-- data-theme default kept in sync with DEFAULT_THEME_ID in src/lib/data/themes.ts -->
+<html lang="en" data-theme="united-kingdom-national-health-service-england-for-practitioners">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			id="lily-theme"
+			href="/themes/united-kingdom-national-health-service-england-for-practitioners.css"
+		/>
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<script>
 			// Apply the stored theme and text-size choices before first paint,
 			// so returning visitors never see a flash of the wrong theme or
@@ -10,8 +18,10 @@
 			(function () {
 				try {
 					var theme = localStorage.getItem('jph-theme');
-					if (theme === 'light' || theme === 'dark') {
+					if (theme) {
 						document.documentElement.dataset.theme = theme;
+						var link = document.getElementById('lily-theme');
+						if (link) link.href = '/themes/' + theme + '.css';
 					}
 					var scale = localStorage.getItem('jph-font-scale');
 					if (scale) {

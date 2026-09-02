@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Card, ContainerWithFixedWidth, GoToTop, SectionLink, SectionNav, Tag } from 'lily-design-system-svelte-headless';
+	import { Card, ContainerWithFixedWidth, GoToTop, SectionLink, SectionNav } from 'lily-design-system-svelte-headless';
 	import { sections } from '$lib/data/sections';
 
 	const title = 'Joel Parker Henderson';
@@ -25,11 +25,6 @@
 				healthcare interoperability section below, open-source Rust implementations of core
 				standards such as HL7, FHIR, SNOMED CT, and openEHR. Everything here is free and open
 				source on GitHub.
-			</p>
-			<p>
-				{#each ['Leadership', 'Goals & decisions', 'Delivery', 'Risk & security', 'Healthcare interoperability'] as topic (topic)}
-					<Tag label={topic}>{topic}</Tag>
-				{/each}
 			</p>
 		</ContainerWithFixedWidth>
 	</section>

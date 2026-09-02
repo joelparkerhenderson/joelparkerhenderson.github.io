@@ -1,6 +1,5 @@
 <script lang="ts">
 	import '../lib/styles/theme.css';
-	import favicon from '$lib/assets/favicon.svg';
 	import { ContainerWithFixedWidth, Footer, SkipLink } from 'lily-design-system-svelte-headless';
 	import SiteHeader from '$lib/components/site/Header.svelte';
 
@@ -8,10 +7,6 @@
 
 	const year = new Date().getFullYear();
 </script>
-
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
 
 <SkipLink href="#content" label="Skip to content" />
 

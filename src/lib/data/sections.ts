@@ -23,7 +23,7 @@ export interface Section {
 export const sections: Section[] = [
 	{
 		id: "leadership-culture",
-		heading: "Leadership & culture",
+		heading: "Leadership",
 		blurb:
 			"Frameworks for setting direction, building trust, and running healthy teams: vision and mission statements, ground rules, feedback, crucial conversations, and how project participants are organized.",
 		groups: [
@@ -169,9 +169,9 @@ export const sections: Section[] = [
 	},
 	{
 		id: "risk-security",
-		heading: "Risk, security & legal",
+		heading: "Cross-company collaboration",
 		blurb:
-			"Coordinated vulnerability disclosure, and the consulting and confidentiality agreements used to formalize engagements.",
+			"How work crosses company boundaries safely and formally: coordinated vulnerability disclosure, and the consulting and confidentiality agreements used to set up an engagement.",
 		groups: [
 			{
 				label: "Consulting agreements",
