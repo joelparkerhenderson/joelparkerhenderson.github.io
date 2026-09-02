@@ -7,18 +7,16 @@
 	// .share-picker-copy / .share-picker-status (see any theme's "The four
 	// *-picker helpers" comment) — a button that toggles a [hidden] list,
 	// not a native <details>, so every Lily theme styles it automatically.
-	// LinkedIn, Bluesky and Reddit have stable share-intent URLs so they're
-	// Lily ActionLinks re-hooked to .share-picker-target. Mastodon is
-	// federated with no single share endpoint, so the standard pattern is
-	// to ask once for the person's home instance (native prompt, remembered
-	// in localStorage) and open https://<instance>/share?text=...
+	// LinkedIn, Bluesky, Mastodon and Reddit have stable share-intent URLs
+	// so they're all Lily ActionLinks re-hooked to .share-picker-target.
+	// Mastodon is federated with no single instance to post to directly,
+	// so this goes through mastodonshare.com, which asks the visitor for
+	// their home instance and redirects there.
 	import { ActionLink, ClipboardCopyButton } from 'lily-design-system-svelte-headless';
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
 
 	let { title = 'Joel Parker Henderson' }: { title?: string } = $props();
-
-	const MASTODON_INSTANCE_KEY = 'jph-mastodon-instance';
 
 	let open = $state(false);
 	let copied = $state(false);
@@ -54,19 +52,6 @@
 	function handleCopied() {
 		copied = true;
 		setTimeout(() => (copied = false), 2000);
-	}
-
-	function shareToMastodon() {
-		if (!browser) return;
-		let instance = localStorage.getItem(MASTODON_INSTANCE_KEY);
-		if (!instance) {
-			const answer = window.prompt('Which Mastodon instance do you use? (e.g. mastodon.social)');
-			if (!answer) return;
-			instance = answer.trim().replace(/^https?:\/\//, '').replace(/\/$/, '');
-			localStorage.setItem(MASTODON_INSTANCE_KEY, instance);
-		}
-		window.open(`https://${instance}/share?text=${encoded(shareText)}`, '_blank', 'noopener');
-		close();
 	}
 </script>
 
@@ -120,7 +105,14 @@
 			</ActionLink>
 		</li>
 		<li class="share-picker-list-item">
-			<button type="button" class="share-picker-target" onclick={shareToMastodon}>Share on Mastodon</button>
+			<ActionLink
+				class="share-picker-target"
+				href={`https://mastodonshare.com/?text=${encoded(title)}&url=${encoded(shareUrl)}`}
+				target="_blank"
+				rel="noopener"
+			>
+				Share on Mastodon
+			</ActionLink>
 		</li>
 		<li class="share-picker-list-item">
 			<ActionLink

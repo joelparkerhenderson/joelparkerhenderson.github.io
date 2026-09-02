@@ -8,7 +8,7 @@ export interface ThemeOption {
 	group: 'Government & healthcare' | 'General';
 }
 
-export const DEFAULT_THEME_ID = 'united-kingdom-national-health-service-england-for-practitioners';
+export const DEFAULT_THEME_ID = 'light';
 
 export const themes: ThemeOption[] = [
 	// Government & healthcare
