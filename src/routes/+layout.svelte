@@ -1,0 +1,31 @@
+<script lang="ts">
+	import '../lib/styles/theme.css';
+	import favicon from '$lib/assets/favicon.svg';
+	import { ContainerWithFixedWidth, Footer, SkipLink } from 'lily-design-system-svelte-headless';
+	import SiteHeader from '$lib/components/site/Header.svelte';
+
+	let { children } = $props();
+
+	const year = new Date().getFullYear();
+</script>
+
+<svelte:head>
+	<link rel="icon" href={favicon} />
+</svelte:head>
+
+<SkipLink href="#content" label="Skip to content" />
+
+<SiteHeader />
+
+{@render children()}
+
+<Footer label="Site footer">
+	<ContainerWithFixedWidth maxWidth="72rem">
+		<p>
+			© {year} Joel Parker Henderson · <a href="https://github.com/joelparkerhenderson">GitHub</a> ·
+			<a href="https://uk.linkedin.com/in/joelparkerhenderson">LinkedIn</a> · built with
+			<a href="https://kit.svelte.dev">SvelteKit</a> and the
+			<a href="https://lilydesignsystem.github.io/">Lily Design System</a>
+		</p>
+	</ContainerWithFixedWidth>
+</Footer>

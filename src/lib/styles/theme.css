@@ -1,0 +1,538 @@
+/* ============================================================================
+ * joelparkerhenderson.github.io — custom theme
+ *
+ * Built for the Lily Design System's headless Svelte components: every rule
+ * below targets a single kebab-case class hook (Lily's convention — one
+ * stable class per component root, no other selectors). Token block adapted
+ * from Lily's bundled "corporate" theme (OKLCH, DaisyUI-derived variable
+ * names), retuned for a warmer, friendlier accent.
+ *
+ * Three theme states, matching <ThemePicker>:
+ *   - no [data-theme] attribute → follow the OS (prefers-color-scheme)
+ *   - [data-theme="light"]      → force light
+ *   - [data-theme="dark"]       → force dark
+ * ========================================================================= */
+
+/* ---------------------------------------------------------------------------
+ * Tokens — light (default)
+ * ------------------------------------------------------------------------- */
+:root {
+	color-scheme: light;
+
+	--color-base-100: oklch(100% 0 0);
+	--color-base-200: oklch(97% 0.003 260);
+	--color-base-300: oklch(92% 0.006 260);
+	--color-base-content: oklch(27% 0.02 265);
+
+	--color-primary: oklch(46% 0.14 254);
+	--color-primary-content: oklch(100% 0 0);
+	--color-secondary: oklch(44% 0.03 260);
+	--color-secondary-content: oklch(100% 0 0);
+	--color-accent: oklch(64% 0.14 55);
+	--color-accent-content: oklch(20% 0.03 55);
+	--color-neutral: oklch(22% 0.02 260);
+	--color-neutral-content: oklch(97% 0.003 260);
+
+	--color-info: oklch(58% 0.11 230);
+	--color-info-content: oklch(100% 0 0);
+	--color-success: oklch(55% 0.13 155);
+	--color-success-content: oklch(100% 0 0);
+	--color-warning: oklch(78% 0.15 80);
+	--color-warning-content: oklch(20% 0.03 80);
+	--color-error: oklch(52% 0.19 25);
+	--color-error-content: oklch(100% 0 0);
+
+	--radius-box: 0.75rem;
+	--radius-field: 0.5rem;
+	--border-width: 1px;
+	--depth-1: 0 1px 2px oklch(0% 0 0 / 0.06);
+	--depth-2: 0 4px 16px oklch(0% 0 0 / 0.08);
+
+	--font-sans:
+		ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+
+	/* set by <TextSizePicker>; multiplies the root font size */
+	--user-font-scale: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		color-scheme: dark;
+		--color-base-100: oklch(20% 0.012 260);
+		--color-base-200: oklch(24% 0.014 260);
+		--color-base-300: oklch(30% 0.016 260);
+		--color-base-content: oklch(93% 0.006 260);
+		--color-primary: oklch(72% 0.12 254);
+		--color-primary-content: oklch(15% 0.03 254);
+		--color-secondary: oklch(80% 0.02 260);
+		--color-secondary-content: oklch(15% 0.02 260);
+		--color-accent: oklch(74% 0.13 60);
+		--color-accent-content: oklch(15% 0.03 60);
+		--color-neutral: oklch(12% 0.012 260);
+		--color-neutral-content: oklch(93% 0.006 260);
+		--depth-1: 0 1px 2px oklch(0% 0 0 / 0.4);
+		--depth-2: 0 4px 20px oklch(0% 0 0 / 0.5);
+	}
+}
+
+:root[data-theme="dark"] {
+	color-scheme: dark;
+	--color-base-100: oklch(20% 0.012 260);
+	--color-base-200: oklch(24% 0.014 260);
+	--color-base-300: oklch(30% 0.016 260);
+	--color-base-content: oklch(93% 0.006 260);
+	--color-primary: oklch(72% 0.12 254);
+	--color-primary-content: oklch(15% 0.03 254);
+	--color-secondary: oklch(80% 0.02 260);
+	--color-secondary-content: oklch(15% 0.02 260);
+	--color-accent: oklch(74% 0.13 60);
+	--color-accent-content: oklch(15% 0.03 60);
+	--color-neutral: oklch(12% 0.012 260);
+	--color-neutral-content: oklch(93% 0.006 260);
+	--depth-1: 0 1px 2px oklch(0% 0 0 / 0.4);
+	--depth-2: 0 4px 20px oklch(0% 0 0 / 0.5);
+}
+
+/* ---------------------------------------------------------------------------
+ * Base
+ * ------------------------------------------------------------------------- */
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: calc(100% * var(--user-font-scale));
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+	* {
+		animation-duration: 0.001ms !important;
+		transition-duration: 0.001ms !important;
+	}
+}
+
+body {
+	margin: 0;
+	background: var(--color-base-100);
+	color: var(--color-base-content);
+	font-family: var(--font-sans);
+	line-height: 1.55;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	line-height: 1.2;
+	font-weight: 700;
+	text-wrap: balance;
+}
+
+p {
+	max-width: 68ch;
+}
+
+a {
+	color: var(--color-primary);
+}
+
+a:not([class]) {
+	text-decoration-thickness: from-font;
+	text-underline-offset: 0.15em;
+}
+
+:focus-visible {
+	outline: 3px solid var(--color-primary);
+	outline-offset: 2px;
+	border-radius: 2px;
+}
+
+code,
+pre {
+	font-family: var(--font-mono);
+}
+
+/* ---------------------------------------------------------------------------
+ * Lily component hooks
+ * ------------------------------------------------------------------------- */
+
+.skip-link {
+	position: absolute;
+	top: -3rem;
+	left: 1rem;
+	z-index: 100;
+	padding: 0.6rem 1rem;
+	background: var(--color-neutral);
+	color: var(--color-neutral-content);
+	border-radius: var(--radius-field);
+	transition: top 0.15s ease;
+}
+.skip-link:focus {
+	top: 1rem;
+}
+
+.header {
+	background: var(--color-neutral);
+	color: var(--color-neutral-content);
+}
+.header a {
+	color: inherit;
+}
+
+.footer {
+	background: var(--color-neutral);
+	color: var(--color-neutral-content);
+	border-top: var(--border-width) solid var(--color-base-300);
+}
+.footer a {
+	color: inherit;
+}
+
+.container-with-fixed-width {
+	padding-inline: 1.25rem;
+}
+
+.byline {
+	color: var(--color-secondary-content);
+	opacity: 0.85;
+	font-size: 0.9rem;
+}
+
+.avatar {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+}
+.avatar-image {
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: 999px;
+	object-fit: cover;
+}
+.avatar-text {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: 999px;
+	background: var(--color-primary);
+	color: var(--color-primary-content);
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+.section-nav {
+	position: sticky;
+	top: 0;
+	z-index: 40;
+	background: var(--color-base-200);
+	border-bottom: var(--border-width) solid var(--color-base-300);
+}
+.section-nav ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 1.25rem;
+	list-style: none;
+	margin: 0;
+	padding: 0.75rem 0;
+}
+.section-link {
+	color: var(--color-base-content);
+	font-size: 0.92rem;
+	font-weight: 600;
+	text-decoration: none;
+	padding: 0.25rem 0.1rem;
+	border-bottom: 2px solid transparent;
+}
+.section-link:hover,
+.section-link:focus-visible {
+	border-bottom-color: var(--color-primary);
+}
+
+.card {
+	background: var(--color-base-100);
+	border: var(--border-width) solid var(--color-base-300);
+	border-radius: var(--radius-box);
+	box-shadow: var(--depth-1);
+	padding: 1.5rem 1.75rem;
+	margin-block: 1.75rem;
+	scroll-margin-top: 3.5rem;
+}
+.card > h2 {
+	margin-block-start: 0;
+	font-size: 1.4rem;
+}
+.card > p:first-of-type {
+	color: var(--color-secondary);
+}
+
+.badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.15rem 0.6rem;
+	border-radius: 999px;
+	font-size: 0.78rem;
+	font-weight: 600;
+	background: var(--color-base-300);
+	color: var(--color-base-content);
+}
+.badge[data-type="info"] {
+	background: var(--color-info);
+	color: var(--color-info-content);
+}
+.badge[data-type="success"] {
+	background: var(--color-success);
+	color: var(--color-success-content);
+}
+.badge[data-type="warning"] {
+	background: var(--color-warning);
+	color: var(--color-warning-content);
+}
+.badge[data-type="error"] {
+	background: var(--color-error);
+	color: var(--color-error-content);
+}
+
+.tag {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.1rem 0.55rem;
+	border-radius: var(--radius-field);
+	font-size: 0.78rem;
+	background: var(--color-accent);
+	color: var(--color-accent-content);
+}
+
+.action-link {
+	color: var(--color-primary);
+	font-weight: 600;
+	text-decoration: none;
+}
+.action-link:hover,
+.action-link:focus-visible {
+	text-decoration: underline;
+}
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.4rem;
+	padding: 0.55rem 1.1rem;
+	border-radius: var(--radius-field);
+	border: var(--border-width) solid var(--color-primary);
+	background: var(--color-primary);
+	color: var(--color-primary-content);
+	font: inherit;
+	font-weight: 600;
+	cursor: pointer;
+}
+.button:hover {
+	filter: brightness(1.08);
+}
+.button[data-copied="true"] {
+	background: var(--color-success);
+	border-color: var(--color-success);
+	color: var(--color-success-content);
+}
+
+.icon-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	border-radius: var(--radius-field);
+	border: var(--border-width) solid oklch(from var(--color-neutral-content) l c h / 0.35);
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+}
+.icon-button:hover {
+	background: oklch(from var(--color-neutral-content) l c h / 0.12);
+}
+.icon-button[aria-expanded="true"] {
+	background: oklch(from var(--color-neutral-content) l c h / 0.18);
+}
+
+.theme-select {
+	background: transparent;
+	color: inherit;
+	border: var(--border-width) solid oklch(from var(--color-neutral-content) l c h / 0.35);
+	border-radius: var(--radius-field);
+	padding: 0.4rem 0.6rem;
+	font: inherit;
+}
+.theme-select option {
+	color: var(--color-base-content);
+	background: var(--color-base-100);
+}
+
+.share-page {
+	display: flex;
+	flex-direction: column;
+	gap: 0.15rem;
+	min-width: 14rem;
+}
+/* Every share action — Lily ActionLinks and our two plain <button>s alike —
+   reads as one uniform row of menu items, not a mix of pills and links. */
+.share-page .action-link,
+.share-page .button {
+	display: flex;
+	justify-content: flex-start;
+	width: 100%;
+	padding: 0.5rem 0.6rem;
+	border-radius: var(--radius-field);
+	background: transparent;
+	border: none;
+	color: var(--color-base-content);
+	font-weight: 500;
+	text-decoration: none;
+	text-align: left;
+}
+.share-page .action-link:hover,
+.share-page .button:hover {
+	background: var(--color-base-200);
+	filter: none;
+}
+.share-page .button[data-copied="true"] {
+	background: var(--color-success);
+	color: var(--color-success-content);
+}
+
+.go-to-top {
+	position: fixed;
+	right: 1.25rem;
+	bottom: 1.25rem;
+	padding: 0.6rem 1rem;
+	border-radius: 999px;
+	background: var(--color-neutral);
+	color: var(--color-neutral-content);
+	box-shadow: var(--depth-2);
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 0.85rem;
+}
+
+/* ---------------------------------------------------------------------------
+ * Site-specific hooks (not part of the Lily catalog)
+ * ------------------------------------------------------------------------- */
+
+.site-header-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding-block: 0.75rem;
+	flex-wrap: wrap;
+}
+
+.site-header-controls {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+
+.brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	font-size: 1.05rem;
+}
+
+.site-hero {
+	padding-block: 3rem 2.5rem;
+}
+.site-hero p {
+	max-width: 62ch;
+	font-size: 1.08rem;
+}
+
+.text-size-picker {
+	display: inline-flex;
+	border: var(--border-width) solid oklch(from var(--color-neutral-content) l c h / 0.35);
+	border-radius: var(--radius-field);
+	overflow: clip;
+}
+.text-size-picker button {
+	background: transparent;
+	color: inherit;
+	border: none;
+	padding: 0.4rem 0.65rem;
+	font: inherit;
+	cursor: pointer;
+}
+.text-size-picker button + button {
+	border-left: var(--border-width) solid oklch(from var(--color-neutral-content) l c h / 0.35);
+}
+.text-size-picker button[aria-pressed="true"] {
+	background: oklch(from var(--color-neutral-content) l c h / 0.18);
+	font-weight: 700;
+}
+
+.share-picker {
+	position: relative;
+}
+.share-picker > summary {
+	list-style: none;
+}
+.share-picker > summary::-webkit-details-marker {
+	display: none;
+}
+.share-picker[open] .share-picker-panel {
+	display: flex;
+}
+.share-picker-panel {
+	display: none;
+	position: absolute;
+	right: 0;
+	top: calc(100% + 0.5rem);
+	z-index: 50;
+	padding: 0.75rem;
+	background: var(--color-base-100);
+	color: var(--color-base-content);
+	border: var(--border-width) solid var(--color-base-300);
+	border-radius: var(--radius-box);
+	box-shadow: var(--depth-2);
+}
+
+.section-group {
+	margin-block: 1.75rem;
+}
+.section-group h3 {
+	font-size: 1rem;
+	color: var(--color-secondary);
+	margin-block-end: 0.5rem;
+}
+.link-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 0.4rem;
+}
+
+.engineering-reference {
+	background: var(--color-base-200);
+	border: var(--border-width) solid var(--color-base-300);
+	border-radius: var(--radius-box);
+	padding: 1.25rem 1.5rem;
+	margin-block: 1.75rem;
+	scroll-margin-top: 3.5rem;
+}
+.engineering-reference summary {
+	cursor: pointer;
+	font-weight: 700;
+	font-size: 1.15rem;
+}
+.engineering-reference[open] summary {
+	margin-block-end: 0.75rem;
+}
