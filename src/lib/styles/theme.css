@@ -221,6 +221,33 @@ a:not([class]) {
 .site-hero {
 	padding-block: 3rem 2.5rem;
 }
+.site-hero-layout {
+	display: flex;
+	flex-direction: row-reverse;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 2.5rem;
+}
+.site-hero-copy {
+	flex: 1 1 28rem;
+}
+.site-hero-portrait {
+	flex: 0 0 auto;
+	width: 12rem;
+	height: 12rem;
+	border-radius: var(--lily-radius-lg, 1rem);
+	object-fit: cover;
+}
+@media (max-width: 45rem) {
+	.site-hero-layout {
+		flex-direction: column-reverse;
+		align-items: center;
+	}
+	.site-hero-copy {
+		flex-basis: auto;
+		width: 100%;
+	}
+}
 .site-hero p {
 	max-width: 62ch;
 	font-size: 1.08rem;

@@ -5,6 +5,7 @@
 	import ContactCta from '$lib/components/site/ContactCta.svelte';
 	import { corePillars, actionTiles } from '$lib/data/pillars';
 	import { SITE_URL } from '$lib/site';
+	import heroPortrait from '$lib/assets/hero-portrait.jpg';
 
 	// No dates shown — these aren't dated blog posts, and KPMG's own
 	// insight cards (see the redesign research) skip dates too, grouping
@@ -58,20 +59,33 @@
 <main id="content">
 	<section class="site-hero">
 		<ContainerWithFixedWidth maxWidth="72rem">
-			<h1>Joel Parker Henderson</h1>
-			<p>
-				Engineering leadership that holds up under pressure. Decisions that don't unravel.
-				Teams that stay healthy. Software built to be reused, not shipped once and forgotten.
-				That's the result of 20+ years building and consulting across industry and government.
-				I'm currently head of software engineering for a national health service organization.
-				My work spans both commercial and public-sector engineering. The frameworks, templates,
-				and open-source software I publish are free, open, and used well beyond either sector.
-			</p>
-			<blockquote class="hero-quote">
-				Direction only helps if the team executing it is healthy. Decisions only hold up if
-				they're written down and revisited.
-			</blockquote>
-			<ContactCta subject="General inquiry" emailLabel="Get in touch" />
+			<div class="site-hero-layout">
+				<div class="site-hero-copy">
+					<h1>Joel Parker Henderson</h1>
+					<p>
+						Engineering leadership that holds up under pressure. Decisions that don't unravel.
+						Teams that stay healthy. Software built to be reused, not shipped once and
+						forgotten. That's the result of 20+ years building and consulting across industry
+						and government. I'm currently head of software engineering for a national health
+						service organization. My work spans both commercial and public-sector engineering.
+						The frameworks, templates, and open-source software I publish are free, open, and
+						used well beyond either sector.
+					</p>
+					<blockquote class="hero-quote">
+						Direction only helps if the team executing it is healthy. Decisions only hold up
+						if they're written down and revisited.
+					</blockquote>
+					<ContactCta subject="General inquiry" emailLabel="Get in touch" />
+				</div>
+				<img
+					class="site-hero-portrait"
+					src={heroPortrait}
+					alt="Joel Parker Henderson"
+					width="640"
+					height="640"
+					fetchpriority="high"
+				/>
+			</div>
 		</ContainerWithFixedWidth>
 	</section>
 
