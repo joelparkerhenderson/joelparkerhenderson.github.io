@@ -10,6 +10,7 @@
 	import TextSizePicker from './TextSizePicker.svelte';
 	import LocalePicker from './LocalePicker.svelte';
 	import SharePicker from './SharePicker.svelte';
+	import SocialLinks from './SocialLinks.svelte';
 </script>
 
 <Header label="Site header">
@@ -22,6 +23,8 @@
 				<strong>Joel Parker Henderson</strong>
 			</a>
 			<div class="site-header-controls">
+				<SocialLinks />
+				<span class="site-header-divider" aria-hidden="true"></span>
 				<TextSizePicker />
 				<ThemePicker />
 				<LocalePicker />

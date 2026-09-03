@@ -38,7 +38,16 @@
 /* Standard visually-hidden utility — used by the picker status regions
    (theme-picker, locale-picker) their packages' own docs recommend:
    present for assistive technology, invisible in the icon-only header. */
-.visually-hidden {
+/* .share-picker-status is included here, not just .visually-hidden:
+   the share-picker package always renders that status paragraph (never
+   [hidden], by design — a live region needs to stay in the a11y tree),
+   and unlike our own ThemePicker/LocalePicker status lines we don't own
+   that markup to add a class to it. Left in normal flow it makes
+   .share-picker's wrapper div ~14px taller than the other three picker
+   wrappers, which throws off .site-header-controls' flex centering and
+   visibly shifts the share button up relative to its siblings. */
+.visually-hidden,
+.share-picker-status {
 	position: absolute;
 	width: 1px;
 	height: 1px;
@@ -108,11 +117,14 @@ p {
    links) get no colour from any Lily theme — only `.action-link` and a
    few named "-link" hooks do, and even those only get a min-target-size
    rule, not colour. */
-/* :not(.button) matters: a Lily theme's .button rule lives at zero
+/* :not([class*="button"]) matters: a Lily theme's button-family rules
+   (.button, .icon-button, every "*-button" picker trigger) live at zero
    specificity (:where(...), by design — "application CSS always wins"),
-   so a bare `a { color }` here would beat it and paint button text the
-   same colour as its own background on any <a class="button">. */
-a:not(.button) {
+   so a bare `a { color }` here would beat every one of them and paint
+   button text/icons the same colour as their own background. Matching
+   on a substring, not just the exact "button" class, is deliberate:
+   .icon-button caught this the first time round (see SocialLinks.svelte). */
+a:not([class*='button']) {
 	color: var(--color-primary);
 }
 a:not([class]) {
@@ -155,9 +167,31 @@ a:not([class]) {
 	gap: 0.5rem;
 	flex-wrap: wrap;
 }
-/* All three header controls are now icon-button+listbox pickers sharing
+/* All four picker controls (and the social-links icon-buttons) share
    Lily's 2.5rem target-size baseline, so they line up exactly with no
    per-control size overrides here. */
+
+.social-links {
+	display: flex;
+	align-items: center;
+	gap: 0.35rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.social-links-monogram {
+	font-size: 0.85rem;
+	font-weight: 800;
+	line-height: 1;
+}
+
+.site-header-divider {
+	width: 1px;
+	height: 1.5rem;
+	background: currentColor;
+	opacity: 0.2;
+	margin-inline: 0.25rem;
+}
 
 .brand {
 	display: inline-flex;
