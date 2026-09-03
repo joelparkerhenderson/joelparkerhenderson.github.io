@@ -5,9 +5,12 @@
 // blurb and the page it links to never drift out of sync.
 //
 // Tile images are free-to-use photos from Pexels (pexels.com/license —
-// no attribution required, credited here anyway as good practice):
+// no attribution required, credited here anyway as good practice), except
+// technology, which is a "matrix" digital-rain graphic from the
+// Software Programming Guide's own asset set (~/git/sixarm/topics/guides/
+// software-programming-guide/assets/images/matrix/original.png), cropped
+// to 960x480:
 //   leadership   — Kampus, photo 8463151
-//   technology   — Markus Spiske, photo 1921326
 //   consulting   — silverkblack, photo 36733331
 //   speaking     — Bertelli Fotografia, photo 34774349
 //   hire         — Anthony Shkraba Production, photo 8837510
