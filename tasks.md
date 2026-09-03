@@ -155,9 +155,23 @@ Assertables); Guides page; Résumé page with print view; 45 themes.
   dated to feed.
 - Analytics — skipped per your call, keeps the privacy page's "no
   analytics" claim true with zero extra work.
-- [ ] **Lighthouse + axe audit** on every route; fix any contrast issues
-  across the 45 themes (the `:where()` zero-specificity theme rules make
-  this worth checking per theme).
+- [x] **axe audit** (WCAG 2.0/2.1 A/AA) across all 25 routes on the
+  default theme — 0 violations — plus a 14-theme sample including
+  every dark theme, several pastel/light ones, and the government
+  themes. Found and fixed a real bug: the site's own
+  `a:not([class*="button"]) { color: var(--color-primary) }` rule (and
+  a few explicit uses of the same token) fell short of 4.5:1 against
+  the page background in ~8 themes — `--color-primary` is only
+  guaranteed to contrast against its paired `--color-primary-content`,
+  not the base background. Switched resting-state text to
+  `--color-base-content` (every theme's guaranteed-safe token),
+  keeping `--color-primary` for hover/focus and borders. One residual,
+  unfixable-at-the-site-level finding: the `dark` theme's own
+  `--color-primary`/`--color-primary-content` pairing is 4.12:1 (needs
+  4.5:1) for Lily's own filled `.button` — a Lily package issue, not a
+  site-CSS one. Full Lighthouse run (performance/SEO/best-practices)
+  not done — no `lighthouse` CLI available in this environment;
+  `npx lighthouse` would need to fetch it fresh per run.
 - [x] **Accessibility statement page** and a **privacy page**, linked
   from the footer.
 - [x] **404 page** styled like the rest of the site with links back to

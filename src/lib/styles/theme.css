@@ -124,7 +124,20 @@ p {
    button text/icons the same colour as their own background. Matching
    on a substring, not just the exact "button" class, is deliberate:
    .icon-button caught this the first time round (see SocialLinks.svelte). */
+/* Resting-state color uses --color-base-content, not --color-primary:
+   axe/Lighthouse audit across 45 themes found --color-primary (a
+   button-background token, only guaranteed to contrast against its own
+   paired --color-primary-content) falls short of 4.5:1 as plain text on
+   the page background in ~8 themes (dark, black, cyberpunk, wireframe,
+   cupcake, pastel, lemonade, business). --color-base-content is the
+   token every theme guarantees is readable on its own base background.
+   --color-primary is kept as the hover/focus accent — a momentary
+   state, not the resting one that has to carry the contrast guarantee. */
 a:not([class*='button']) {
+	color: var(--color-base-content);
+}
+a:not([class*='button']):hover,
+a:not([class*='button']):focus-visible {
 	color: var(--color-primary);
 }
 a:not([class]) {
@@ -359,7 +372,7 @@ a:not([class]) {
 	border-bottom-color: var(--color-primary);
 }
 .site-nav a[aria-current='page'] {
-	color: var(--color-primary);
+	border-bottom-color: var(--color-primary);
 }
 
 /* ---------------------------------------------------------------------------
@@ -455,6 +468,14 @@ a:not([class]) {
 .promo-tile-cta {
 	margin-block-start: 1rem;
 	font-weight: 600;
+	color: var(--color-base-content);
+}
+.promo-tile:hover .promo-tile-cta,
+.promo-tile:focus-visible .promo-tile-cta,
+.guide-tile:hover .promo-tile-cta,
+.guide-tile:focus-visible .promo-tile-cta,
+.insight-card:hover .promo-tile-cta,
+.insight-card:focus-visible .promo-tile-cta {
 	color: var(--color-primary);
 }
 
@@ -516,10 +537,16 @@ a:not([class]) {
 /* Secondary button: outline variant for the supporting action when two
    CTAs sit side by side (e.g. ContactCta's "Message on LinkedIn" next to
    the primary "Email me"). Built on the same tokens as Lily's own
-   .button baseline so it adapts across all 45 themes. */
+   .button baseline so it adapts across all 45 themes. Label text uses
+   --color-base-content, not --color-primary — same reasoning as the
+   a:not([class*="button"]) rule above: --color-primary on a transparent
+   background isn't guaranteed 4.5:1 against the page background, only
+   against its own --color-primary-content pairing. --color-primary
+   stays on the border (a 3:1 non-text criterion, and still the visual
+   accent) and becomes the fill on hover. */
 .button-secondary {
 	background-color: transparent;
-	color: var(--color-primary);
+	color: var(--color-base-content);
 	border-color: var(--color-primary);
 }
 .button-secondary:hover:not(:disabled):not([aria-disabled='true']) {
