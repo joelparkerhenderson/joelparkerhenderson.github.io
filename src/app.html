@@ -10,7 +10,11 @@
 		<script>
 			// Apply the stored theme and text-size choices before first paint,
 			// so returning visitors never see a flash of the wrong theme or
-			// scale. Mirrors the logic in ThemePicker.svelte / TextSizePicker.svelte.
+			// scale. Mirrors ThemePicker.svelte / TextSizePicker.svelte, which
+			// are thin wrappers around Lily's theme-picker / text-size-picker
+			// helpers — both persist a slug, not a computed value, so this
+			// script only ever sets data-* attributes, never CSS values
+			// directly (theme.css maps data-text-size to --user-font-scale).
 			(function () {
 				try {
 					var theme = localStorage.getItem('jph-theme');
@@ -19,9 +23,9 @@
 						var link = document.getElementById('lily-theme');
 						if (link) link.href = '/themes/' + theme + '.css';
 					}
-					var scale = localStorage.getItem('jph-font-scale');
-					if (scale) {
-						document.documentElement.style.setProperty('--user-font-scale', scale);
+					var textSize = localStorage.getItem('jph-text-size');
+					if (textSize) {
+						document.documentElement.dataset.textSize = textSize;
 					}
 				} catch (e) {
 					// localStorage unavailable (private browsing, disabled storage) — ignore.

@@ -8,6 +8,7 @@
 	import avatarPhoto from '$lib/assets/avatar.jpg';
 	import ThemePicker from './ThemePicker.svelte';
 	import TextSizePicker from './TextSizePicker.svelte';
+	import LocalePicker from './LocalePicker.svelte';
 	import SharePicker from './SharePicker.svelte';
 </script>
 
@@ -23,6 +24,7 @@
 			<div class="site-header-controls">
 				<TextSizePicker />
 				<ThemePicker />
+				<LocalePicker />
 				<SharePicker />
 			</div>
 		</div>

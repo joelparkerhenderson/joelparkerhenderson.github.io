@@ -18,12 +18,15 @@
  *      the same `--color-primary` token the themes themselves expose.
  *   3. Site-specific hooks that aren't part of the Lily catalog at all
  *      (.brand, .site-hero, .section-group, .link-list,
- *      .engineering-reference) — plus TextSizePicker's plain <select>,
- *      which reuses Lily's generic `.select` hook for free.
+ *      .engineering-reference).
+ *   4. The data-text-size → --user-font-scale mapping TextSizePicker.svelte's
+ *      own doc comment describes: the picker only ever sets the data
+ *      attribute, the scale value lives here.
  *
  * Everything else — .header, .footer, .card, .badge, .tag, .button,
- * .icon-button, .skip-link, .go-to-top, .select, .avatar*, .share-picker*
- * — is left to whichever Lily theme is loaded.
+ * .icon-button, .skip-link, .go-to-top, .avatar*, .theme-picker*,
+ * .text-size-picker*, .share-picker* — is left to whichever Lily theme is
+ * loaded.
  * ========================================================================= */
 
 *,
@@ -35,6 +38,21 @@
 html {
 	font-size: calc(100% * var(--user-font-scale, 1));
 	scroll-behavior: smooth;
+}
+
+/* TextSizePicker.svelte's slugs, mapped to a scale factor. "default" is
+   deliberately absent: the base rule above already falls back to 1. */
+html[data-text-size='small'] {
+	--user-font-scale: 0.875;
+}
+html[data-text-size='large'] {
+	--user-font-scale: 1.125;
+}
+html[data-text-size='larger'] {
+	--user-font-scale: 1.25;
+}
+html[data-text-size='largest'] {
+	--user-font-scale: 1.375;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -118,13 +136,9 @@ a:not([class]) {
 	gap: 0.5rem;
 	flex-wrap: wrap;
 }
-/* Every header control — both <select>s and the share-picker trigger —
-   shares Lily's 2.5rem target-size baseline, so they line up exactly;
-   no per-control size overrides here. */
-.site-header-controls .select {
-	width: auto;
-	min-width: 9.5rem;
-}
+/* All three header controls are now icon-button+listbox pickers sharing
+   Lily's 2.5rem target-size baseline, so they line up exactly with no
+   per-control size overrides here. */
 
 .brand {
 	display: inline-flex;
