@@ -1,0 +1,1 @@
+compass.jpg = compass with compass face facing the viewer. North is pointing directly up. No desk, no person, no other structures, no mountains, no trees. Represents leadership, north star, pioneering, trailblazing. (professional, software, technology, consulting, executive) (objects, bright bold colors, no faces, no words)
