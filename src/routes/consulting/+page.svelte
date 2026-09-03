@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth, GoToTop } from 'lily-design-system-svelte-headless';
 	import PillarSections from '$lib/components/site/PillarSections.svelte';
+	import PromoTile from '$lib/components/site/PromoTile.svelte';
 	import { sections } from '$lib/data/sections';
 
 	const pillarSections = sections.filter((s) =>
@@ -39,6 +40,11 @@
 
 	<ContainerWithFixedWidth maxWidth="72rem">
 		<PillarSections sections={pillarSections} />
+
+		<h2>Featured project</h2>
+		<div class="promo-tile-grid">
+			<PromoTile href="/guides/" icon="📚" title="Guides" blurb="Six long-form reference guides on agile change, project management, startups, testing, and design." />
+		</div>
 
 		<div class="cta-band">
 			<p>Ready to bring this into your organization?</p>

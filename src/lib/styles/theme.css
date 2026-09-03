@@ -378,3 +378,37 @@ a:not([class]) {
 .contact-actions .button {
 	text-decoration: none;
 }
+
+/* ---------------------------------------------------------------------------
+ * Guide tiles (/guides/) — image-forward, like .promo-tile but not square:
+ * the source cover images are 2:1 banners with the title baked in, so
+ * forcing a 1:1 crop would cut them badly.
+ * ------------------------------------------------------------------------- */
+
+.guide-tile-grid {
+	grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+}
+.guide-tile {
+	aspect-ratio: auto;
+	padding: 0;
+	overflow: clip;
+	text-decoration: none;
+	color: inherit;
+}
+.guide-tile:hover,
+.guide-tile:focus-visible {
+	transform: translateY(-2px);
+	box-shadow: var(--lily-shadow-md);
+}
+.guide-tile-image {
+	display: block;
+	width: 100%;
+	aspect-ratio: 2 / 1;
+	object-fit: cover;
+}
+.guide-tile-body {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding: 1.5rem 1.75rem;
+}
