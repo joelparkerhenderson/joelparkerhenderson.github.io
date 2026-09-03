@@ -15,7 +15,7 @@
 //      960x480 crop), the crop itself copied into this directory.
 //   leadership   — custom compass graphic (static/images/splash/compass.jpg)
 //   technology   — custom cogs graphic (static/images/splash/cogs.jpeg)
-//   consulting   — custom arrows graphic (static/images/splash/arrows.jpeg)
+//   consulting   — custom "target acquired" graphic (static/images/splash/target.jpg)
 //   speaking     — custom microphone/stage-light graphic (static/images/splash/microphone.jpg)
 //   hire         — custom arrows graphic (static/images/splash/arrows.jpeg,
 //                  same original as the consulting tile)
