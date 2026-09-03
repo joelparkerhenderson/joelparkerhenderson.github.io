@@ -15,12 +15,12 @@
 <Header label="Site header">
 	<ContainerWithFixedWidth maxWidth="72rem">
 		<div class="site-header-bar">
-			<span class="brand">
+			<a class="brand" href="/">
 				<Avatar alt="Joel Parker Henderson">
 					<AvatarImage src={avatarPhoto} alt="" />
 				</Avatar>
 				<strong>Joel Parker Henderson</strong>
-			</span>
+			</a>
 			<div class="site-header-controls">
 				<TextSizePicker />
 				<ThemePicker />

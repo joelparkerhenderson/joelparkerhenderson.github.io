@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { Card, ContainerWithFixedWidth, GoToTop, SectionLink, SectionNav } from 'lily-design-system-svelte-headless';
-	import { sections } from '$lib/data/sections';
+	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
+	import PromoTile from '$lib/components/site/PromoTile.svelte';
+	import { corePillars, actionTiles } from '$lib/data/pillars';
 
 	const title = 'Joel Parker Henderson';
 	const description =
-		'Practical frameworks, templates, and decision tools for technology leadership: leadership & culture, goals, decisions, delivery, startups, risk & security, healthcare interoperability, and engineering reference.';
+		'Software engineering leadership, technology, and consulting — leadership frameworks, open-source engineering, and advisory services. Book a talk, hire me, or use the open source.';
 </script>
 
 <svelte:head>
@@ -13,68 +14,33 @@
 </svelte:head>
 
 <main id="content">
-	<section id="top" class="site-hero">
+	<section class="site-hero">
 		<ContainerWithFixedWidth maxWidth="72rem">
 			<h1>Joel Parker Henderson</h1>
 			<p>
 				Software engineer and technology leader with 20+ years building and consulting across
-				engineering teams, currently leading software engineering at
-				<a href="https://dhcw.nhs.wales/">Digital Health and Care Wales</a> (NHS Wales). This site
-				collects the frameworks, templates, and decision tools used along the way — for setting
-				direction, tracking goals, recording decisions, and running delivery — plus, in the
-				healthcare interoperability section below, open-source Rust implementations of core
-				standards such as HL7, FHIR, SNOMED CT, and openEHR. Everything here is free and open
-				source on GitHub.
+				industry and government — currently leading software engineering at
+				<a href="https://dhcw.nhs.wales/">Digital Health and Care Wales</a> (NHS Wales) in the
+				UK. My work spans commercial and public-sector engineering, and the frameworks,
+				templates, and open-source software I publish are used well beyond either — free,
+				open, and built to be reused anywhere in the world.
 			</p>
 		</ContainerWithFixedWidth>
 	</section>
 
-	<SectionNav label="Jump to a section">
-		<ContainerWithFixedWidth maxWidth="72rem">
-			<ul>
-				{#each sections as section (section.id)}
-					<li><SectionLink href={`#${section.id}`}>{section.heading}</SectionLink></li>
-				{/each}
-			</ul>
-		</ContainerWithFixedWidth>
-	</SectionNav>
-
 	<ContainerWithFixedWidth maxWidth="72rem">
-		{#each sections as section (section.id)}
-			{#if section.collapsed}
-				<details class="engineering-reference" id={section.id}>
-					<summary>{section.heading}</summary>
-					<p>{section.blurb}</p>
-					{#each section.groups as group (group.label)}
-						<div class="section-group">
-							<h3>{group.label}</h3>
-							<ul class="link-list">
-								{#each group.items as item (item.href)}
-									<li><a href={item.href}>{item.title}</a></li>
-								{/each}
-							</ul>
-						</div>
-					{/each}
-				</details>
-			{:else}
-				<Card id={section.id} heading={section.heading} headingLevel={2}>
-					<p>{section.blurb}</p>
-					{#each section.groups as group (group.label)}
-						<div class="section-group">
-							{#if section.groups.length > 1}
-								<h3>{group.label}</h3>
-							{/if}
-							<ul class="link-list">
-								{#each group.items as item (item.href)}
-									<li><a href={item.href}>{item.title}</a></li>
-								{/each}
-							</ul>
-						</div>
-					{/each}
-				</Card>
-			{/if}
-		{/each}
-	</ContainerWithFixedWidth>
+		<h2>Explore my work</h2>
+		<div class="promo-tile-grid">
+			{#each corePillars as pillar (pillar.id)}
+				<PromoTile href={pillar.route} icon={pillar.icon} title={pillar.title} blurb={pillar.tileBlurb} />
+			{/each}
+		</div>
 
-	<GoToTop href="#top">Back to top ↑</GoToTop>
+		<h2>Work with me</h2>
+		<div class="promo-tile-grid">
+			{#each actionTiles as tile (tile.id)}
+				<PromoTile href={tile.route} icon={tile.icon} title={tile.title} blurb={tile.tileBlurb} />
+			{/each}
+		</div>
+	</ContainerWithFixedWidth>
 </main>
