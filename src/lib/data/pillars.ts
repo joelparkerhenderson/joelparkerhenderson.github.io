@@ -16,7 +16,7 @@
 //   leadership   — custom compass graphic (static/images/splash/compass.jpg)
 //   technology   — "matrix" graphic from the Software Programming Guide's
 //                  own asset set
-//   consulting   — custom "target acquired" graphic (static/images/splash/target.jpg)
+//   consulting   — custom arrows graphic (static/images/splash/arrows.jpeg)
 //   speaking     — custom microphone/stage-light graphic (static/images/splash/microphone.jpg)
 //   hire         — Anthony Shkraba Production, Pexels photo 8837510
 //   open-source  — custom lightbulbs/stage-light graphic (static/images/splash/lights.jpg)
