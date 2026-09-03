@@ -446,3 +446,50 @@ a:not([class]) {
 .guide-tile-image {
 	aspect-ratio: 2 / 1;
 }
+
+/* ---------------------------------------------------------------------------
+ * Résumé (/resume/)
+ * ------------------------------------------------------------------------- */
+
+.resume-byline {
+	font-size: 1.1rem;
+	font-weight: 600;
+	margin-block-end: 0.25rem;
+}
+.resume-contact {
+	color: var(--lily-text-muted, inherit);
+	margin-block-end: 1.25rem;
+}
+.resume-skill-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+	gap: 1.25rem;
+	margin-block: 1.5rem 2.5rem;
+}
+.resume-job-meta {
+	margin-block-start: -0.25rem;
+	color: var(--lily-text-muted, inherit);
+	font-weight: 600;
+}
+.resume-project {
+	margin-block: 1.25rem;
+}
+.resume-project:first-of-type {
+	margin-block-start: 0.75rem;
+}
+.resume-project-title {
+	margin: 0 0 0.35rem;
+	font-weight: 700;
+}
+
+/* Print: strip header, nav, footer, and picker chrome so "Print / save as
+   PDF" produces a clean document, not the whole site frame. */
+@media print {
+	.header,
+	.site-nav,
+	.footer,
+	.go-to-top,
+	.no-print {
+		display: none !important;
+	}
+}

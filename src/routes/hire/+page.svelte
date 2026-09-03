@@ -43,7 +43,8 @@
 				delivery against real evidence rather than guesswork — using the same frameworks
 				published under <a href="/leadership/">Leadership</a> and
 				<a href="/consulting/">Consulting</a>. Engagements start with a conversation about the
-				problem, not a fixed package; the ways of working below are starting points.
+				problem, not a fixed package; the ways of working below are starting points. For the
+				background, see my <a href="/resume/">résumé</a>.
 			</p>
 		</ContainerWithFixedWidth>
 	</section>

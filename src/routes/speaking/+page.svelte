@@ -43,7 +43,8 @@
 				software engineering at <a href="https://dhcw.nhs.wales/">Digital Health and Care Wales</a>
 				(NHS Wales). Talks are practical, not theoretical: the frameworks and open-source code
 				referenced come from
-				<a href="/leadership/">real, published work</a>, not slideware.
+				<a href="/leadership/">real, published work</a>, not slideware. For the background, see
+				my <a href="/resume/">résumé</a>.
 			</p>
 		</ContainerWithFixedWidth>
 	</section>

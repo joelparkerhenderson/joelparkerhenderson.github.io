@@ -9,6 +9,7 @@
 		{ href: '/leadership/', label: 'Leadership' },
 		{ href: '/technology/', label: 'Technology' },
 		{ href: '/consulting/', label: 'Consulting' },
+		{ href: '/resume/', label: 'Résumé' },
 		{ href: '/speaking/', label: 'Speaking' },
 		{ href: '/hire/', label: 'Hire me' },
 		{ href: '/open-source/', label: 'Open source' }
