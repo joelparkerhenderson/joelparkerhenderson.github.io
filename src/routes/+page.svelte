@@ -6,6 +6,27 @@
 	import { corePillars, actionTiles } from '$lib/data/pillars';
 	import { SITE_URL } from '$lib/site';
 
+	// No dates shown — these aren't dated blog posts, and KPMG's own
+	// insight cards (see the redesign research) skip dates too, grouping
+	// implicitly instead. Picked as the three newest project pages added.
+	const latest = [
+		{
+			title: 'Digital Health Guide',
+			excerpt: 'An open-source handbook for leaders delivering digital services in health and social care — 50+ chapters, foundations through measurement.',
+			href: '/digital-health-guide/'
+		},
+		{
+			title: 'GitAlias',
+			excerpt: 'A collection of Git command aliases I maintain — 200+ documented shortcuts for everyday and advanced Git workflows.',
+			href: '/gitalias/'
+		},
+		{
+			title: 'Ways Of Working',
+			excerpt: "100+ tips for how teams work well together — principles, ground rules, and communication norms, written down so they're debatable.",
+			href: '/ways-of-working/'
+		}
+	];
+
 	const title = 'Joel Parker Henderson';
 	const description =
 		'Software engineering leadership, technology, and consulting — leadership frameworks, open-source engineering, and advisory services. Book a talk, hire me, or use the open source.';
@@ -66,6 +87,17 @@
 		<div class="promo-tile-grid">
 			{#each actionTiles as tile (tile.id)}
 				<PromoTile href={tile.route} image={tile.image} title={tile.title} blurb={tile.tileBlurb} />
+			{/each}
+		</div>
+
+		<h2>Latest thinking</h2>
+		<div class="insight-card-grid">
+			{#each latest as item (item.href)}
+				<a class="card insight-card" href={item.href}>
+					<h3>{item.title}</h3>
+					<p>{item.excerpt}</p>
+					<span class="promo-tile-cta">Read <span aria-hidden="true">→</span></span>
+				</a>
 			{/each}
 		</div>
 	</ContainerWithFixedWidth>

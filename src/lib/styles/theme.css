@@ -388,6 +388,37 @@ a:not([class]) {
 	margin-block: 0 0.4rem;
 	font-size: 1.15rem;
 }
+.insight-card-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: 1.25rem;
+	margin-block: 1.5rem 2.5rem;
+}
+.insight-card {
+	display: flex;
+	flex-direction: column;
+	padding: 1.5rem 1.75rem;
+	text-decoration: none;
+	color: inherit;
+	transition:
+		transform 120ms ease,
+		box-shadow 120ms ease;
+}
+.insight-card:hover,
+.insight-card:focus-visible {
+	transform: translateY(-2px);
+	box-shadow: var(--lily-shadow-md);
+}
+.insight-card h3 {
+	margin-block: 0 0.4rem;
+	font-size: 1.15rem;
+}
+.insight-card p {
+	margin: 0;
+	flex: 1;
+	font-size: 0.92rem;
+}
+
 .promo-tile-blurb {
 	margin: 0;
 	flex: 1;
