@@ -25,7 +25,12 @@
 		<a class="button" href={`mailto:joel@joelparkerhenderson.com?subject=${encodedSubject}`}>
 			{emailLabel}
 		</a>
-		<a class="button" href="https://uk.linkedin.com/in/joelparkerhenderson" target="_blank" rel="noopener">
+		<a
+			class="button button-secondary"
+			href="https://uk.linkedin.com/in/joelparkerhenderson"
+			target="_blank"
+			rel="noopener"
+		>
 			Message on LinkedIn
 		</a>
 	</div>

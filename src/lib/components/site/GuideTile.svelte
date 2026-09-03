@@ -15,9 +15,13 @@
 		title: string;
 		blurb: string;
 	} = $props();
+
+	// href is either an internal route (dedicated spotlight page) or an
+	// external GitHub URL — only the latter should open in a new tab.
+	let external = $derived(href.startsWith('http'));
 </script>
 
-<a class="card guide-tile" {href} target="_blank" rel="noopener">
+<a class="card guide-tile" {href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
 	<img class="guide-tile-image" src={image} alt="" loading="lazy" />
 	<div class="guide-tile-body">
 		<h3 class="promo-tile-title">{title}</h3>

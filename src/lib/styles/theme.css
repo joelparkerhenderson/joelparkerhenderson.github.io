@@ -446,6 +446,20 @@ a:not([class]) {
 	white-space: nowrap;
 }
 
+/* Secondary button: outline variant for the supporting action when two
+   CTAs sit side by side (e.g. ContactCta's "Message on LinkedIn" next to
+   the primary "Email me"). Built on the same tokens as Lily's own
+   .button baseline so it adapts across all 45 themes. */
+.button-secondary {
+	background-color: transparent;
+	color: var(--color-primary);
+	border-color: var(--color-primary);
+}
+.button-secondary:hover:not(:disabled):not([aria-disabled='true']) {
+	background-color: var(--color-primary);
+	color: var(--color-primary-content);
+}
+
 .contact-actions {
 	display: flex;
 	flex-wrap: wrap;
@@ -468,6 +482,16 @@ a:not([class]) {
 }
 .guide-tile-image {
 	aspect-ratio: 2 / 1;
+}
+.guide-tile-wrap {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.guide-tile-footer {
+	margin: 0.5rem 0 0;
+	font-size: 0.85rem;
+	color: var(--lily-text-muted, var(--color-base-600));
 }
 
 /* ---------------------------------------------------------------------------
