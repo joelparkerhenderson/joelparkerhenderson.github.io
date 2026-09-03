@@ -23,6 +23,7 @@
 			<a href="https://uk.linkedin.com/in/joelparkerhenderson">LinkedIn</a> · built with
 			<a href="https://kit.svelte.dev">SvelteKit</a> and the
 			<a href="https://lilydesignsystem.github.io/">Lily Design System</a>
+			· <a href="/accessibility/">Accessibility</a> · <a href="/privacy/">Privacy</a>
 		</p>
 	</ContainerWithFixedWidth>
 </Footer>

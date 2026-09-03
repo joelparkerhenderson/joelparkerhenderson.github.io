@@ -150,10 +150,19 @@ Assertables); Guides page; Résumé page with print view; 45 themes.
 
 ## Technical, SEO, and measurement
 
-- [ ] **Fix custom domain.** `joelparkerhenderson.com` returns Cloudflare
-  522 and no custom domain is configured on GitHub Pages; add a `CNAME`
-  file in `static/`, set the domain in Pages settings, and point
-  Cloudflare DNS at GitHub Pages (or disable the proxy).
+- [x] **Fix custom domain (GitHub Pages side).** Added `static/CNAME`
+  (`joelparkerhenderson.com`) and set it via the Pages API
+  (`cname` was `null`, now set). **Still needs your action:** DNS is on
+  Cloudflare nameservers (nelci/nicolas.ns.cloudflare.com via Network
+  Solutions) and I have no Cloudflare account access. In the Cloudflare
+  DNS dashboard for joelparkerhenderson.com, set the apex `A` records to
+  GitHub Pages' four IPs — `185.199.108.153`, `185.199.109.153`,
+  `185.199.110.153`, `185.199.111.153` — (or an `ALIAS`/`CNAME`-flattening
+  record to `joelparkerhenderson.github.io` if your plan supports it),
+  and set the record's proxy status to **DNS only** (grey cloud, not
+  orange) until GitHub issues its TLS cert, then HTTPS enforcement can
+  be turned back on. The current 522 means Cloudflare is proxying to
+  some origin that isn't answering — likely a stale record.
 - [ ] **Open Graph / Twitter card meta** per page, with a default
   1200×630 share image and per-page images for tiles.
 - [ ] **JSON-LD `Person` (and `Organization` for consulting) schema** on

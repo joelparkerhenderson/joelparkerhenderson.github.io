@@ -1,15 +1,13 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
+	import Seo from '$lib/components/site/Seo.svelte';
 
 	const title = 'Vix IDE — Joel Parker Henderson';
 	const description =
 		'Vix IDE is a high-speed, high-security terminal text editor and integrated development environment — file explorer, keymaps, themes, and a command palette.';
 </script>
 
-<svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
-</svelte:head>
+<Seo {title} {description} path="/vix/" />
 
 <main id="content">
 	<section class="page-hero">

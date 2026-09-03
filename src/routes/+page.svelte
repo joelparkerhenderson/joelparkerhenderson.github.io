@@ -1,16 +1,36 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 	import PromoTile from '$lib/components/site/PromoTile.svelte';
+	import Seo from '$lib/components/site/Seo.svelte';
 	import { corePillars, actionTiles } from '$lib/data/pillars';
+	import { SITE_URL } from '$lib/site';
 
 	const title = 'Joel Parker Henderson';
 	const description =
 		'Software engineering leadership, technology, and consulting — leadership frameworks, open-source engineering, and advisory services. Book a talk, hire me, or use the open source.';
+
+	// schema.org Person, for search engines and AI assistants — every URL
+	// here is a real, live profile (see SocialLinks.svelte), nothing
+	// invented.
+	const personJsonLd = {
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'Joel Parker Henderson',
+		url: SITE_URL,
+		jobTitle: 'Software Engineer and Technology Leader',
+		sameAs: [
+			'https://github.com/joelparkerhenderson',
+			'https://uk.linkedin.com/in/joelparkerhenderson',
+			'https://bsky.app/profile/joelparkerhenderson.com',
+			'https://mastodon.social/@joelparkerhenderson'
+		]
+	};
 </script>
 
+<Seo {title} {description} path="/" />
+
 <svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
+	{@html `<script type="application/ld+json">${JSON.stringify(personJsonLd)}</script>`}
 </svelte:head>
 
 <main id="content">

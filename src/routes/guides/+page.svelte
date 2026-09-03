@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 	import GuideTile from '$lib/components/site/GuideTile.svelte';
+	import Seo from '$lib/components/site/Seo.svelte';
 
 	import agileChangeGuide from '$lib/assets/guides/agile-change-guide.jpg';
 	import innovationPartnershipGuide from '$lib/assets/guides/innovation-partnership-guide.jpg';
@@ -8,6 +9,7 @@
 	import startupBusinessGuide from '$lib/assets/guides/startup-business-guide.jpg';
 	import testAutomationGuide from '$lib/assets/guides/test-automation-guide.jpg';
 	import uiUxDesignGuide from '$lib/assets/guides/ui-ux-design-guide.jpg';
+	import guidesImage from '$lib/assets/tiles/guides.jpg';
 
 	const title = 'Guides — Joel Parker Henderson';
 	const description =
@@ -61,10 +63,7 @@
 	];
 </script>
 
-<svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
-</svelte:head>
+<Seo {title} {description} path="/guides/" image={guidesImage} />
 
 <main id="content">
 	<section class="page-hero">

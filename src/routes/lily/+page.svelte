@@ -1,15 +1,13 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
+	import Seo from '$lib/components/site/Seo.svelte';
 
 	const title = 'Lily Design System — Joel Parker Henderson';
 	const description =
 		'Lily is a free, open-source headless design system: 492 accessible components across seven frameworks, 45 ready-made themes, zero shipped CSS. This site is built with it.';
 </script>
 
-<svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
-</svelte:head>
+<Seo {title} {description} path="/lily/" />
 
 <main id="content">
 	<section class="page-hero">

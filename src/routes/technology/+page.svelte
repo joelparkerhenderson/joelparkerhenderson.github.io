@@ -8,6 +8,8 @@
 	import lilyImage from '$lib/assets/tiles/lily.jpg';
 	import vixImage from '$lib/assets/tiles/vix.jpg';
 	import assertablesImage from '$lib/assets/tiles/assertables.jpg';
+	import technologyImage from '$lib/assets/tiles/technology.jpg';
+	import Seo from '$lib/components/site/Seo.svelte';
 
 	// Tile photos are free-to-use Pexels images (pexels.com/license):
 	// health — Stephen T. Andrews, photo 9408871; engineering — Cottonbro
@@ -23,10 +25,7 @@
 		'Open-source software engineering, including Rust implementations of core healthcare data standards (HL7, FHIR, SNOMED CT, openEHR), plus a wide catalog of engineering reference code.';
 </script>
 
-<svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
-</svelte:head>
+<Seo {title} {description} path="/technology/" image={technologyImage} />
 
 <main id="content">
 	<section id="top" class="page-hero">

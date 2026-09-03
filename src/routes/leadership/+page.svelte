@@ -4,6 +4,8 @@
 	import PromoTile from '$lib/components/site/PromoTile.svelte';
 	import { sections } from '$lib/data/sections';
 	import teamworkImage from '$lib/assets/tiles/teamwork.jpg';
+	import leadershipImage from '$lib/assets/tiles/leadership.jpg';
+	import Seo from '$lib/components/site/Seo.svelte';
 
 	// Tile photo is a free-to-use Pexels image (pexels.com/license):
 	// teamwork — Diva Plavalaguna, photo 6146691.
@@ -17,10 +19,7 @@
 		'Frameworks for direction, goals, and decisions: leadership and culture, OKRs and KPIs, decision records, and structured thinking tools.';
 </script>
 
-<svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
-</svelte:head>
+<Seo {title} {description} path="/leadership/" image={leadershipImage} />
 
 <main id="content">
 	<section id="top" class="page-hero">

@@ -3,7 +3,9 @@
 	import PillarSections from '$lib/components/site/PillarSections.svelte';
 	import PromoTile from '$lib/components/site/PromoTile.svelte';
 	import { sections } from '$lib/data/sections';
+	import Seo from '$lib/components/site/Seo.svelte';
 	import guidesImage from '$lib/assets/tiles/guides.jpg';
+	import consultingImage from '$lib/assets/tiles/consulting.jpg';
 
 	// Tile photo is a free-to-use Pexels image (pexels.com/license):
 	// guides — Sumcig, photo 38323235.
@@ -17,10 +19,7 @@
 		'Delivery frameworks, business assessments, startup and strategy tools, and cross-company collaboration templates behind advisory and consulting engagements.';
 </script>
 
-<svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
-</svelte:head>
+<Seo {title} {description} path="/consulting/" image={consultingImage} />
 
 <main id="content">
 	<section id="top" class="page-hero">

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
+	import Seo from '$lib/components/site/Seo.svelte';
 
 	const title = 'Résumé — Joel Parker Henderson';
 	const description =
@@ -221,10 +222,7 @@
 	];
 </script>
 
-<svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
-</svelte:head>
+<Seo {title} {description} path="/resume/" />
 
 <main id="content" class="resume">
 	<section class="page-hero">
