@@ -7,12 +7,13 @@
 // Tile images are free-to-use photos from Pexels (pexels.com/license —
 // no attribution required, credited here anyway as good practice), except
 // technology, which is a "matrix" digital-rain graphic from the
-// Software Programming Guide's own asset set (~/git/sixarm/topics/guides/
-// software-programming-guide/assets/images/matrix/original.png), cropped
-// to 960x480:
+// Software Programming Guide's own asset set, cropped to 960x480. A few
+// others are Pexels photos too, but sourced via SixArm's guide asset
+// folders (~/git/sixarm/topics/guides/<guide>/assets/images/pexels/)
+// rather than pexels.com directly — same license, credited the same way:
 //   leadership   — Kampus, photo 8463151
-//   consulting   — silverkblack, photo 36733331
-//   speaking     — Bertelli Fotografia, photo 34774349
+//   consulting   — Karolina Grabowska, photo 5412103 (via project-management-guide assets)
+//   speaking     — Miguel Á. Padriñán, photo 1111369 (via business-lingo-guide assets)
 //   hire         — Anthony Shkraba Production, photo 8837510
 //   open-source  — duncanoluwaseun, photo 226232
 
@@ -79,7 +80,7 @@ export const actionTiles: Pillar[] = [
 		id: 'open-source',
 		route: '/open-source/',
 		image: openSourceImage,
-		title: 'Use my open source',
+		title: 'Share my open source',
 		tileBlurb: 'Everything on this site is free and open source, including the design system this page is built with.'
 	}
 ];

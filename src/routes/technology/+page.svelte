@@ -64,7 +64,7 @@
 
 		<div class="cta-band">
 			<p>Curious how to use, license, or contribute to any of this?</p>
-			<a class="button" href="/open-source/">See how to use my open source →</a>
+			<a class="button" href="/open-source/">See how to share my open source →</a>
 		</div>
 	</ContainerWithFixedWidth>
 

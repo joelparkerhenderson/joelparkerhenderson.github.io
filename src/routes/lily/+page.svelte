@@ -45,7 +45,7 @@
 
 		<div class="cta-band">
 			<p>See it and other open-source work in context.</p>
-			<a class="button" href="/open-source/">Use my open source →</a>
+			<a class="button" href="/open-source/">Share my open source →</a>
 		</div>
 
 		<h2>Links</h2>

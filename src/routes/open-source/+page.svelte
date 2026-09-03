@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 
-	const title = 'Use my open source — Joel Parker Henderson';
+	const title = 'Share my open source — Joel Parker Henderson';
 	const description =
 		'Everything published here — frameworks, templates, and software — is free and open source under your choice of MIT, Apache-2.0, GPL-2.0, GPL-3.0, or BSD-3-Clause.';
 
@@ -33,7 +33,7 @@
 <main id="content">
 	<section class="page-hero">
 		<ContainerWithFixedWidth maxWidth="72rem">
-			<h1>Use my open source</h1>
+			<h1>Share my open source</h1>
 			<p>
 				Everything on this site — every framework, template, and piece of software — is free
 				and open source. That's a deliberate choice, not a marketing line: software and
