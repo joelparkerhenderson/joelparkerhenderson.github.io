@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 	import Seo from '$lib/components/site/Seo.svelte';
+	import Breadcrumbs from '$lib/components/site/Breadcrumbs.svelte';
+	import ContactCta from '$lib/components/site/ContactCta.svelte';
 	import speakingImage from '$lib/assets/tiles/speaking.jpg';
 
 	const title = 'Book me as a speaker — Joel Parker Henderson';
@@ -35,6 +37,7 @@
 <main id="content">
 	<section class="page-hero">
 		<ContainerWithFixedWidth maxWidth="72rem">
+			<Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'Book me as a speaker' }]} />
 			<h1>Book me as a speaker</h1>
 			<p>
 				I speak on leadership, engineering governance, and healthcare interoperability, drawing
@@ -63,17 +66,10 @@
 		<p>Keynotes, conference talks, panels, workshops, and fireside chats — in person or remote.</p>
 
 		<h2>Get in touch</h2>
-		<p>Tell me about your event, audience, and preferred format, and I'll follow up from there.</p>
-		<div class="contact-actions">
-			<a
-				class="button"
-				href="mailto:joel@joelparkerhenderson.com?subject=Speaking%20inquiry"
-			>
-				Email a speaking inquiry
-			</a>
-			<a class="button" href="https://uk.linkedin.com/in/joelparkerhenderson" target="_blank" rel="noopener">
-				Message on LinkedIn
-			</a>
-		</div>
+		<ContactCta
+			subject="Speaking inquiry"
+			emailLabel="Email a speaking inquiry"
+			lead="Tell me about your event, audience, and preferred format, and I'll follow up from there."
+		/>
 	</ContainerWithFixedWidth>
 </main>

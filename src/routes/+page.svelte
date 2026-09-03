@@ -2,6 +2,7 @@
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 	import PromoTile from '$lib/components/site/PromoTile.svelte';
 	import Seo from '$lib/components/site/Seo.svelte';
+	import ContactCta from '$lib/components/site/ContactCta.svelte';
 	import { corePillars, actionTiles } from '$lib/data/pillars';
 	import { SITE_URL } from '$lib/site';
 
@@ -45,6 +46,7 @@
 				software. They're used well beyond either sector — free, open, and built to be
 				reused anywhere in the world.
 			</p>
+			<ContactCta subject="General inquiry" emailLabel="Get in touch" />
 		</ContainerWithFixedWidth>
 	</section>
 

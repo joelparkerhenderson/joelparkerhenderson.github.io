@@ -509,6 +509,16 @@ a:not([class]) {
  * Footer sitemap
  * ------------------------------------------------------------------------- */
 
+.footer-cta {
+	padding-top: 2rem;
+}
+.footer-cta h2 {
+	margin: 0 0 0.4rem;
+}
+.footer-cta .contact-actions {
+	margin-block: 0.5rem 0;
+}
+
 .footer-nav {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));

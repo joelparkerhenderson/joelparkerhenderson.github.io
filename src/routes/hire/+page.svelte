@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 	import Seo from '$lib/components/site/Seo.svelte';
+	import Breadcrumbs from '$lib/components/site/Breadcrumbs.svelte';
+	import ContactCta from '$lib/components/site/ContactCta.svelte';
 	import hireImage from '$lib/assets/tiles/hire.jpg';
 
 	const title = 'Hire me to help you — Joel Parker Henderson';
@@ -36,6 +38,7 @@
 <main id="content">
 	<section class="page-hero">
 		<ContainerWithFixedWidth maxWidth="72rem">
+			<Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'Hire me to help you' }]} />
 			<h1>Hire me to help you</h1>
 			<p>
 				I help engineering organizations set direction, make decisions that hold up, and run
@@ -70,17 +73,10 @@
 		</p>
 
 		<h2>Get in touch</h2>
-		<p>
-			Tell me about your organization and the problem you're trying to solve, and I'll follow up
-			from there.
-		</p>
-		<div class="contact-actions">
-			<a class="button" href="mailto:joel@joelparkerhenderson.com?subject=Consulting%20inquiry">
-				Email a consulting inquiry
-			</a>
-			<a class="button" href="https://uk.linkedin.com/in/joelparkerhenderson" target="_blank" rel="noopener">
-				Message on LinkedIn
-			</a>
-		</div>
+		<ContactCta
+			subject="Consulting inquiry"
+			emailLabel="Email a consulting inquiry"
+			lead="Tell me about your organization and the problem you're trying to solve, and I'll follow up from there."
+		/>
 	</ContainerWithFixedWidth>
 </main>

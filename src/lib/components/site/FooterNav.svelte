@@ -35,6 +35,7 @@
 			links: [
 				{ href: '/about/', label: 'About' },
 				{ href: '/resume/', label: 'Résumé' },
+				{ href: '/contact/', label: 'Contact' },
 				{ href: '/accessibility/', label: 'Accessibility' },
 				{ href: '/privacy/', label: 'Privacy' }
 			]
