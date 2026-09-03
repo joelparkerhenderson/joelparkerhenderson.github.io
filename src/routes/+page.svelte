@@ -19,11 +19,10 @@
 			<h1>Joel Parker Henderson</h1>
 			<p>
 				Software engineer and technology leader with 20+ years building and consulting across
-				industry and government — currently leading software engineering at
-				<a href="https://dhcw.nhs.wales/">Digital Health and Care Wales</a> (NHS Wales) in the
-				UK. My work spans commercial and public-sector engineering, and the frameworks,
-				templates, and open-source software I publish are used well beyond either — free,
-				open, and built to be reused anywhere in the world.
+				industry and government — currently leading software engineering for a UK
+				public-sector organization. My work spans commercial and public-sector engineering,
+				and the frameworks, templates, and open-source software I publish are used well
+				beyond either — free, open, and built to be reused anywhere in the world.
 			</p>
 		</ContainerWithFixedWidth>
 	</section>

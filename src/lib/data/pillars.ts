@@ -10,15 +10,16 @@
 //      some fetched via SixArm's guide asset folders
 //      (~/git/sixarm/topics/guides/<guide>/assets/images/pexels/)
 //      rather than pexels.com directly — same license either way.
-//   2. Custom splash graphics supplied directly (were staged under
-//      static/images/splash/ before being cropped in here).
-//   leadership   — Kampus, Pexels photo 8463151
+//   2. Custom splash graphics supplied directly — full-size originals
+//      tracked in static/images/splash/ (so they're kept, not just their
+//      960x480 crop), the crop itself copied into this directory.
+//   leadership   — custom compass graphic (static/images/splash/compass.jpg)
 //   technology   — "matrix" graphic from the Software Programming Guide's
 //                  own asset set
-//   consulting   — custom "target acquired" graphic
-//   speaking     — custom microphone/stage-light graphic
+//   consulting   — custom "target acquired" graphic (static/images/splash/target.jpg)
+//   speaking     — custom microphone/stage-light graphic (static/images/splash/microphone.jpg)
 //   hire         — Anthony Shkraba Production, Pexels photo 8837510
-//   open-source  — duncanoluwaseun, Pexels photo 226232
+//   open-source  — custom lightbulbs/stage-light graphic (static/images/splash/lights.jpg)
 
 import leadershipImage from '$lib/assets/tiles/leadership.jpg';
 import technologyImage from '$lib/assets/tiles/technology.jpg';
@@ -51,7 +52,7 @@ export const corePillars: Pillar[] = [
 		route: '/technology/',
 		image: technologyImage,
 		title: 'Technology',
-		tileBlurb: 'Open-source engineering, in the open — including Rust implementations of core healthcare data standards.',
+		tileBlurb: 'Open-source engineering, in the open — including Rust implementations of core data-interoperability standards.',
 		sectionIds: ['healthcare-interoperability', 'engineering-reference']
 	},
 	{
@@ -70,7 +71,7 @@ export const actionTiles: Pillar[] = [
 		route: '/speaking/',
 		image: speakingImage,
 		title: 'Book me as a speaker',
-		tileBlurb: 'Keynotes, panels, and workshops on leadership, engineering governance, and healthcare interoperability.'
+		tileBlurb: 'Keynotes, panels, and workshops on leadership, engineering governance, and open-source practice.'
 	},
 	{
 		id: 'hire',

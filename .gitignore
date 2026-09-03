@@ -21,10 +21,3 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-
-# Staging area for source images handed off for tile photos — each gets
-# cropped into src/lib/assets/tiles/<name>.jpg, which is what's tracked
-# and deployed; the full-size originals here are disposable working
-# input, not a build asset (excluded so they don't ship to static/images/
-# on GitHub Pages, and don't clutter `git status` as more get dropped in).
-/static/images/splash/
