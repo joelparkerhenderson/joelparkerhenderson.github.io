@@ -39,13 +39,17 @@
 		<ContainerWithFixedWidth maxWidth="72rem">
 			<h1>Joel Parker Henderson</h1>
 			<p>
-				Software engineer and technology leader with 20+ years of experience. I build and
-				consult across industry and government. I'm currently head of software engineering
-				for a national health service organization. My work spans both commercial and
-				public-sector engineering. I publish frameworks, templates, and open-source
-				software. They're used well beyond either sector — free, open, and built to be
-				reused anywhere in the world.
+				Engineering leadership that holds up under pressure. Decisions that don't unravel.
+				Teams that stay healthy. Software built to be reused, not shipped once and forgotten.
+				That's the result of 20+ years building and consulting across industry and government.
+				I'm currently head of software engineering for a national health service organization.
+				My work spans both commercial and public-sector engineering. The frameworks, templates,
+				and open-source software I publish are free, open, and used well beyond either sector.
 			</p>
+			<blockquote class="hero-quote">
+				Direction only helps if the team executing it is healthy. Decisions only hold up if
+				they're written down and revisited.
+			</blockquote>
 			<ContactCta subject="General inquiry" emailLabel="Get in touch" />
 		</ContainerWithFixedWidth>
 	</section>

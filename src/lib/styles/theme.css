@@ -225,6 +225,15 @@ a:not([class]) {
 	max-width: 62ch;
 	font-size: 1.08rem;
 }
+.hero-quote {
+	max-width: 52ch;
+	margin: 1.25rem 0 1.5rem;
+	padding-left: 1rem;
+	border-left: 0.25rem solid var(--color-primary);
+	font-size: 1.15rem;
+	font-style: italic;
+	font-weight: 600;
+}
 
 .card {
 	margin-block: 1.75rem;
