@@ -9,6 +9,7 @@ export const trailingSlash = 'never';
 
 const routes = [
 	'/',
+	'/about/',
 	'/leadership/',
 	'/technology/',
 	'/consulting/',

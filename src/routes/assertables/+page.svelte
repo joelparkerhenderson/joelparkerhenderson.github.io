@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 	import Seo from '$lib/components/site/Seo.svelte';
+	import Breadcrumbs from '$lib/components/site/Breadcrumbs.svelte';
 
 	const title = 'Assertables — Joel Parker Henderson';
 	const description =
@@ -12,7 +13,9 @@
 <main id="content">
 	<section class="page-hero">
 		<ContainerWithFixedWidth maxWidth="72rem">
-			<p><a href="/technology/">← Technology</a></p>
+			<Breadcrumbs
+				trail={[{ label: 'Home', href: '/' }, { label: 'Technology', href: '/technology/' }, { label: 'Assertables' }]}
+			/>
 			<h1>Assertables</h1>
 			<p>
 				Assertables is a Rust crate of assert macros that help you develop, test, and debug —

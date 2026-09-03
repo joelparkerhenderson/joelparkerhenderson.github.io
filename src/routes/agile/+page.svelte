@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 	import Seo from '$lib/components/site/Seo.svelte';
+	import Breadcrumbs from '$lib/components/site/Breadcrumbs.svelte';
 	import agileChangeGuide from '$lib/assets/guides/agile-change-guide.jpg';
 
 	const title = 'Agile — Joel Parker Henderson';
@@ -15,7 +16,9 @@
 <main id="content">
 	<section class="page-hero">
 		<ContainerWithFixedWidth maxWidth="72rem">
-			<p><a href="/guides/">← Guides</a></p>
+			<Breadcrumbs
+				trail={[{ label: 'Home', href: '/' }, { label: 'Guides', href: '/guides/' }, { label: 'Agile' }]}
+			/>
 			<h1>Agile</h1>
 			<p>
 				I've spent most of my career inside agile teams, not just reading about them — leading

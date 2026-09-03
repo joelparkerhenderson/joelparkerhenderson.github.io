@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 	import Seo from '$lib/components/site/Seo.svelte';
+	import Breadcrumbs from '$lib/components/site/Breadcrumbs.svelte';
 
 	const title = 'Teamwork — Joel Parker Henderson';
 	const description =
@@ -41,7 +42,9 @@
 <main id="content">
 	<section class="page-hero">
 		<ContainerWithFixedWidth maxWidth="72rem">
-			<p><a href="/leadership/">← Leadership</a></p>
+			<Breadcrumbs
+				trail={[{ label: 'Home', href: '/' }, { label: 'Leadership', href: '/leadership/' }, { label: 'Teamwork' }]}
+			/>
 			<h1>Teamwork</h1>
 			<p>
 				Direction-setting only works if the team executing it is healthy — able to disagree

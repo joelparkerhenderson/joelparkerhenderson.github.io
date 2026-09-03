@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 	import Seo from '$lib/components/site/Seo.svelte';
+	import Breadcrumbs from '$lib/components/site/Breadcrumbs.svelte';
 
 	const title = 'Engineering — Joel Parker Henderson';
 	const description =
@@ -58,7 +59,9 @@
 <main id="content">
 	<section class="page-hero">
 		<ContainerWithFixedWidth maxWidth="72rem">
-			<p><a href="/technology/">← Technology</a></p>
+			<Breadcrumbs
+				trail={[{ label: 'Home', href: '/' }, { label: 'Technology', href: '/technology/' }, { label: 'Engineering' }]}
+			/>
 			<h1>Engineering</h1>
 			<p>
 				The practice layer beneath the software: how decisions get recorded, how tests get

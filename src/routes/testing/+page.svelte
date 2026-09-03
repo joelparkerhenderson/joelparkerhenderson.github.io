@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 	import Seo from '$lib/components/site/Seo.svelte';
+	import Breadcrumbs from '$lib/components/site/Breadcrumbs.svelte';
 	import testAutomationGuide from '$lib/assets/guides/test-automation-guide.jpg';
 
 	const title = 'Testing — Joel Parker Henderson';
@@ -15,7 +16,9 @@
 <main id="content">
 	<section class="page-hero">
 		<ContainerWithFixedWidth maxWidth="72rem">
-			<p><a href="/guides/">← Guides</a></p>
+			<Breadcrumbs
+				trail={[{ label: 'Home', href: '/' }, { label: 'Guides', href: '/guides/' }, { label: 'Testing' }]}
+			/>
 			<h1>Testing</h1>
 			<p>
 				Test automation is one of the parts of engineering practice I publish the most open-source

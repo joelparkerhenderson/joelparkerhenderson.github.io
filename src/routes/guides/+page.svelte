@@ -2,6 +2,7 @@
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 	import GuideTile from '$lib/components/site/GuideTile.svelte';
 	import Seo from '$lib/components/site/Seo.svelte';
+	import Breadcrumbs from '$lib/components/site/Breadcrumbs.svelte';
 
 	import agileChangeGuide from '$lib/assets/guides/agile-change-guide.jpg';
 	import innovationPartnershipGuide from '$lib/assets/guides/innovation-partnership-guide.jpg';
@@ -68,7 +69,9 @@
 <main id="content">
 	<section class="page-hero">
 		<ContainerWithFixedWidth maxWidth="72rem">
-			<p><a href="/consulting/">← Consulting</a></p>
+			<Breadcrumbs
+				trail={[{ label: 'Home', href: '/' }, { label: 'Consulting', href: '/consulting/' }, { label: 'Guides' }]}
+			/>
 			<h1>Guides</h1>
 			<p>
 				Six long-form reference guides, each organized as a one-topic-per-page glossary so a

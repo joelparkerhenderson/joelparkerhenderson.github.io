@@ -395,6 +395,29 @@ a:not([class]) {
  * Pillar and action page hero band + closing CTA band
  * ------------------------------------------------------------------------- */
 
+.breadcrumb-nav {
+	margin-bottom: 0.75rem;
+}
+.breadcrumb-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	font-size: 0.9rem;
+	color: var(--lily-text-muted, var(--color-base-600));
+}
+.breadcrumb-list-item:not(:last-child)::after {
+	content: '/';
+	margin: 0 0.4rem;
+	opacity: 0.5;
+}
+.breadcrumb-list-item[aria-current='page'] {
+	font-weight: 600;
+}
+
 .page-hero {
 	padding-block: 2.5rem 1rem;
 }
@@ -480,6 +503,36 @@ a:not([class]) {
 .resume-project-title {
 	margin: 0 0 0.35rem;
 	font-weight: 700;
+}
+
+/* -----------------------------------------------------------------------
+ * Footer sitemap
+ * ------------------------------------------------------------------------- */
+
+.footer-nav {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+	gap: 1.5rem;
+	padding-block: 2rem 1.5rem;
+}
+.footer-nav-column h2 {
+	font-size: 0.85rem;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	margin: 0 0 0.6rem;
+	opacity: 0.75;
+}
+.footer-nav-column ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 0.4rem;
+}
+.footer-colophon {
+	padding-block: 1rem 1.5rem;
+	border-top: 1px solid var(--lily-border, var(--color-base-300));
+	font-size: 0.9rem;
 }
 
 /* Print: strip header, nav, footer, and picker chrome so "Print / save as

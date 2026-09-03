@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 	import Seo from '$lib/components/site/Seo.svelte';
+	import Breadcrumbs from '$lib/components/site/Breadcrumbs.svelte';
 
 	const title = 'Vix IDE — Joel Parker Henderson';
 	const description =
@@ -12,7 +13,9 @@
 <main id="content">
 	<section class="page-hero">
 		<ContainerWithFixedWidth maxWidth="72rem">
-			<p><a href="/technology/">← Technology</a></p>
+			<Breadcrumbs
+				trail={[{ label: 'Home', href: '/' }, { label: 'Technology', href: '/technology/' }, { label: 'Vix IDE' }]}
+			/>
 			<h1>Vix IDE</h1>
 			<p>
 				Vix is a high-speed, high-security terminal text editor with a full integrated

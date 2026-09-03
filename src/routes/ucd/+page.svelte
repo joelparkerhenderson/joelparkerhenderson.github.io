@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ContainerWithFixedWidth } from 'lily-design-system-svelte-headless';
 	import Seo from '$lib/components/site/Seo.svelte';
+	import Breadcrumbs from '$lib/components/site/Breadcrumbs.svelte';
 	import uiUxDesignGuide from '$lib/assets/guides/ui-ux-design-guide.jpg';
 
 	const title = 'UI/UX — Joel Parker Henderson';
@@ -15,7 +16,9 @@
 <main id="content">
 	<section class="page-hero">
 		<ContainerWithFixedWidth maxWidth="72rem">
-			<p><a href="/guides/">← Guides</a></p>
+			<Breadcrumbs
+				trail={[{ label: 'Home', href: '/' }, { label: 'Guides', href: '/guides/' }, { label: 'UI/UX' }]}
+			/>
 			<h1>UI/UX</h1>
 			<p>
 				This site is my clearest evidence of how I think about UI/UX: it's built entirely on
