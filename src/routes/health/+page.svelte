@@ -32,7 +32,7 @@
 			label: 'Standards & guides',
 			items: [
 				{ title: 'WHO-FIC Rust — ICD-10, ICD-11, ICF, ICHI, and a live WHO ICD-API client', href: 'https://github.com/who-fic-rust/who-fic-rust' },
-				{ title: 'Digital Health Guide — best practices for delivering digital services in health and care', href: 'https://github.com/digital-health-guide/digital-health-guide' },
+				{ title: 'Digital Health Guide — best practices for delivering digital services in health and care (see the dedicated page)', href: '/digital-health-guide/' },
 				{ title: 'NHS Wales first aid kit — adapted from the NHS 111 Wales "Live Well" guide', href: 'https://github.com/GIG-Cymru-NHS-Wales/first-aid-kit' }
 			]
 		}

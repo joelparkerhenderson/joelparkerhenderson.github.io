@@ -36,7 +36,7 @@
 		{
 			label: 'Git tooling & workflow',
 			items: [
-				{ title: 'gitalias — a large collection of git alias settings', href: 'https://github.com/GitAlias/gitalias' },
+				{ title: 'GitAlias — a large collection of git alias settings (see the dedicated page)', href: '/gitalias/' },
 				{ title: 'git-tools — command-line scripts for everyday git tasks', href: 'https://github.com/SixArm/git-tools' },
 				{ title: 'Git branch name — naming conventions and ideas', href: 'https://github.com/joelparkerhenderson/git-branch-name' },
 				{ title: 'Git commit message — guidelines for writing great commit messages', href: 'https://github.com/joelparkerhenderson/git-commit-message' },
