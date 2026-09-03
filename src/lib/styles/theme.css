@@ -35,6 +35,21 @@
 	box-sizing: border-box;
 }
 
+/* Standard visually-hidden utility — used by the picker status regions
+   (theme-picker, locale-picker) their packages' own docs recommend:
+   present for assistive technology, invisible in the icon-only header. */
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
 html {
 	font-size: calc(100% * var(--user-font-scale, 1));
 	scroll-behavior: smooth;

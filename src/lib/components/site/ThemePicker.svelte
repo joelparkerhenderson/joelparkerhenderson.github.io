@@ -25,6 +25,8 @@
 	const STORAGE_KEY = 'jph-theme';
 	const themeSlugs = themes.map((t) => t.id);
 	const themeLabels = Object.fromEntries(themes.map((t) => [t.id, t.label]));
+
+	let value = $state(DEFAULT_THEME_ID);
 </script>
 
 <ThemePicker
@@ -35,4 +37,13 @@
 	storageKey={STORAGE_KEY}
 	defaultValue={DEFAULT_THEME_ID}
 	name="theme"
+	bind:value
 />
+<!-- Recommended by the package's own docs: the closed control is one
+     glyph, so nothing else on the page states the active theme.
+     Visually hidden — the header stays icon-only — but present for
+     assistive technology, and aria-live announces only on change, so
+     it stays silent at first paint. -->
+<p class="theme-picker-status visually-hidden" aria-live="polite">
+	Active theme: {themeLabels[value] ?? value}
+</p>
