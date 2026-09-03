@@ -14,8 +14,7 @@
 //      tracked in static/images/splash/ (so they're kept, not just their
 //      960x480 crop), the crop itself copied into this directory.
 //   leadership   — custom compass graphic (static/images/splash/compass.jpg)
-//   technology   — "matrix" graphic from the Software Programming Guide's
-//                  own asset set
+//   technology   — custom cogs graphic (static/images/splash/cogs.jpeg)
 //   consulting   — custom arrows graphic (static/images/splash/arrows.jpeg)
 //   speaking     — custom microphone/stage-light graphic (static/images/splash/microphone.jpg)
 //   hire         — Anthony Shkraba Production, Pexels photo 8837510
