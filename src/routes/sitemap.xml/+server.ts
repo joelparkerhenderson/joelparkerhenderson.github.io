@@ -11,6 +11,7 @@ const routes = [
 	'/',
 	'/about/',
 	'/contact/',
+	'/search/',
 	'/leadership/',
 	'/technology/',
 	'/consulting/',

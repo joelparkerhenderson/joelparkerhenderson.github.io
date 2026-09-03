@@ -11,25 +11,28 @@
 	const year = new Date().getFullYear();
 </script>
 
-<SkipLink href="#content" label="Skip to content" />
-
-<SiteHeader />
-<SiteNav />
+<div data-pagefind-ignore="all">
+	<SkipLink href="#content" label="Skip to content" />
+	<SiteHeader />
+	<SiteNav />
+</div>
 
 {@render children()}
 
-<Footer label="Site footer">
-	<ContainerWithFixedWidth maxWidth="72rem">
-		<div class="footer-cta">
-			<h2>Let's talk</h2>
-			<ContactCta subject="General inquiry" emailLabel="Get in touch" />
-		</div>
-		<FooterNav />
-		<p class="footer-colophon">
-			© {year} Joel Parker Henderson · <a href="https://github.com/joelparkerhenderson">GitHub</a> ·
-			<a href="https://uk.linkedin.com/in/joelparkerhenderson">LinkedIn</a> · built with
-			<a href="https://kit.svelte.dev">SvelteKit</a> and the
-			<a href="https://lilydesignsystem.github.io/">Lily Design System</a>
-		</p>
-	</ContainerWithFixedWidth>
-</Footer>
+<div data-pagefind-ignore="all">
+	<Footer label="Site footer">
+		<ContainerWithFixedWidth maxWidth="72rem">
+			<div class="footer-cta">
+				<h2>Let's talk</h2>
+				<ContactCta subject="General inquiry" emailLabel="Get in touch" />
+			</div>
+			<FooterNav />
+			<p class="footer-colophon">
+				© {year} Joel Parker Henderson · <a href="https://github.com/joelparkerhenderson">GitHub</a> ·
+				<a href="https://uk.linkedin.com/in/joelparkerhenderson">LinkedIn</a> · built with
+				<a href="https://kit.svelte.dev">SvelteKit</a> and the
+				<a href="https://lilydesignsystem.github.io/">Lily Design System</a>
+			</p>
+		</ContainerWithFixedWidth>
+	</Footer>
+</div>

@@ -7,7 +7,7 @@
 	let { trail }: { trail: { label: string; href?: string }[] } = $props();
 </script>
 
-<BreadcrumbNav label="Breadcrumb">
+<BreadcrumbNav label="Breadcrumb" data-pagefind-ignore="all">
 	<BreadcrumbList>
 		{#each trail as crumb, i (crumb.label)}
 			<BreadcrumbListItem current={i === trail.length - 1}>
