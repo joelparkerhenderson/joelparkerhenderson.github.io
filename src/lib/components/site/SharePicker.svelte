@@ -16,6 +16,11 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
 
+	// U+27A4 BLACK RIGHTWARDS ARROWHEAD — Lily's share-picker glyph. Kept as
+	// an escaped constant, not a bare literal in markup: a bare glyph is
+	// near-invisible in an editor and easy to lose in an edit.
+	const BLACK_RIGHTWARDS_ARROWHEAD = '\u27A4';
+
 	let { title = 'Joel Parker Henderson' }: { title?: string } = $props();
 
 	let open = $state(false);
@@ -61,14 +66,14 @@
 	<button
 		type="button"
 		class="share-picker-button"
-		aria-label="Share this page"
-		aria-haspopup="true"
+		aria-label="Share Picker"
 		aria-expanded={open}
+		aria-controls="share-picker-list"
 		onclick={toggle}
 	>
-		<span class="share-picker-icon" aria-hidden="true">➤</span>
+		<span class="share-picker-icon" aria-hidden="true">{BLACK_RIGHTWARDS_ARROWHEAD}</span>
 	</button>
-	<ul class="share-picker-list" hidden={!open}>
+	<ul id="share-picker-list" class="share-picker-list" hidden={!open}>
 		<li class="share-picker-list-item">
 			<ClipboardCopyButton
 				class="share-picker-copy"

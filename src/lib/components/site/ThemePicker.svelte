@@ -2,48 +2,37 @@
 	// ThemePicker — lets a visitor pick any of Lily's 45 ready-made themes.
 	//
 	// Each theme is a standalone stylesheet (static/themes/<id>.css) that
-	// styles every Lily component hook. Rather than bundling all 45 into the
-	// page (~5MB), this swaps the href of a single <link id="lily-theme">
-	// (declared with a default in app.html/+layout.svelte) and sets
-	// [data-theme] to match, since every theme file scopes its tokens to
-	// :root and :root[data-theme="<id>"] alike. Choice persists to
-	// localStorage; app.html applies it before paint to avoid a flash.
-	import { ThemeSelect, ThemeSelectOption } from 'lily-design-system-svelte-headless';
-	import { browser } from '$app/environment';
+	// styles every Lily component hook. Uses Lily's own theme-picker helper
+	// (an icon button that opens a WAI-ARIA APG listbox) rather than a
+	// native <select>, matching Lily's documented picker convention exactly
+	// — see lily-design-system-svelte-theme-picker's own spec/index.md.
+	//
+	// The helper manages its own `<link data-lily-theme-picker="theme">`,
+	// finding and reusing the one declared in app.html (which also carries
+	// id="lily-theme" for the pre-paint flash-avoidance script there)
+	// rather than creating a second one. Choice persists to localStorage
+	// under the same "jph-theme" key app.html's inline script already
+	// reads before first paint.
+	//
+	// Note: the helper's listbox is flat (no <optgroup> equivalent), so the
+	// "Government & healthcare" vs "General" grouping the old native
+	// <select> showed via <optgroup> is not reproduced — themes still list
+	// in the same order (government/healthcare themes first), just without
+	// a group heading inside the listbox.
+	import ThemePicker from 'lily-design-system-svelte-theme-picker';
 	import { themes, DEFAULT_THEME_ID } from '$lib/data/themes';
 
 	const STORAGE_KEY = 'jph-theme';
-	const GROUPS = ['Government & healthcare', 'General'] as const;
-
-	function readStored(): string {
-		if (!browser) return DEFAULT_THEME_ID;
-		const stored = localStorage.getItem(STORAGE_KEY);
-		return stored && themes.some((t) => t.id === stored) ? stored : DEFAULT_THEME_ID;
-	}
-
-	let value = $state(readStored());
-
-	$effect(() => {
-		if (!browser) return;
-		document.documentElement.dataset.theme = value;
-		const link = document.getElementById('lily-theme');
-		if (link instanceof HTMLLinkElement) {
-			link.href = `/themes/${value}.css`;
-		}
-		if (value === DEFAULT_THEME_ID) {
-			localStorage.removeItem(STORAGE_KEY);
-		} else {
-			localStorage.setItem(STORAGE_KEY, value);
-		}
-	});
+	const themeSlugs = themes.map((t) => t.id);
+	const themeLabels = Object.fromEntries(themes.map((t) => [t.id, t.label]));
 </script>
 
-<ThemeSelect class="select" label="Colour theme — all 45 Lily Design System themes" bind:value>
-	{#each GROUPS as group (group)}
-		<optgroup label={group}>
-			{#each themes.filter((t) => t.group === group) as theme (theme.id)}
-				<ThemeSelectOption value={theme.id}>{theme.label}</ThemeSelectOption>
-			{/each}
-		</optgroup>
-	{/each}
-</ThemeSelect>
+<ThemePicker
+	label="Colour theme — all 45 Lily Design System themes"
+	themesUrl="/themes/"
+	themes={themeSlugs}
+	{themeLabels}
+	storageKey={STORAGE_KEY}
+	defaultValue={DEFAULT_THEME_ID}
+	name="theme"
+/>
