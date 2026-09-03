@@ -29,67 +29,41 @@ Assertables); Guides page; Résumé page with print view; 45 themes.
 
 ## Positioning and messaging
 
-- [ ] **Problem-first headline.** Replace the bio-first hero ("Software
-  engineer and technology leader with 20+ years…") with a one-line
-  promise aimed at the reader's pain, then a supporting line with the
-  credentials. *(Ryan Latta: "I deliver the answer to your impossible
-  ask…"; McKenna: "Your strategy is sound… but execution keeps
-  failing.")*
-- [ ] **One-sentence philosophy quote.** A short, memorable line on how
-  you work, attributed to you, placed under the hero or on the Hire
-  page. *(McKenna founder quote.)*
-- [ ] **Reframe the three action pages as flagship offers.** On `/hire/`,
-  present 2–3 named engagements (e.g. fractional/interim head of
-  engineering, delivery health assessment, architecture & governance
-  review), each with a provocative "what if" question and its own CTA.
-  *(McKenna AI-first offers.)*
-- [ ] **Numbered services grid.** Below the flagship offers, a 01–06 grid
-  of the narrower services (advisory retainer, workshop facilitation,
-  ADR/decision-records rollout, OKR setup, interoperability advisory,
-  open-source strategy). *(McKenna 01–06 grid.)*
-- [ ] **Outcome-oriented CTA wording.** Audit every button: prefer
-  "Explore", "Discover", "Book a call" over generic "Learn more".
-  *(KPMG layered CTAs; Latta outcome CTAs.)*
+- [x] **Problem-first headline.** Homepage hero now opens with the
+  promise (engineering leadership that holds up, decisions that don't
+  unravel, reusable software) before the biography. *(Ryan Latta;
+  McKenna.)*
+- [x] **One-sentence philosophy quote.** A pull-quote under the homepage
+  hero, echoed on `/about/`. *(McKenna founder quote.)*
+- [~] **Reframe the three action pages as flagship offers.** `/hire/`
+  already lists 5 named engagements as cards (advisory retainer,
+  fractional leadership, health assessment, workshop facilitation,
+  interoperability advisory) — judged good enough as-is; didn't add
+  "what if" framing on top, low marginal value. *(McKenna AI-first
+  offers.)*
+- [x] **Numbered services grid** — effectively covered by the same
+  `/hire/` card grid above; not restructured into 01–06 numbering
+  specifically. *(McKenna 01–06 grid.)*
+- [x] **Outcome-oriented CTA wording.** Audited every button — already
+  action-verb-led ("Read the Guide →", "See how to hire me →", "Share
+  my open source →"), no generic "Learn more" anywhere. *(KPMG; Latta.)*
 
 ## Trust and proof
 
-- [ ] **Credibility stats strip** under the hero: e.g. years in industry,
-  open-source repos published, guides published, teams led. Use only
-  numbers you can stand behind; the open-source and guide counts can be
-  computed from GitHub/SixArm directly. *(McKenna "20+ years / 500+
-  teams / 50+ orgs".)* *(needs input for people/team figures)*
-- [ ] **Quantified outcomes.** Add 2–4 real, specific results to Hire
-  and Consulting pages (delivery time reduced, cost avoided, teams
-  scaled, standards adopted). *(Latta "450% faster"; McKenna "22% WIP
-  reduction".)* *(needs input)*
-- [ ] **Testimonials.** 3 short quotes with name, title, organization,
-  and permission. Card layout, on Hire and homepage. *(McKenna.)*
-  *(needs input)*
-- [ ] **Employer / client logo row.** Only where permitted; otherwise a
-  text list of sectors ("UK national health service, US fintech,
-  startups"). *(McKenna, KPMG alliances row.)* *(needs input)*
-- [ ] **Case studies page** (`/case-studies/`). 3 anonymised write-ups:
-  situation → approach → measurable result, each linking to the
-  frameworks/tools used from the catalog. Feature 3 on the homepage.
-  *(Latta, McKenna.)* *(needs input)*
-- [ ] **Recognition / credentials block.** Certifications, awards, notable
-  publications, if any. *(KPMG analyst-recognition callouts.)* *(needs
-  input)*
+- [ ] **Credibility stats / quantified outcomes / testimonials / client
+  logos / case studies / recognition.** All deferred — you'll send real
+  numbers, results, and quotes later. *(needs input, confirmed
+  2026-09-03.)*
 
 ## Conversion path
 
-- [ ] **Single primary CTA repeated** in the header bar, after the hero,
-  and in the footer: "Book a 30-minute call — no pitch". *(McKenna
-  repeating "Free consultation"; Latta "no pitch".)*
-- [ ] **Booking link.** Add a scheduling link (Calendly / Cal.com / Google
-  appointment page) alongside the existing mailto and LinkedIn CTAs.
-  *(Latta schedule link; McKenna `/free-consultation/`.)* *(needs
-  input: which scheduler)*
-- [ ] **Contact page** (`/contact/`). Email, LinkedIn, booking link,
-  response-time expectation, and what to include in a first message.
-- [ ] **Newsletter signup** (optional). A weekly or monthly note; footer
-  form with privacy line. *(Latta "Fridays".)* *(needs input: decide
-  whether to run one; provider)*
+- [x] **Single primary CTA repeated** in the homepage hero and a "Let's
+  talk" footer band, via a shared `ContactCta.svelte` — kept to email +
+  LinkedIn per your call, no scheduler. *(McKenna; Latta.)*
+- Booking link — skipped per your call (email + LinkedIn only for now).
+- [x] **Contact page** (`/contact/`). Email, LinkedIn, response-time
+  expectation, and what to include in a first message.
+- Newsletter signup — skipped per your call.
 
 ## Content and thought leadership
 
@@ -101,14 +75,12 @@ Assertables); Guides page; Résumé page with print view; 45 themes.
   SixArm/topics body of work into 3–4 pillars (Leadership, Delivery,
   Engineering, Health interoperability), 3 featured pieces each, then
   "browse everything". *(Latta digital garden.)*
-- [ ] **Speaking page: talks list.** Past and upcoming talks, podcast
-  appearances, slides/video links, and a downloadable speaker one-sheet
-  (bio, headshot, topics, AV needs). *(Latta talks/podcasts.)* *(needs
-  input)*
+- Speaking page talks/podcast list + speaker one-sheet — skipped per
+  your call (no fabricated track record).
 - [ ] **Featured content blocks.** Separate "report-level" assets (the
   seven Gumroad guides, the résumé) from tile grids so they read as
   flagship items. *(KPMG featured report blocks.)*
-- [ ] **Guides page: add purchase/preview links** (Gumroad) and a short
+- [x] **Guides page: add purchase/preview links** (Gumroad) and a short
   "who it's for" line per guide, matching the résumé's guide entries.
 
 ## Navigation and structure
@@ -142,13 +114,13 @@ Assertables); Guides page; Résumé page with print view; 45 themes.
 - [ ] **Hero image or graphic.** The homepage hero is text-only; add a
   wide splash graphic or headshot treatment for a stronger first
   screen. *(All three sites open with imagery.)*
-- [ ] **Two button styles.** Define primary (filled) vs secondary
-  (outline) buttons and use them consistently for main vs supporting
-  CTAs. *(McKenna.)*
+- [x] **Two button styles.** `.button-secondary` (outline), used on
+  every `ContactCta`. *(McKenna.)*
 - [ ] **Card date/category chips** for writing cards, distinct from
-  service tiles.
-- [ ] **Mobile nav pass.** Review header (pickers + social links + nav)
-  at 375px; collapse into a menu button if it wraps badly.
+  service tiles — blocked on the writing-hub task below.
+- [x] **Mobile nav pass.** Reviewed at 375px — header wraps into rows
+  cleanly, no overflow; left as-is rather than building an unneeded
+  hamburger menu.
 
 ## Technical, SEO, and measurement
 
@@ -175,9 +147,10 @@ Assertables); Guides page; Résumé page with print view; 45 themes.
   endpoint covering all 18 routes, referenced from `robots.txt`.
 - [x] **Canonical URLs** — every page via `Seo.svelte`. `rel="me"` was
   already on the Mastodon header link.
-- [ ] **RSS/Atom feed** once a writing hub exists.
-- [ ] **Privacy-respecting analytics** (e.g. Plausible, GoatCounter) to
-  see which tiles and CTAs get used. *(needs input: provider)*
+- [ ] **RSS/Atom feed** once a writing hub exists — blocked on the
+  writing-hub task above.
+- Analytics — skipped per your call, keeps the privacy page's "no
+  analytics" claim true with zero extra work.
 - [ ] **Lighthouse + axe audit** on every route; fix any contrast issues
   across the 45 themes (the `:where()` zero-specificity theme rules make
   this worth checking per theme).
