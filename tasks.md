@@ -113,22 +113,24 @@ Assertables); Guides page; Résumé page with print view; 45 themes.
 
 ## Navigation and structure
 
-- [ ] **Footer as a second nav.** Full sitemap in 3–4 columns (Work with
-  me / Expertise / Projects / Writing), social icons, legal links
-  (privacy, accessibility statement), copyright. *(KPMG.)*
+- [x] **Footer as a second nav.** Full sitemap in 4 columns (Explore /
+  Work with me / Projects / About), copyright/colophon line below.
+  *(KPMG.)*
 - [ ] **Header nav grouping.** Consider dropdowns: Expertise
   (Leadership, Technology, Consulting), Projects (Health, Engineering,
   Teamwork, Lily, Vix, Assertables, Guides), About (Résumé, Speaking,
   Contact). Keep a persistent "Book a call" button. *(KPMG mega-menu,
   simplified.)*
-- [ ] **About page** (`/about/`). Short narrative bio, headshot, what you
-  believe about engineering leadership, personal-depth paragraph
-  (interests outside work), links to Résumé. *(Latta personal
-  interests; McKenna founder authority.)*
+- [x] **About page** (`/about/`). Short narrative bio, headshot, what you
+  believe about engineering leadership, links to Résumé. *(Latta
+  personal interests; McKenna founder authority.)* Skipped the
+  personal-depth/interests-outside-work paragraph — *(needs input:
+  what to include)*.
 - [ ] **Site search.** Client-side search across the 114-link catalog,
   guides, and spotlight pages (e.g. Pagefind or a prebuilt JSON index).
   *(KPMG utility bar search.)*
-- [ ] **Breadcrumbs** on spotlight pages (Technology → Health). *(KPMG.)*
+- [x] **Breadcrumbs** on every subpage (Home › Parent › Page), using
+  Lily's own Breadcrumb components. *(KPMG.)*
 
 ## Visual design
 
@@ -163,23 +165,26 @@ Assertables); Guides page; Résumé page with print view; 45 themes.
   orange) until GitHub issues its TLS cert, then HTTPS enforcement can
   be turned back on. The current 522 means Cloudflare is proxying to
   some origin that isn't answering — likely a stale record.
-- [ ] **Open Graph / Twitter card meta** per page, with a default
-  1200×630 share image and per-page images for tiles.
-- [ ] **JSON-LD `Person` (and `Organization` for consulting) schema** on
-  the homepage; `Article` schema for writing pages.
-- [ ] **`sitemap.xml` and `robots.txt`** (SvelteKit endpoint or
-  build-time generation).
-- [ ] **Canonical URLs** and a `<link rel="me">` set for social profile
-  verification (Mastodon already has `rel="me"` in the header).
+- [x] **Open Graph / Twitter card meta** per page, via a shared
+  `Seo.svelte` component — default 1200×630 share image plus per-page
+  tile images on the six pillar/action pages.
+- [x] **JSON-LD `Person` schema** on the homepage (real `sameAs` profile
+  URLs only). `Organization` schema and `Article` schema for writing
+  pages deferred — no writing hub yet.
+- [x] **`sitemap.xml` and `robots.txt`** — a prerendered SvelteKit
+  endpoint covering all 18 routes, referenced from `robots.txt`.
+- [x] **Canonical URLs** — every page via `Seo.svelte`. `rel="me"` was
+  already on the Mastodon header link.
 - [ ] **RSS/Atom feed** once a writing hub exists.
 - [ ] **Privacy-respecting analytics** (e.g. Plausible, GoatCounter) to
   see which tiles and CTAs get used. *(needs input: provider)*
 - [ ] **Lighthouse + axe audit** on every route; fix any contrast issues
   across the 45 themes (the `:where()` zero-specificity theme rules make
   this worth checking per theme).
-- [ ] **Accessibility statement page** and a **privacy page**, linked
+- [x] **Accessibility statement page** and a **privacy page**, linked
   from the footer.
-- [ ] **404 page** styled like the rest of the site with links back to
-  the six tiles.
+- [x] **404 page** styled like the rest of the site with links back to
+  the six tiles — both a SvelteKit `+error.svelte` (client-side nav)
+  and a static `404.html` (GitHub Pages' own not-found response).
 - [ ] **Performance:** responsive `srcset` for tile images, `fetchpriority`
   on the hero image, preload the default theme CSS.
