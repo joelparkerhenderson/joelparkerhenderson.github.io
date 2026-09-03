@@ -67,14 +67,18 @@ Assertables); Guides page; Résumé page with print view; 45 themes.
 
 ## Content and thought leadership
 
-- [ ] **"Latest thinking" section on the homepage.** 3 cards: image,
-  title, date, one-line excerpt, "Read →". Source from GitHub topics /
-  SixArm guides / a new `/writing/` route. *(McKenna blog cards; KPMG
-  insight tiles.)*
-- [ ] **Writing hub** (`/writing/` or `/garden/`). Group the large
-  SixArm/topics body of work into 3–4 pillars (Leadership, Delivery,
-  Engineering, Health interoperability), 3 featured pieces each, then
-  "browse everything". *(Latta digital garden.)*
+- [x] **"Latest thinking" section on the homepage.** 3 text-only cards
+  (title, excerpt, "Read →"), the three newest project pages. Skipped
+  images (none exist for these pages) and dates (not dated posts — KPMG's
+  own insight cards skip dates too). *(McKenna blog cards; KPMG insight
+  tiles.)*
+- [~] **Writing hub** (`/writing/` or `/garden/`) — skipped as a
+  separate route. The site already groups its ~120+ links into 3
+  pillars (Leadership/Technology/Consulting) plus spotlight pages
+  (Health, Engineering, Teamwork, Lily, Vix, Assertables, Guides,
+  Agile, UCD, Testing, GitAlias, Ways Of Working, Digital Health
+  Guide) — a parallel `/writing/` taxonomy would mostly duplicate that
+  structure rather than add real navigability. *(Latta digital garden.)*
 - Speaking page talks/podcast list + speaker one-sheet — skipped per
   your call (no fabricated track record).
 - [ ] **Featured content blocks.** Separate "report-level" assets (the
@@ -116,8 +120,8 @@ Assertables); Guides page; Résumé page with print view; 45 themes.
   screen. *(All three sites open with imagery.)*
 - [x] **Two button styles.** `.button-secondary` (outline), used on
   every `ContactCta`. *(McKenna.)*
-- [ ] **Card date/category chips** for writing cards, distinct from
-  service tiles — blocked on the writing-hub task below.
+- Card date/category chips — dropped along with the writing hub above;
+  no dated posts to tag.
 - [x] **Mobile nav pass.** Reviewed at 375px — header wraps into rows
   cleanly, no overflow; left as-is rather than building an unneeded
   hamburger menu.
@@ -147,8 +151,8 @@ Assertables); Guides page; Résumé page with print view; 45 themes.
   endpoint covering all 18 routes, referenced from `robots.txt`.
 - [x] **Canonical URLs** — every page via `Seo.svelte`. `rel="me"` was
   already on the Mastodon header link.
-- [ ] **RSS/Atom feed** once a writing hub exists — blocked on the
-  writing-hub task above.
+- RSS/Atom feed — dropped along with the writing hub above; nothing
+  dated to feed.
 - Analytics — skipped per your call, keeps the privacy page's "no
   analytics" claim true with zero extra work.
 - [ ] **Lighthouse + axe audit** on every route; fix any contrast issues
