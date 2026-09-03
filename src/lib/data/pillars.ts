@@ -17,7 +17,8 @@
 //   technology   — custom cogs graphic (static/images/splash/cogs.jpeg)
 //   consulting   — custom arrows graphic (static/images/splash/arrows.jpeg)
 //   speaking     — custom microphone/stage-light graphic (static/images/splash/microphone.jpg)
-//   hire         — Anthony Shkraba Production, Pexels photo 8837510
+//   hire         — custom arrows graphic (static/images/splash/arrows.jpeg,
+//                  same original as the consulting tile)
 //   open-source  — custom lightbulbs/stage-light graphic (static/images/splash/lights.jpg)
 
 import leadershipImage from '$lib/assets/tiles/leadership.jpg';
