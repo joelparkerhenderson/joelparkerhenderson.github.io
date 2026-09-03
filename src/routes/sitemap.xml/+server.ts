@@ -25,6 +25,9 @@ const routes = [
 	'/guides/',
 	'/privacy/',
 	'/accessibility/',
+	'/agile/',
+	'/ucd/',
+	'/testing/',
 	// Static tool subfolders, shipped as-is via static/ (not SvelteKit routes).
 	'/agile-checklist/',
 	'/smart-okrs-kpis/',

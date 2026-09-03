@@ -20,7 +20,8 @@
 			items: [
 				{ title: 'Ways of Working — 100+ tips for how teams work well together', href: 'https://github.com/joelparkerhenderson/ways-of-working' },
 				{ title: 'TEAM FOCUS — a toolkit for team problem solving', href: 'https://github.com/joelparkerhenderson/team-focus' },
-				{ title: 'Agile assessment — exercises for facilitating team agile-maturity discussions', href: 'https://github.com/joelparkerhenderson/agile-assessment' }
+				{ title: 'Agile assessment — exercises for facilitating team agile-maturity discussions', href: 'https://github.com/joelparkerhenderson/agile-assessment' },
+				{ title: 'Agile — my work with agile, and the Agile Change Guide (see the dedicated page)', href: '/agile/' }
 			]
 		},
 		{

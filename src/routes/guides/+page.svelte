@@ -23,7 +23,7 @@
 			title: 'Agile Change Guide',
 			blurb:
 				'A comprehensive reference for understanding, implementing, and improving agile practices — from core principles and manifesto values through frameworks, metrics, and real-world applications.',
-			href: `${GUIDES_REPO}/agile-change-guide`
+			href: '/agile/'
 		},
 		{
 			image: innovationPartnershipGuide,
@@ -51,14 +51,14 @@
 			title: 'Test Automation Guide',
 			blurb:
 				'The full landscape of automated testing — foundational development methodologies, specialized testing types, tooling, quality assurance, and security practices.',
-			href: `${GUIDES_REPO}/test-automation-guide`
+			href: '/testing/'
 		},
 		{
 			image: uiUxDesignGuide,
 			title: 'UI/UX Design Guide',
 			blurb:
 				'The principles, practices, and processes behind effective user interface and user experience design, from foundational concepts through advanced and AI-assisted techniques.',
-			href: `${GUIDES_REPO}/ui-ux-design-guide`
+			href: '/ucd/'
 		}
 	];
 </script>

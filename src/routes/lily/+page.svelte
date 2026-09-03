@@ -50,6 +50,7 @@
 		<ul class="link-list">
 			<li><a href="https://lilydesignsystem.github.io/">Documentation & component catalog</a></li>
 			<li><a href="https://github.com/LilyDesignSystem">GitHub organization</a></li>
+			<li><a href="/ucd/">UI/UX — my work with user-centered design, and the UI/UX Design Guide</a></li>
 		</ul>
 	</ContainerWithFixedWidth>
 </main>

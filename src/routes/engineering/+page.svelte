@@ -28,7 +28,8 @@
 			label: 'Testing',
 			items: [
 				{ title: 'Testing examples — Playwright and Selenium browser automation across TypeScript, JavaScript, Python, and Rust', href: 'https://github.com/testingexamples/demo-playwright-typescript' },
-				{ title: 'Assertables — a Rust crate of assert macros for testing (see the dedicated page)', href: '/assertables/' }
+				{ title: 'Assertables — a Rust crate of assert macros for testing (see the dedicated page)', href: '/assertables/' },
+				{ title: 'Testing — my work with test automation, and the Test Automation Guide (see the dedicated page)', href: '/testing/' }
 			]
 		},
 		{
