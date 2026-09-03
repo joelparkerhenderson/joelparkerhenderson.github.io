@@ -18,11 +18,12 @@
 		<ContainerWithFixedWidth maxWidth="72rem">
 			<h1>Joel Parker Henderson</h1>
 			<p>
-				Software engineer and technology leader with 20+ years building and consulting across
-				industry and government — currently head of software engineering for a national
-				health service organization. My work spans commercial and public-sector engineering,
-				and the frameworks, templates, and open-source software I publish are used well
-				beyond either — free, open, and built to be reused anywhere in the world.
+				Software engineer and technology leader with 20+ years of experience. I build and
+				consult across industry and government. I'm currently head of software engineering
+				for a national health service organization. My work spans both commercial and
+				public-sector engineering. I publish frameworks, templates, and open-source
+				software. They're used well beyond either sector — free, open, and built to be
+				reused anywhere in the world.
 			</p>
 		</ContainerWithFixedWidth>
 	</section>
