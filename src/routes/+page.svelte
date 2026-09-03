@@ -32,14 +32,14 @@
 		<h2>Explore my work</h2>
 		<div class="promo-tile-grid">
 			{#each corePillars as pillar (pillar.id)}
-				<PromoTile href={pillar.route} icon={pillar.icon} title={pillar.title} blurb={pillar.tileBlurb} />
+				<PromoTile href={pillar.route} image={pillar.image} title={pillar.title} blurb={pillar.tileBlurb} />
 			{/each}
 		</div>
 
 		<h2>Work with me</h2>
 		<div class="promo-tile-grid">
 			{#each actionTiles as tile (tile.id)}
-				<PromoTile href={tile.route} icon={tile.icon} title={tile.title} blurb={tile.tileBlurb} />
+				<PromoTile href={tile.route} image={tile.image} title={tile.title} blurb={tile.tileBlurb} />
 			{/each}
 		</div>
 	</ContainerWithFixedWidth>

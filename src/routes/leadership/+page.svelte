@@ -3,6 +3,10 @@
 	import PillarSections from '$lib/components/site/PillarSections.svelte';
 	import PromoTile from '$lib/components/site/PromoTile.svelte';
 	import { sections } from '$lib/data/sections';
+	import teamworkImage from '$lib/assets/tiles/teamwork.jpg';
+
+	// Tile photo is a free-to-use Pexels image (pexels.com/license):
+	// teamwork — Diva Plavalaguna, photo 6146691.
 
 	const pillarSections = sections.filter((s) =>
 		['leadership-culture', 'goals-performance', 'decisions-thinking'].includes(s.id)
@@ -45,7 +49,7 @@
 
 		<h2>Featured project</h2>
 		<div class="promo-tile-grid">
-			<PromoTile href="/teamwork/" icon="👥" title="Teamwork" blurb="Ways of working, team health, and communication frameworks." />
+			<PromoTile href="/teamwork/" image={teamworkImage} title="Teamwork" blurb="Ways of working, team health, and communication frameworks." />
 		</div>
 
 		<div class="cta-band">

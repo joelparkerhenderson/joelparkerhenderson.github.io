@@ -3,6 +3,10 @@
 	import PillarSections from '$lib/components/site/PillarSections.svelte';
 	import PromoTile from '$lib/components/site/PromoTile.svelte';
 	import { sections } from '$lib/data/sections';
+	import guidesImage from '$lib/assets/tiles/guides.jpg';
+
+	// Tile photo is a free-to-use Pexels image (pexels.com/license):
+	// guides — Sumcig, photo 38323235.
 
 	const pillarSections = sections.filter((s) =>
 		['delivery-projects', 'startups-strategy', 'risk-security'].includes(s.id)
@@ -43,7 +47,7 @@
 
 		<h2>Featured project</h2>
 		<div class="promo-tile-grid">
-			<PromoTile href="/guides/" icon="📚" title="Guides" blurb="Six long-form reference guides on agile change, project management, startups, testing, and design." />
+			<PromoTile href="/guides/" image={guidesImage} title="Guides" blurb="Six long-form reference guides on agile change, project management, startups, testing, and design." />
 		</div>
 
 		<div class="cta-band">

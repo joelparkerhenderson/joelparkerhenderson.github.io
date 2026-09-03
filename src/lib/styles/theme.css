@@ -336,10 +336,16 @@ a:not([class]) {
 	gap: 1.25rem;
 	margin-block: 1.5rem 2.5rem;
 }
-.promo-tile {
+/* Image-forward, like .guide-tile: a real photo (Pexels — see the data
+   file each tile's `image` comes from for source/photographer credit),
+   not an icon or emoji. Photos vary in native aspect ratio, so
+   .promo-tile-image crops to a consistent 4:3 via object-fit: cover. */
+.promo-tile,
+.guide-tile {
 	display: flex;
 	flex-direction: column;
-	aspect-ratio: 1;
+	padding: 0;
+	overflow: clip;
 	text-decoration: none;
 	color: inherit;
 	transition:
@@ -347,16 +353,30 @@ a:not([class]) {
 		box-shadow 120ms ease;
 }
 .promo-tile:hover,
-.promo-tile:focus-visible {
+.promo-tile:focus-visible,
+.guide-tile:hover,
+.guide-tile:focus-visible {
 	transform: translateY(-2px);
 	box-shadow: var(--lily-shadow-md);
 }
-.promo-tile-icon {
-	font-size: 2.25rem;
-	line-height: 1;
+.promo-tile-image,
+.guide-tile-image {
+	display: block;
+	width: 100%;
+	object-fit: cover;
+}
+.promo-tile-image {
+	aspect-ratio: 4 / 3;
+}
+.promo-tile-body,
+.guide-tile-body {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding: 1.5rem 1.75rem;
 }
 .promo-tile-title {
-	margin-block: 0.75rem 0.4rem;
+	margin-block: 0 0.4rem;
 	font-size: 1.15rem;
 }
 .promo-tile-blurb {
@@ -414,35 +434,15 @@ a:not([class]) {
 }
 
 /* ---------------------------------------------------------------------------
- * Guide tiles (/guides/) — image-forward, like .promo-tile but not square:
- * the source cover images are 2:1 banners with the title baked in, so
- * forcing a 1:1 crop would cut them badly.
+ * Guide tiles (/guides/) — shares .promo-tile's structure (see above) but
+ * a wider grid and a 2:1 image crop: the source cover images are 2:1
+ * banners with the title already baked in, so .promo-tile-image's 4:3
+ * crop would cut them badly.
  * ------------------------------------------------------------------------- */
 
 .guide-tile-grid {
 	grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
 }
-.guide-tile {
-	aspect-ratio: auto;
-	padding: 0;
-	overflow: clip;
-	text-decoration: none;
-	color: inherit;
-}
-.guide-tile:hover,
-.guide-tile:focus-visible {
-	transform: translateY(-2px);
-	box-shadow: var(--lily-shadow-md);
-}
 .guide-tile-image {
-	display: block;
-	width: 100%;
 	aspect-ratio: 2 / 1;
-	object-fit: cover;
-}
-.guide-tile-body {
-	display: flex;
-	flex-direction: column;
-	flex: 1;
-	padding: 1.5rem 1.75rem;
 }

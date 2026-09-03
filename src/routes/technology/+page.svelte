@@ -3,6 +3,16 @@
 	import PillarSections from '$lib/components/site/PillarSections.svelte';
 	import PromoTile from '$lib/components/site/PromoTile.svelte';
 	import { sections } from '$lib/data/sections';
+	import healthImage from '$lib/assets/tiles/health.jpg';
+	import engineeringImage from '$lib/assets/tiles/engineering.jpg';
+	import lilyImage from '$lib/assets/tiles/lily.jpg';
+	import vixImage from '$lib/assets/tiles/vix.jpg';
+	import assertablesImage from '$lib/assets/tiles/assertables.jpg';
+
+	// Tile photos are free-to-use Pexels images (pexels.com/license):
+	// health — Stephen T. Andrews, photo 9408871; engineering — Cottonbro
+	// Studio, photo 5483077; lily — Mogilat, photo 3987856; vix — UseHex,
+	// photo 9553909; assertables — Towfiqu Barbhuiya, photo 11412596.
 
 	const pillarSections = sections.filter((s) =>
 		['healthcare-interoperability', 'engineering-reference'].includes(s.id)
@@ -45,11 +55,11 @@
 
 		<h2>Featured projects</h2>
 		<div class="promo-tile-grid">
-			<PromoTile href="/health/" icon="🩺" title="Health" blurb="Health economics, clinical data, and standards work." />
-			<PromoTile href="/engineering/" icon="🛠" title="Engineering" blurb="Decision records, testing, git tooling, and CLI utilities." />
-			<PromoTile href="/lily/" icon="🌸" title="Lily Design System" blurb="The headless component library this site is built with." />
-			<PromoTile href="/vix/" icon="⌨" title="Vix IDE" blurb="A high-speed, high-security terminal text editor." />
-			<PromoTile href="/assertables/" icon="✓" title="Assertables" blurb="Assert macros for better Rust testing." />
+			<PromoTile href="/health/" image={healthImage} title="Health" blurb="Health economics, clinical data, and standards work." />
+			<PromoTile href="/engineering/" image={engineeringImage} title="Engineering" blurb="Decision records, testing, git tooling, and CLI utilities." />
+			<PromoTile href="/lily/" image={lilyImage} title="Lily Design System" blurb="The headless component library this site is built with." />
+			<PromoTile href="/vix/" image={vixImage} title="Vix IDE" blurb="A high-speed, high-security terminal text editor." />
+			<PromoTile href="/assertables/" image={assertablesImage} title="Assertables" blurb="Assert macros for better Rust testing." />
 		</div>
 
 		<div class="cta-band">
