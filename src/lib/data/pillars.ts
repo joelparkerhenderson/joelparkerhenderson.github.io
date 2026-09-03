@@ -4,18 +4,21 @@
 // homepage tile grid and each destination page's own hero, so the tile
 // blurb and the page it links to never drift out of sync.
 //
-// Tile images are free-to-use photos from Pexels (pexels.com/license —
-// no attribution required, credited here anyway as good practice), except
-// technology, which is a "matrix" digital-rain graphic from the
-// Software Programming Guide's own asset set, cropped to 960x480. A few
-// others are Pexels photos too, but sourced via SixArm's guide asset
-// folders (~/git/sixarm/topics/guides/<guide>/assets/images/pexels/)
-// rather than pexels.com directly — same license, credited the same way:
-//   leadership   — Kampus, photo 8463151
-//   consulting   — Karolina Grabowska, photo 5412103 (via project-management-guide assets)
-//   speaking     — Miguel Á. Padriñán, photo 1111369 (via business-lingo-guide assets)
-//   hire         — Anthony Shkraba Production, photo 8837510
-//   open-source  — duncanoluwaseun, photo 226232
+// Tile images, sourced two ways, all cropped to 960x480:
+//   1. Free-to-use photos from Pexels (pexels.com/license — no
+//      attribution required, credited here anyway as good practice),
+//      some fetched via SixArm's guide asset folders
+//      (~/git/sixarm/topics/guides/<guide>/assets/images/pexels/)
+//      rather than pexels.com directly — same license either way.
+//   2. Custom splash graphics supplied directly (were staged under
+//      static/images/splash/ before being cropped in here).
+//   leadership   — Kampus, Pexels photo 8463151
+//   technology   — "matrix" graphic from the Software Programming Guide's
+//                  own asset set
+//   consulting   — custom "target acquired" graphic
+//   speaking     — custom microphone/stage-light graphic
+//   hire         — Anthony Shkraba Production, Pexels photo 8837510
+//   open-source  — duncanoluwaseun, Pexels photo 226232
 
 import leadershipImage from '$lib/assets/tiles/leadership.jpg';
 import technologyImage from '$lib/assets/tiles/technology.jpg';
