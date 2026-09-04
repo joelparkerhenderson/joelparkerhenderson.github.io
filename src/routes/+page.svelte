@@ -4,6 +4,7 @@
 	import Seo from '$lib/components/site/Seo.svelte';
 	import ContactCta from '$lib/components/site/ContactCta.svelte';
 	import { corePillars, actionTiles } from '$lib/data/pillars';
+	import { careerLogos } from '$lib/data/career-logos';
 	import { SITE_URL } from '$lib/site';
 	import heroPortrait from '$lib/assets/hero-portrait.jpg';
 
@@ -91,6 +92,13 @@
 	</section>
 
 	<ContainerWithFixedWidth maxWidth="72rem">
+		<h2>Career</h2>
+		<ul class="logo-row">
+			{#each careerLogos as logo (logo.id)}
+				<li><img src={logo.image} alt={logo.name} title={logo.name} loading="lazy" width="64" height="64" /></li>
+			{/each}
+		</ul>
+
 		<h2>Explore my work</h2>
 		<div class="promo-tile-grid">
 			{#each corePillars as pillar (pillar.id)}
